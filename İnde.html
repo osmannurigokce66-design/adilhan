@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adilhan Otomotiv | Galerim</title>
+    <!-- FontAwesome ikonları için -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1e293b;
+            --accent-color: #f59e0b;
+            --bg-color: #f8fafc;
+            --text-color: #334155;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+        }
+
+        nav a.btn-admin {
+            background-color: var(--accent-color);
+            padding: 8px 15px;
+            border-radius: 5px;
+            color: #000;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            margin-bottom: 30px;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* Card & Form */
+        .card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+
+        .admin-card h2 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--accent-color);
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: #000;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #d97706;
+            color: white;
+        }
+
+        /* Gallery Section */
+        .gallery-section h2 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .car-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .car-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .car-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .car-details {
+            padding: 20px;
+        }
+
+        .car-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .car-price {
+            font-size: 1.4rem;
+            color: #16a34a;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            font-size: 0.85rem;
+            background: #f1f5f9;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .specs-grid div span {
+            font-weight: 600;
+        }
+
+        .car-desc {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-bottom: 15px;
+        }
+
+        .btn-delete {
+            background-color: #ef4444;
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+        }
+
+        .btn-delete:hover {
+            background-color: #dc2626;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ÜST BİLGİ & NAVİGASYON -->
+    <header>
+        <div class="container navbar">
+            <div class="logo">
+                <i class="fa-solid fa-car-side"></i> <span>Adilhan Otomotiv</span>
+            </div>
+            <nav>
+                <a href="#galeri">Araçlarımız</a>
+                <a href="#admin-panel" class="btn-admin"><i class="fa-solid fa-plus-circle"></i> Araç Ekle</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO / KARŞILAMA -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Güvenin ve Kalitenin Adresi</h1>
+            <p>Hayalinizdeki aracı en avantajlı koşullarla Adilhan Otomotiv'de bulun.</p>
+        </div>
+    </section>
+
+    <main class="container">
+
+        <!-- ARAÇ EKLEME PANELİ -->
+        <section id="admin-panel" class="card admin-card">
+            <h2><i class="fa-solid fa-car"></i> Yeni Araç Ekle</h2>
+            <form id="carForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Marka</label>
+                        <input type="text" id="brand" required placeholder="Örn: BMW">
+                    </div>
+                    <div class="form-group">
+                        <label>Model</label>
+                        <input type="text" id="model" required placeholder="Örn: 3.20i M Sport">
+                    </div>
+                    <div class="form-group">
+                        <label>Yıl</label>
+                        <input type="number" id="year" required placeholder="2023">
+                    </div>
+                    <div class="form-group">
+                        <label>Fiyat (TL)</label>
+                        <input type="number" id="price" required placeholder="1500000">
+                    </div>
+                    <div class="form-group">
+                        <label>Kilometre (KM)</label>
+                        <input type="number" id="km" required placeholder="45000">
+                    </div>
+                    <div class="form-group">
+                        <label>Vites Tipi</label>
+                        <select id="transmission">
+                            <option value="Otomatik">Otomatik</option>
+                            <option value="Düz (Manuel)">Düz (Manuel)</option>
+                            <option value="Yarı Otomatik">Yarı Otomatik</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Yakıt Türü</label>
+                        <select id="fuel">
+                            <option value="Benzin">Benzin</option>
+                            <option value="Dizel">Dizel</option>
+                            <option value="Hibrit">Hibrit</option>
+                            <option value="Elektrik">Elektrik</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Kasa Tipi</label>
+                        <input type="text" id="bodyType" placeholder="Sedan, SUV, Hatchback...">
+                    </div>
+                    <div class="form-group">
+                        <label>Renk</label>
+                        <input type="text" id="color" placeholder="Siyah, Beyaz...">
+                    </div>
+                    <div class="form-group">
+                        <label>Motor Gücü (HP)</label>
+                        <input type="text" id="enginePower" placeholder="170 HP">
+                    </div>
+                    <div class="form-group">
+                        <label>Çekiş</label>
+                        <input type="text" id="driveTrain" placeholder="Önden Çekiş, 4x4...">
+                    </div>
+                    <div class="form-group">
+                        <label>Hasar / Boya Durumu</label>
+                        <input type="text" id="damageStatus" placeholder="Hatasız, Boyalı parça var...">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Fotoğraf URL (Görsel Bağlantısı)</label>
+                        <input type="url" id="imageUrl" required placeholder="https://ornek.com/arac-resmi.jpg">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Ek Donanımlar ve Açıklama</label>
+                        <textarea id="description" rows="3" placeholder="Sunroof, Deri Koltuk, Geri Görüş Kamerası..."></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary"><i class="fa-solid fa-check"></i> Aracı Sisteme Yükle</button>
+            </form>
+        </section>
+
+        <!-- GALERİ LİSTESİ -->
+        <section id="galeri" class="gallery-section">
+            <h2>Galerideki Araçlar</h2>
+            <div id="carList" class="car-grid">
+                <!-- Araçlar JavaScript ile buraya eklenecek -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Adilhan Otomotiv. Tüm Hakları Saklıdır.</p>
+    </footer>
+
+    <!-- JAVASCRIPT KODLARI -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const carForm = document.getElementById('carForm');
+            const carList = document.getElementById('carList');
+
+            // LocalStorage'dan kayıtlı araçları çek
+            let cars = JSON.parse(localStorage.getItem('adilhan_cars')) || [];
+
+            // Örnek başlangıç aracı (İlk açılışta boş kalmasın diye)
+            if (cars.length === 0) {
+                cars.push({
+                    id: Date.now(),
+                    brand: 'BMW',
+                    model: '3.20i M Sport',
+                    year: 2022,
+                    price: 2150000,
+                    km: 38000,
+                    transmission: 'Otomatik',
+                    fuel: 'Benzin',
+                    bodyType: 'Sedan',
+                    color: 'Beyaz',
+                    enginePower: '170 HP',
+                    driveTrain: 'Arkadan İtiş',
+                    damageStatus: 'Hatasız / Boyasız',
+                    imageUrl: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=600&q=80',
+                    description: 'Sunroof, Hayalet Gösterge, Harman Kardon Ses Sistemi, Koltuk Isıtma.'
+                });
+                saveAndRender();
+            } else {
+                renderCars();
+            }
+
+            // Form gönderildiğinde (Yeni Araç Ekle)
+            carForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const newCar = {
+                    id: Date.now(),
+                    brand: document.getElementById('brand').value,
+                    model: document.getElementById('model').value,
+                    year: document.getElementById('year').value,
+                    price: document.getElementById('price').value,
+                    km: document.getElementById('km').value,
+                    transmission: document.getElementById('transmission').value,
+                    fuel: document.getElementById('fuel').value,
+                    bodyType: document.getElementById('bodyType').value,
+                    color: document.getElementById('color').value,
+                    enginePower: document.getElementById('enginePower').value,
+                    driveTrain: document.getElementById('driveTrain').value,
+                    damageStatus: document.getElementById('damageStatus').value,
+                    imageUrl: document.getElementById('imageUrl').value,
+                    description: document.getElementById('description').value
+                };
+
+                cars.unshift(newCar); // Yeni aracı en üste ekle
+                saveAndRender();
+                carForm.reset();
+                alert('Araç başarıyla galeriye eklendi!');
+            });
+
+            // Araç Silme Fonksiyonu
+            window.deleteCar = function(id) {
+                if (confirm('Bu aracı galeriden silmek istediğinize emin misiniz?')) {
+                    cars = cars.filter(car => car.id !== id);
+                    saveAndRender();
+                }
+            };
+
+            function saveAndRender() {
+                localStorage.setItem('adilhan_cars', JSON.stringify(cars));
+                renderCars();
+            }
+
+            // Araçları Ekrana Listeleme
+            function renderCars() {
+                carList.innerHTML = '';
+
+                if (cars.length === 0) {
+                    carList.innerHTML = '<p>Galeride henüz kayıtlı araç bulunmamaktadır.</p>';
+                    return;
+                }
+
+                cars.forEach(car => {
+                    const carCard = document.createElement('div');
+                    carCard.className = 'car-card';
+
+                    carCard.innerHTML = `
+                        <img src="${car.imageUrl}" alt="${car.brand} ${car.model}" class="car-image" onerror="this.src='https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=600&q=80'">
+                        <div class="car-details">
+                            <h3 class="car-title">${car.brand} ${car.model}</h3>
+                            <div class="car-price">${Number(car.price).toLocaleString('tr-TR')} ₺</div>
+                            
+                            <div class="specs-grid">
+                                <div><span>Yıl:</span> ${car.year}</div>
+                                <div><span>KM:</span> ${Number(car.km).toLocaleString('tr-TR')}</div>
+                                <div><span>Vites:</span> ${car.transmission}</div>
+                                <div><span>Yakıt:</span> ${car.fuel}</div>
+                                <div><span>Kasa:</span> ${car.bodyType || 'Belirtilmemiş'}</div>
+                                <div><span>Renk:</span> ${car.color || 'Belirtilmemiş'}</div>
+                                <div><span>Motor:</span> ${car.enginePower || '-'}</div>
+                                <div><span>Hasar:</span> ${car.damageStatus || '-'}</div>
+                            </div>
+                            
+                            <p class="car-desc">${car.description || 'Ek açıklama girilmedi.'}</p>
+                            <button class="btn-delete" onclick="deleteCar(${car.id})"><i class="fa-solid fa-trash"></i> Aracı Kaldır</button>
+                        </div>
+                    `;
+
+                    carList.appendChild(carCard);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
