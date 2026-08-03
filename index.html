@@ -234,4 +234,115 @@
 
         .ekspertiz-3d-wrapper {
             background: #090d16;
-            border-radius:
+            border-radius: 16px;
+            padding: 35px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: inset 0 0 25px rgba(0,0,0,0.8);
+        }
+
+        .car-silhouette {
+            position: relative;
+            width: 300px;
+            height: 560px;
+            background: var(--primary-light);
+            border-radius: 130px 130px 75px 75px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            border: 4px solid #334155;
+            display: flex;
+            flex-direction: column;
+            padding: 15px 12px;
+            gap: 12px;
+        }
+
+        .car-silhouette::before, .car-silhouette::after {
+            content: '';
+            position: absolute;
+            background: #090d16;
+            width: 14px;
+            height: 85px;
+            border-radius: 10px;
+            top: 110px;
+        }
+        .car-silhouette::before { left: -14px; border-radius: 10px 0 0 10px; }
+        .car-silhouette::after { right: -14px; border-radius: 0 10px 10px 0; }
+
+        .rear-wheels::before, .rear-wheels::after {
+            content: '';
+            position: absolute;
+            background: #090d16;
+            width: 14px;
+            height: 85px;
+            border-radius: 10px;
+            bottom: 130px;
+        }
+        .rear-wheels::before { left: -14px; border-radius: 10px 0 0 10px; }
+        .rear-wheels::after { right: -14px; border-radius: 0 10px 10px 0; }
+
+        .car-part {
+            background: #475569;
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+            user-select: none;
+            position: relative;
+        }
+
+        .car-part:hover {
+            filter: brightness(1.25);
+            transform: scale(1.02);
+            z-index: 10;
+        }
+
+        #part-kaput, .modal-part-kaput {
+            width: 72%;
+            height: 95px;
+            margin: 0 auto;
+            border-radius: 60px 60px 12px 12px;
+            border-top: 4px solid #64748b;
+        }
+
+        .car-row-middle {
+            display: flex;
+            justify-content: space-between;
+            height: 160px;
+            gap: 6px;
+            width: 100%;
+        }
+
+        #part-sol-on-camurluk, #part-sag-on-camurluk, .modal-part-sol-on-camurluk, .modal-part-sag-on-camurluk {
+            width: 27%;
+            height: 100%;
+            border-radius: 20px 10px 10px 20px;
+        }
+        #part-sag-on-camurluk, .modal-part-sag-on-camurluk { border-radius: 10px 20px 20px 10px; }
+
+        #part-tavan, .modal-part-tavan {
+            width: 40%;
+            height: 100%;
+            border-radius: 15px;
+            background: #334155;
+            border-left: 2px solid #64748b;
+            border-right: 2px solid #64748b;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
+        }
+
+        .car-row-lower {
+            display: flex;
+            justify-content: space-between;
+            height: 140px;
+            gap: 6px;
+            width: 100%;
+        }
+
+        #part-sol-arka-camurluk, #part-sag-arka-camurluk, .modal-part-sol-arka-camurluk,
+ü
