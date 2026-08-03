@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adilhan Otomotiv | Galerim</title>
-    <!-- FontAwesome ikonları için -->
+    <title>Adilhan Otomotiv | Araba Galerisi</title>
+    <!-- FontAwesome ikonları -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -13,6 +13,10 @@
             --bg-color: #f8fafc;
             --text-color: #334155;
             --card-bg: #ffffff;
+            --boyali: #3b82f6;
+            --degisen: #ef4444;
+            --lokal: #eab308;
+            --orijinal: #22c55e;
         }
 
         * {
@@ -48,26 +52,46 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .logo {
             font-size: 1.5rem;
             font-weight: bold;
             color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin-left: 20px;
-            font-weight: 500;
+        /* Arama Kutusu */
+        .search-box-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
         }
 
-        nav a.btn-admin {
-            background-color: var(--accent-color);
-            padding: 8px 15px;
-            border-radius: 5px;
-            color: #000;
+        .search-box-wrapper input {
+            padding: 8px 15px 8px 35px;
+            border-radius: 20px;
+            border: 1px solid #cbd5e1;
+            outline: none;
+            width: 250px;
+            font-size: 0.9rem;
+            background: #fff;
+            transition: 0.3s;
+        }
+
+        .search-box-wrapper input:focus {
+            border-color: var(--accent-color);
+            width: 300px;
+        }
+
+        .search-box-wrapper i {
+            position: absolute;
+            left: 12px;
+            color: #94a3b8;
         }
 
         /* Hero Section */
@@ -84,13 +108,15 @@
             margin-bottom: 10px;
         }
 
-        /* Card & Form */
-        .card {
+        /* Gizli Admin Panel */
+        #admin-panel {
+            display: none;
             background: var(--card-bg);
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             margin-bottom: 40px;
+            border: 2px dashed var(--accent-color);
         }
 
         .admin-card h2 {
@@ -98,6 +124,9 @@
             color: var(--primary-color);
             border-bottom: 2px solid var(--accent-color);
             padding-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .form-grid {
@@ -128,9 +157,97 @@
             outline: none;
         }
 
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-            border-color: var(--accent-color);
+        /* Yan Yana 3D Şema ve Parça Alanı */
+        .ekspertiz-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            background: #f1f5f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 10px;
+            align-items: center;
         }
+
+        @media(max-width: 768px) {
+            .ekspertiz-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .car-model-3d {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .car-svg-container {
+            width: 100%;
+            max-width: 250px;
+            height: 220px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .parts-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            max-height: 250px;
+            overflow-y: auto;
+            width: 100%;
+        }
+
+        .part-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+        }
+
+        .part-row select {
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid #cbd5e1;
+            font-size: 0.8rem;
+        }
+
+        .rotation-controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn-rotate {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .legend {
+            display: flex;
+            gap: 10px;
+            font-size: 0.75rem;
+            margin-top: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .legend span { display: flex; align-items: center; gap: 4px; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
 
         .btn-primary {
             background-color: var(--accent-color);
@@ -151,7 +268,7 @@
             color: white;
         }
 
-        /* Gallery Section */
+        /* Galeri Listesi */
         .gallery-section h2 {
             margin-bottom: 20px;
             color: var(--primary-color);
@@ -175,7 +292,7 @@
 
         .car-image {
             width: 100%;
-            height: 220px;
+            height: 200px;
             object-fit: cover;
         }
 
@@ -212,10 +329,19 @@
             font-weight: 600;
         }
 
-        .car-desc {
-            font-size: 0.9rem;
-            color: #64748b;
+        .card-expert-summary {
+            font-size: 0.8rem;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            padding: 8px;
+            border-radius: 5px;
             margin-bottom: 15px;
+        }
+        .card-expert-summary div {
+            display: flex;
+            justify-content: space-between;
+            padding: 2px 0;
+            border-bottom: 1px solid #f1f5f9;
         }
 
         .btn-delete {
@@ -229,11 +355,6 @@
             font-weight: bold;
         }
 
-        .btn-delete:hover {
-            background-color: #dc2626;
-        }
-
-        /* Footer */
         footer {
             text-align: center;
             background-color: var(--primary-color);
@@ -251,14 +372,15 @@
             <div class="logo">
                 <i class="fa-solid fa-car-side"></i> <span>Adilhan Otomotiv</span>
             </div>
-            <nav>
-                <a href="#galeri">Araçlarımız</a>
-                <a href="#admin-panel" class="btn-admin"><i class="fa-solid fa-plus-circle"></i> Araç Ekle</a>
-            </nav>
+            <!-- Arama Kutusu ve ADMIN Tetikleyici -->
+            <div class="search-box-wrapper">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" placeholder="Marka ara veya 'ADMIN' yaz...">
+            </div>
         </div>
     </header>
 
-    <!-- HERO / KARŞILAMA -->
+    <!-- HERO -->
     <section class="hero">
         <div class="hero-content">
             <h1>Güvenin ve Kalitenin Adresi</h1>
@@ -268,9 +390,12 @@
 
     <main class="container">
 
-        <!-- ARAÇ EKLEME PANELİ -->
+        <!-- GİZLİ ARAÇ EKLEME PANELİ -->
         <section id="admin-panel" class="card admin-card">
-            <h2><i class="fa-solid fa-car"></i> Yeni Araç Ekle</h2>
+            <h2>
+                <span><i class="fa-solid fa-lock-open" style="color:var(--accent-color)"></i> Admin Paneli: Yeni Araç ve Şema Ekle</span>
+                <button type="button" onclick="closeAdminPanel()" style="background:none; border:none; color:#ef4444; cursor:pointer; font-size:1rem;"><i class="fa-solid fa-xmark"></i> Kapat</button>
+            </h2>
             <form id="carForm">
                 <div class="form-grid">
                     <div class="form-group">
@@ -312,34 +437,120 @@
                     </div>
                     <div class="form-group">
                         <label>Kasa Tipi</label>
-                        <input type="text" id="bodyType" placeholder="Sedan, SUV, Hatchback...">
+                        <input type="text" id="bodyType" placeholder="Sedan, SUV...">
                     </div>
                     <div class="form-group">
                         <label>Renk</label>
-                        <input type="text" id="color" placeholder="Siyah, Beyaz...">
+                        <input type="text" id="color" placeholder="Beyaz, Siyah...">
                     </div>
                     <div class="form-group">
                         <label>Motor Gücü (HP)</label>
                         <input type="text" id="enginePower" placeholder="170 HP">
                     </div>
-                    <div class="form-group">
-                        <label>Çekiş</label>
-                        <input type="text" id="driveTrain" placeholder="Önden Çekiş, 4x4...">
-                    </div>
-                    <div class="form-group">
-                        <label>Hasar / Boya Durumu</label>
-                        <input type="text" id="damageStatus" placeholder="Hatasız, Boyalı parça var...">
-                    </div>
                     <div class="form-group full-width">
                         <label>Fotoğraf URL (Görsel Bağlantısı)</label>
-                        <input type="url" id="imageUrl" required placeholder="https://ornek.com/arac-resmi.jpg">
-                    </div>
-                    <div class="form-group full-width">
-                        <label>Ek Donanımlar ve Açıklama</label>
-                        <textarea id="description" rows="3" placeholder="Sunroof, Deri Koltuk, Geri Görüş Kamerası..."></textarea>
+                        <input type="url" id="imageUrl" required placeholder="https://ornek.com/arac.jpg">
                     </div>
                 </div>
-                <button type="submit" class="btn-primary"><i class="fa-solid fa-check"></i> Aracı Sisteme Yükle</button>
+
+                <!-- YAN YANA 3D ŞEMA VE PARÇA SEÇİMİ -->
+                <div class="form-group full-width" style="margin-top: 20px;">
+                    <label><i class="fa-solid fa-car-burst"></i> Araç Parça Durumları ve Ekspertiz Şeması</label>
+                    <div class="ekspertiz-container">
+                        <div class="car-model-3d">
+                            <div class="car-svg-container" id="carViewModel">
+                                <svg id="carSvg" viewBox="0 0 200 100" width="100%" height="100%">
+                                    <rect x="20" y="30" width="160" height="40" rx="10" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="2"/>
+                                    <path id="svg-on-tampon" d="M 10 30 Q 20 30 20 70 L 20 30 Z" fill="#22c55e" stroke="#fff"/>
+                                    <rect id="svg-kaput" x="25" y="32" width="35" height="36" fill="#22c55e" stroke="#fff" rx="3"/>
+                                    <rect id="svg-tavan" x="65" y="32" width="70" height="36" fill="#22c55e" stroke="#fff" rx="3"/>
+                                    <rect id="svg-bagaj" x="140" y="32" width="35" height="36" fill="#22c55e" stroke="#fff" rx="3"/>
+                                    <rect id="svg-sol-on-camurluk" x="25" y="20" width="30" height="10" fill="#22c55e" stroke="#fff" rx="2"/>
+                                    <rect id="svg-sag-on-camurluk" x="25" y="70" width="30" height="10" fill="#22c55e" stroke="#fff" rx="2"/>
+                                    <rect id="svg-sol-arka-camurluk" x="140" y="20" width="30" height="10" fill="#22c55e" stroke="#fff" rx="2"/>
+                                    <rect id="svg-sag-arka-camurluk" x="140" y="70" width="30" height="10" fill="#22c55e" stroke="#fff" rx="2"/>
+                                </svg>
+                            </div>
+                            <div class="rotation-controls">
+                                <button type="button" class="btn-rotate" onclick="rotateCar('left')"><i class="fa-solid fa-rotate-left"></i> Çevir Sol</button>
+                                <span id="viewAngleText" style="font-size: 0.8rem; font-weight: bold; align-self: center;">Üst / Şema</span>
+                                <button type="button" class="btn-rotate" onclick="rotateCar('right')">Çevir Sağ <i class="fa-solid fa-rotate-right"></i></button>
+                            </div>
+                            <div class="legend">
+                                <span><i class="dot" style="background:var(--orijinal)"></i> Orijinal</span>
+                                <span><i class="dot" style="background:var(--boyali)"></i> Boyalı</span>
+                                <span><i class="dot" style="background:var(--degisen)"></i> Değişen</span>
+                                <span><i class="dot" style="background:var(--lokal)"></i> Lokal</span>
+                            </div>
+                        </div>
+
+                        <div class="parts-grid">
+                            <div class="part-row"><span>Ön Kaput:</span> 
+                                <select id="p-kaput" onchange="updateSvgColor('kaput', this.value)">
+                                    <option value="orijinal">Orijinal</option>
+                                    <option value="boyali">Boyalı</option>
+                                    <option value="degisen">Değişen</option>
+                                    <option value="lokal">Lokal Boyalı</option>
+                                </select>
+                            </div>
+                            <div class="part-row"><span>Tavan:</span> 
+                                <select id="p-tavan" onchange="updateSvgColor('tavan', this.value)">
+                                    <option value="orijinal">Orijinal</option>
+                                    <option value="boyali">Boyalı</option>
+                                    <option value="degisen">Değişen</option>
+                                    <option value="lokal">Lokal Boyalı</option>
+                                </select>
+                            </div>
+                            <div class="part-row"><span>Sol Ön Çamurluk:</span> 
+                                <select id="p-sol-on-camurluk" onchange="updateSvgColor('sol-on-camurluk', this.value)">
+                                    <option value="orijinal">Orijinal</option>
+                                    <option value="boyali">Boyalı</option>
+                                    <option value="degisen">Değişen</option>
+                                    <option value="lokal">Lokal Boyalı</option>
+                                </select>
+                            </div>
+                            <div class="part-row"><span>Sağ Ön Çamurluk:</span> 
+                                <select id="p-sag-on-camurluk" onchange="updateSvgColor('sag-on-camurluk', this.value)">
+                                    <option value="orijinal">Orijinal</option>
+                                    <option value="boyali">Boyalı</option>
+                                    <option value="degisen">Değişen</option>
+                                    <option value="lokal">Lokal Boyalı</option>
+                                </select>
+                            </div>
+                            <div class="part-row"><span>Sol Arka Çamurluk:</span> 
+                                <select id="p-sol-arka-camurluk" onchange="updateSvgColor('sol-arka-camurluk', this.value)">
+                                    <option value="orijinal">Orijinal</option>
+                                    <option value="boyali">Boyalı</option>
+                                    <option value="degisen">Değişen</option>
+                                    <option value="lokal">Lokal Boyalı</option>
+                                </select>
+                            </div>
+                            <div class="part-row"><span>Sağ Arka Çamurluk:</span> 
+                                <select id="p-sag-arka-camurluk" onchange="updateSvgColor('sag-arka-camurluk', this.value)">
+                                    <option value="orijinal">Orijinal</option>
+                                    <option value="boyali">Boyalı</option>
+                                    <option value="degisen">Değişen</option>
+                                    <option value="lokal">Lokal Boyalı</option>
+                                </select>
+                            </div>
+                            <div class="part-row"><span>Bagaj Kapağı:</span> 
+                                <select id="p-bagaj" onchange="updateSvgColor('bagaj', this.value)">
+                                    <option value="orijinal">Orijinal</option>
+                                    <option value="boyali">Boyalı</option>
+                                    <option value="degisen">Değişen</option>
+                                    <option value="lokal">Lokal Boyalı</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group full-width" style="margin-top: 15px;">
+                    <label>Açıklama</label>
+                    <textarea id="description" rows="2" placeholder="Araç hakkında ek bilgiler..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary"><i class="fa-solid fa-check"></i> Aracı Kaydet</button>
             </form>
         </section>
 
@@ -347,7 +558,7 @@
         <section id="galeri" class="gallery-section">
             <h2>Galerideki Araçlar</h2>
             <div id="carList" class="car-grid">
-                <!-- Araçlar JavaScript ile buraya eklenecek -->
+                <!-- Araçlar buraya yüklenecek -->
             </div>
         </section>
 
@@ -358,16 +569,50 @@
         <p>&copy; 2026 Adilhan Otomotiv. Tüm Hakları Saklıdır.</p>
     </footer>
 
-    <!-- JAVASCRIPT KODLARI -->
+    <!-- SCRIPT -->
     <script>
+        const colorMap = {
+            'orijinal': '#22c55e',
+            'boyali': '#3b82f6',
+            'degisen': '#ef4444',
+            'lokal': '#eab308'
+        };
+
+        let currentRotation = 0;
+        function rotateCar(direction) {
+            const svg = document.getElementById('carSvg');
+            const angleText = document.getElementById('viewAngleText');
+            if(direction === 'left') currentRotation -= 90;
+            else currentRotation += 90;
+            
+            svg.style.transform = `rotate(${currentRotation}deg)`;
+            svg.style.transition = 'transform 0.3s ease';
+            
+            let views = ['Üst / Şema', 'Sağ Yan', 'Arka', 'Sol Yan'];
+            let index = (Math.abs(currentRotation) / 90) % 4;
+            angleText.innerText = views[index];
+        }
+
+        function updateSvgColor(partId, status) {
+            const element = document.getElementById(`svg-${partId}`);
+            if(element) {
+                element.setAttribute('fill', colorMap[status]);
+            }
+        }
+
+        function closeAdminPanel() {
+            document.getElementById('admin-panel').style.display = 'none';
+            document.getElementById('searchInput').value = '';
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             const carForm = document.getElementById('carForm');
             const carList = document.getElementById('carList');
+            const searchInput = document.getElementById('searchInput');
+            const adminPanel = document.getElementById('admin-panel');
 
-            // LocalStorage'dan kayıtlı araçları çek
-            let cars = JSON.parse(localStorage.getItem('adilhan_cars')) || [];
+            let cars = JSON.parse(localStorage.getItem('adilhan_cars_complete')) || [];
 
-            // Örnek başlangıç aracı (İlk açılışta boş kalmasın diye)
             if (cars.length === 0) {
                 cars.push({
                     id: Date.now(),
@@ -381,17 +626,40 @@
                     bodyType: 'Sedan',
                     color: 'Beyaz',
                     enginePower: '170 HP',
-                    driveTrain: 'Arkadan İtiş',
-                    damageStatus: 'Hatasız / Boyasız',
                     imageUrl: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=600&q=80',
-                    description: 'Sunroof, Hayalet Gösterge, Harman Kardon Ses Sistemi, Koltuk Isıtma.'
+                    description: 'Hatasız, boyasız temiz aile aracı.',
+                    parts: {
+                        kaput: 'orijinal',
+                        tavan: 'orijinal',
+                        'sol-on-camurluk': 'boyali',
+                        'sag-on-camurluk': 'orijinal',
+                        'sol-arka-camurluk': 'orijinal',
+                        'sag-arka-camurluk': 'orijinal',
+                        bagaj: 'orijinal'
+                    }
                 });
                 saveAndRender();
             } else {
-                renderCars();
+                renderCars(cars);
             }
 
-            // Form gönderildiğinde (Yeni Araç Ekle)
+            // Arama ve ADMIN tetikleyici
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.trim();
+
+                if (query === 'ADMIN') {
+                    adminPanel.style.display = 'block';
+                    adminPanel.scrollIntoView({ behavior: 'smooth' });
+                    return;
+                } else {
+                    const filtered = cars.filter(car => 
+                        car.brand.toLowerCase().includes(query.toLowerCase()) || 
+                        car.model.toLowerCase().includes(query.toLowerCase())
+                    );
+                    renderCars(filtered);
+                }
+            });
+
             carForm.addEventListener('submit', (e) => {
                 e.preventDefault();
 
@@ -407,46 +675,70 @@
                     bodyType: document.getElementById('bodyType').value,
                     color: document.getElementById('color').value,
                     enginePower: document.getElementById('enginePower').value,
-                    driveTrain: document.getElementById('driveTrain').value,
-                    damageStatus: document.getElementById('damageStatus').value,
                     imageUrl: document.getElementById('imageUrl').value,
-                    description: document.getElementById('description').value
+                    description: document.getElementById('description').value,
+                    parts: {
+                        kaput: document.getElementById('p-kaput').value,
+                        tavan: document.getElementById('p-tavan').value,
+                        'sol-on-camurluk': document.getElementById('p-sol-on-camurluk').value,
+                        'sag-on-camurluk': document.getElementById('p-sag-on-camurluk').value,
+                        'sol-arka-camurluk': document.getElementById('p-sol-arka-camurluk').value,
+                        'sag-arka-camurluk': document.getElementById('p-sag-arka-camurluk').value,
+                        bagaj: document.getElementById('p-bagaj').value
+                    }
                 };
 
-                cars.unshift(newCar); // Yeni aracı en üste ekle
+                cars.unshift(newCar);
                 saveAndRender();
                 carForm.reset();
+                adminPanel.style.display = 'none';
                 alert('Araç başarıyla galeriye eklendi!');
             });
 
-            // Araç Silme Fonksiyonu
             window.deleteCar = function(id) {
-                if (confirm('Bu aracı galeriden silmek istediğinize emin misiniz?')) {
+                if (confirm('Bu aracı silmek istediğinize emin misiniz?')) {
                     cars = cars.filter(car => car.id !== id);
                     saveAndRender();
                 }
             };
 
             function saveAndRender() {
-                localStorage.setItem('adilhan_cars', JSON.stringify(cars));
-                renderCars();
+                localStorage.setItem('adilhan_cars_complete', JSON.stringify(cars));
+                renderCars(cars);
             }
 
-            // Araçları Ekrana Listeleme
-            function renderCars() {
+            function renderCars(carArray) {
                 carList.innerHTML = '';
 
-                if (cars.length === 0) {
-                    carList.innerHTML = '<p>Galeride henüz kayıtlı araç bulunmamaktadır.</p>';
+                if (carArray.length === 0) {
+                    carList.innerHTML = '<p>Aradığınız kriterlere uygun araç bulunamadı.</p>';
                     return;
                 }
 
-                cars.forEach(car => {
+                carArray.forEach(car => {
                     const carCard = document.createElement('div');
                     carCard.className = 'car-card';
 
+                    let partsHtml = '';
+                    const partNames = {
+                        kaput: 'Kaput',
+                        tavan: 'Tavan',
+                        'sol-on-camurluk': 'Sol Ön Çamurluk',
+                        'sag-on-camurluk': 'Sağ Ön Çamurluk',
+                        'sol-arka-camurluk': 'Sol Arka Çamurluk',
+                        'sag-arka-camurluk': 'Sağ Arka Çamurluk',
+                        bagaj: 'Bagaj'
+                    };
+
+                    if(car.parts) {
+                        for (let key in car.parts) {
+                            let val = car.parts[key];
+                            partsHtml += `<div><span>${partNames[key]}:</span> <strong style="color:${colorMap[val]}">${val.toUpperCase()}</strong></div>`;
+                        }
+                    }
+
                     carCard.innerHTML = `
-                        <img src="${car.imageUrl}" alt="${car.brand} ${car.model}" class="car-image" onerror="this.src='https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=600&q=80'">
+                        <img src="${car.imageUrl}" alt="${car.brand}" class="car-image" onerror="this.src='https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=600&q=80'">
                         <div class="car-details">
                             <h3 class="car-title">${car.brand} ${car.model}</h3>
                             <div class="car-price">${Number(car.price).toLocaleString('tr-TR')} ₺</div>
@@ -456,13 +748,16 @@
                                 <div><span>KM:</span> ${Number(car.km).toLocaleString('tr-TR')}</div>
                                 <div><span>Vites:</span> ${car.transmission}</div>
                                 <div><span>Yakıt:</span> ${car.fuel}</div>
-                                <div><span>Kasa:</span> ${car.bodyType || 'Belirtilmemiş'}</div>
-                                <div><span>Renk:</span> ${car.color || 'Belirtilmemiş'}</div>
-                                <div><span>Motor:</span> ${car.enginePower || '-'}</div>
-                                <div><span>Hasar:</span> ${car.damageStatus || '-'}</div>
+                            </div>
+
+                            <div style="font-size:0.85rem; font-weight:bold; margin-bottom:5px;"><i class="fa-solid fa-shield-halved"></i> Ekspertiz Durumu</div>
+                            <div class="card-expert-summary">
+                                ${partsHtml}
                             </div>
                             
-                            <p class="car-desc">${car.description || 'Ek açıklama girilmedi.'}</p>
+                            <p class="car-desc" style="font-size:0.85rem; color:#64748b; margin-bottom:15px;">${car.description || ''}</p>
+                            
+                            <!-- Silme Butonu (Sadece Admin Paneli aktifken ya da yönetim kolaylığı için eklendi, dilerseniz admin paneli açılınca gösterilebilir) -->
                             <button class="btn-delete" onclick="deleteCar(${car.id})"><i class="fa-solid fa-trash"></i> Aracı Kaldır</button>
                         </div>
                     `;
