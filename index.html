@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adilhan Otomotiv | Premium Galeri ve Ekspertiz</title>
+    <title>Adilhan Otomotiv | Premium Galeri ve 3D Ekspertiz</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -118,7 +118,6 @@
             font-size: 2.8rem;
             font-weight: 800;
             margin-bottom: 15px;
-            letter-spacing: -0.5px;
         }
 
         .hero p {
@@ -266,8 +265,8 @@
             border-radius: 10px;
             top: 110px;
         }
-        .car-silhouette::before { left: -14px; border-radius: 10px 0 0 10px; }
-        .car-silhouette::after { right: -14px; border-radius: 0 10px 10px 0; }
+        .car-silhouette::before { left: -14px; }
+        .car-silhouette::after { right: -14px; }
 
         .rear-wheels::before, .rear-wheels::after {
             content: '';
@@ -278,8 +277,8 @@
             border-radius: 10px;
             bottom: 130px;
         }
-        .rear-wheels::before { left: -14px; border-radius: 10px 0 0 10px; }
-        .rear-wheels::after { right: -14px; border-radius: 0 10px 10px 0; }
+        .rear-wheels::before { left: -14px; }
+        .rear-wheels::after { right: -14px; }
 
         .car-part {
             background: #475569;
@@ -294,7 +293,6 @@
             transition: all 0.2s;
             box-shadow: 0 3px 6px rgba(0,0,0,0.3);
             user-select: none;
-            position: relative;
         }
 
         .car-part:hover {
@@ -308,7 +306,6 @@
             height: 95px;
             margin: 0 auto;
             border-radius: 60px 60px 12px 12px;
-            border-top: 4px solid #64748b;
         }
 
         .car-row-middle {
@@ -333,7 +330,6 @@
             background: #334155;
             border-left: 2px solid #64748b;
             border-right: 2px solid #64748b;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
         }
 
         .car-row-lower {
@@ -356,7 +352,6 @@
             height: 80px;
             margin: 0 auto;
             border-radius: 12px 12px 40px 40px;
-            border-bottom: 4px solid #64748b;
         }
 
         .popup-menu {
@@ -491,7 +486,6 @@
             border-radius: 8px;
             font-size: 1.25rem;
             font-weight: 800;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
         .car-details {
@@ -522,13 +516,8 @@
             justify-content: space-between;
         }
 
-        .specs-grid div span {
-            color: var(--text-light);
-        }
-
-        .specs-grid div strong {
-            color: var(--primary);
-        }
+        .specs-grid div span { color: var(--text-light); }
+        .specs-grid div strong { color: var(--primary); }
 
         .car-desc {
             font-size: 0.85rem;
@@ -540,11 +529,6 @@
             overflow: hidden;
         }
 
-        .card-actions {
-            display: flex;
-            gap: 10px;
-        }
-
         .btn-details {
             background-color: var(--primary);
             color: white;
@@ -552,17 +536,15 @@
             padding: 10px;
             border-radius: 8px;
             cursor: pointer;
-            flex: 1;
+            width: 100%;
             font-weight: 700;
             font-size: 0.9rem;
             transition: 0.2s;
             text-align: center;
         }
-        .btn-details:hover {
-            background-color: var(--primary-light);
-        }
+        .btn-details:hover { background-color: var(--primary-light); }
 
-        /* Admin Paneli İlan Yönetimi Listesi */
+        /* Admin Paneli İlan Listesi */
         .admin-car-list-item {
             display: flex;
             justify-content: space-between;
@@ -574,12 +556,6 @@
             margin-bottom: 10px;
         }
 
-        .admin-car-list-item span {
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 0.95rem;
-        }
-
         .btn-delete {
             background-color: #fee2e2;
             color: #ef4444;
@@ -589,21 +565,14 @@
             cursor: pointer;
             font-weight: 700;
             font-size: 0.85rem;
-            transition: 0.2s;
         }
-        .btn-delete:hover {
-            background-color: #ef4444;
-            color: white;
-        }
+        .btn-delete:hover { background-color: #ef4444; color: white; }
 
-        /* Modal (Detay ve Ekspertiz Penceresi) */
+        /* Modal Pencere */
         #carModal {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(15, 23, 42, 0.75);
             backdrop-filter: blur(5px);
             z-index: 2000;
@@ -621,7 +590,6 @@
             overflow-y: auto;
             padding: 30px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            animation: fadeIn 0.3s ease;
             position: relative;
         }
 
@@ -634,39 +602,24 @@
             padding-bottom: 15px;
         }
 
-        .modal-header h2 {
-            color: var(--primary);
-            font-size: 1.6rem;
-        }
-
         .btn-close-modal {
             background: #fee2e2;
             color: #ef4444;
             border: none;
-            width: 36px;
-            height: 36px;
+            width: 36px; height: 36px;
             border-radius: 50%;
             cursor: pointer;
             font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: 0.2s;
+            display: flex; align-items: center; justify-content: center;
         }
-        .btn-close-modal:hover {
-            background: #ef4444;
-            color: white;
-        }
+        .btn-close-modal:hover { background: #ef4444; color: white; }
 
         .modal-body-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 25px;
         }
-
-        @media(max-width: 900px) {
-            .modal-body-grid { grid-template-columns: 1fr; }
-        }
+        @media(max-width: 900px) { .modal-body-grid { grid-template-columns: 1fr; } }
 
         .modal-car-img {
             width: 100%;
@@ -684,9 +637,7 @@
             padding: 15px;
             border-radius: 10px;
             border: 1px solid var(--border);
-            margin-bottom: 15px;
         }
-
         .modal-specs-list div {
             display: flex;
             justify-content: space-between;
@@ -695,10 +646,7 @@
             border-bottom: 1px solid #e2e8f0;
         }
         .modal-specs-list div:last-child { border-bottom: none; }
-        .modal-specs-list span { color: var(--text-light); }
-        .modal-specs-list strong { color: var(--primary); }
 
-        /* Footer */
         footer {
             background-color: var(--primary);
             color: white;
@@ -707,11 +655,7 @@
             margin-top: 60px;
             border-top: 4px solid var(--accent);
         }
-
-        footer p {
-            color: #94a3b8;
-            font-size: 0.9rem;
-        }
+        footer p { color: #94a3b8; font-size: 0.9rem; }
     </style>
 </head>
 <body>
@@ -723,7 +667,7 @@
             </a>
             <div class="search-container">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="searchInput" placeholder="Marka veya model ara...">
+                <input type="text" id="searchInput" placeholder="Marka ara (Admin için ADMIN yaz)">
             </div>
         </div>
     </header>
@@ -827,171 +771,4 @@
                     <div class="legend">
                         <span><i class="dot" style="background:var(--orijinal)"></i> Orijinal</span>
                         <span><i class="dot" style="background:var(--boyali)"></i> Boyalı</span>
-                        <span><i class="dot" style="background:var(--degisen)"></i> Değişen</span>
-                        <span><i class="dot" style="background:var(--lokal)"></i> Lokal Boyalı</span>
-                    </div>
-                </div>
-
-                <div class="form-group full-width" style="margin-top: 20px;">
-                    <label>Açıklama / Notlar</label>
-                    <textarea id="description" rows="3" placeholder="Araç durumu, tramer bilgisi vb. ek açıklamalar..."></textarea>
-                </div>
-
-                <button type="submit" class="btn-submit"><i class="fa-solid fa-plus"></i> Aracı Galeriye Kaydet</button>
-            </form>
-
-            <div style="margin-top: 40px; border-top: 2px solid var(--border); padding-top: 25px;">
-                <h3 style="font-size: 1.2rem; color: var(--primary); margin-bottom: 15px;"><i class="fa-solid fa-trash-can" style="color: #ef4444;"></i> Yayındaki İlanları Yönet / Kaldır</h3>
-                <div id="adminCarListContainer">
-                    </div>
-            </div>
-        </section>
-
-        <section>
-            <div class="section-header">
-                <h2>Galeri İlanları</h2>
-            </div>
-            <div id="carList" class="car-grid">
-                </div>
-        </section>
-
-    </main>
-
-    <div id="carModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="modalTitle">Araç Detayları</h2>
-                <button type="button" class="btn-close-modal" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div class="modal-body-grid">
-                <div>
-                    <img id="modalImg" src="" alt="Araç Görseli" class="modal-car-img">
-                    <p id="modalDesc" style="font-size:0.9rem; color:var(--text-light); margin-bottom: 20px;"></p>
-                    
-                    <div class="modal-specs-list" id="modalSpecs">
-                        </div>
-                </div>
-                <div>
-                    <div style="font-size:1rem; font-weight:700; margin-bottom:12px; color:var(--primary); display:flex; align-items:center; gap:8px;">
-                        <i class="fa-solid fa-shield-halved" style="color:var(--accent);"></i> 3D Ekspertiz Şeması
-                    </div>
-                    
-                    <div class="ekspertiz-3d-wrapper" style="padding: 20px;">
-                        <div class="car-silhouette rear-wheels" style="width: 240px; height: 450px;">
-                            <div class="car-part modal-part-kaput" id="modal-part-kaput">Ön Kaput</div>
-                            
-                            <div class="car-row-middle" style="height: 125px;">
-                                <div class="car-part modal-part-sol-on-camurluk" id="modal-part-sol-on-camurluk">Sol Ön Çam.</div>
-                                <div class="car-part modal-part-tavan" id="modal-part-tavan">Tavan</div>
-                                <div class="car-part modal-part-sag-on-camurluk" id="modal-part-sag-on-camurluk">Sağ Ön Çam.</div>
-                            </div>
-
-                            <div class="car-row-lower" style="height: 110px;">
-                                <div class="car-part modal-part-sol-arka-camurluk" id="modal-part-sol-arka-camurluk">Sol Arka Çam.</div>
-                                <div class="car-part modal-part-sag-arka-camurluk" id="modal-part-sag-arka-camurluk">Sağ Arka Çam.</div>
-                            </div>
-
-                            <div class="car-part modal-part-bagaj" id="modal-part-bagaj">Bagaj Kapağı</div>
-                        </div>
-
-                        <div class="legend" style="margin-top: 15px; font-size: 0.75rem;">
-                            <span><i class="dot" style="background:var(--orijinal)"></i> Orijinal</span>
-                            <span><i class="dot" style="background:var(--boyali)"></i> Boyalı</span>
-                            <span><i class="dot" style="background:var(--degisen)"></i> Değişen</span>
-                            <span><i class="dot" style="background:var(--lokal)"></i> Lokal</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2026 Adilhan Otomotiv. Tüm Hakları Saklıdır.</p>
-    </footer>
-
-    <script>
-        const colorMap = {
-            'orijinal': '#22c55e',
-            'boyali': '#3b82f6',
-            'degisen': '#ef4444',
-            'lokal': '#eab308'
-        };
-
-        let currentPartsData = {
-            kaput: 'orijinal',
-            tavan: 'orijinal',
-            'sol-on-camurluk': 'orijinal',
-            'sag-on-camurluk': 'orijinal',
-            'sol-arka-camurluk': 'orijinal',
-            'sag-arka-camurluk': 'orijinal',
-            bagaj: 'orijinal'
-        };
-
-        let activeTargetPart = null;
-        let allCars = [];
-
-        function openPartMenu(event, partKey) {
-            event.stopPropagation();
-            activeTargetPart = partKey;
-            const menu = document.getElementById('partPopupMenu');
-            const rect = event.currentTarget.getBoundingClientRect();
-            const wrapperRect = document.querySelector('.ekspertiz-3d-wrapper').getBoundingClientRect();
-            
-            menu.style.display = 'block';
-            menu.style.top = (rect.bottom - wrapperRect.top + 5) + 'px';
-            menu.style.left = (rect.left - wrapperRect.left) + 'px';
-        }
-
-        function setPartStatus(status) {
-            if (activeTargetPart) {
-                currentPartsData[activeTargetPart] = status;
-                const partElement = document.getElementById('part-' + activeTargetPart);
-                partElement.style.backgroundColor = colorMap[status];
-            }
-            document.getElementById('partPopupMenu').style.display = 'none';
-        }
-
-        window.addEventListener('click', () => {
-            const menu = document.getElementById('partPopupMenu');
-            if(menu) menu.style.display = 'none';
-        });
-
-        function closeAdminPanel() {
-            document.getElementById('admin-panel').style.display = 'none';
-            document.getElementById('searchInput').value = '';
-        }
-
-        function closeModal() {
-            document.getElementById('carModal').style.display = 'none';
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const carForm = document.getElementById('carForm');
-            const carList = document.getElementById('carList');
-            const searchInput = document.getElementById('searchInput');
-            const adminPanel = document.getElementById('admin-panel');
-
-            for (let key in currentPartsData) {
-                const el = document.getElementById('part-' + key);
-                if(el) el.style.backgroundColor = colorMap[currentPartsData[key]];
-            }
-
-            allCars = JSON.parse(localStorage.getItem('adilhan_cars_modal_v7')) || [];
-
-            if (allCars.length === 0) {
-                allCars.push({
-                    id: Date.now(),
-                    brand: 'Peugeot',
-                    model: '2008 1.2 Mkyj GT E-Toggle',
-                    year: 2023,
-                    price: 1745000,
-                    km: 33500,
-                    transmission: 'Otomatik',
-                    fuel: 'Benzin',
-                    bodyType: 'SUV',
-                    color: 'Gri',
-                    enginePower: '130 HP',
-                    imageUrl: 'https://i.sahibinden.com/photos/33/73/87/1332137387_921_1200.jpg',
-                    description: '2023 MAKYAJLI | 33.500 KM | CAM TAVAN - SUNROOF | ŞERİT TAKİP | KABLOSUZ ŞARJ | NAVİGASYON | HATASIZ',
-                    parts
+                        <span><i class="dot" style="background:var(--degisen)">
