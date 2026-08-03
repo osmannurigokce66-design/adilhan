@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adilhan Otomotiv | Premium Galeri ve Ekspertiz</title>
-    <!-- FontAwesome İkonları -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -71,6 +70,12 @@
             color: var(--accent);
         }
 
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
         .search-container {
             position: relative;
             display: flex;
@@ -103,6 +108,26 @@
             position: absolute;
             left: 15px;
             color: #94a3b8;
+        }
+
+        .btn-admin-toggle {
+            background: var(--accent);
+            color: var(--primary);
+            border: none;
+            padding: 10px 18px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-admin-toggle:hover {
+            background: var(--accent-hover);
+            color: white;
         }
 
         /* Hero Banner */
@@ -553,7 +578,7 @@
             padding: 10px;
             border-radius: 8px;
             cursor: pointer;
-            flex: 1;
+            width: 100%;
             font-weight: 700;
             font-size: 0.9rem;
             transition: 0.2s;
@@ -567,12 +592,15 @@
             background-color: #fee2e2;
             color: #ef4444;
             border: none;
-            padding: 10px 15px;
+            padding: 8px 12px;
             border-radius: 8px;
             cursor: pointer;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
         .btn-delete:hover {
             background-color: #ef4444;
@@ -711,20 +739,21 @@
 </head>
 <body>
 
-    <!-- Header -->
     <header>
         <div class="navbar">
             <a href="#" class="logo">
                 <i class="fa-solid fa-car-side" style="color: var(--accent);"></i> ADİLHAN <span>OTOMOTİV</span>
             </a>
-            <div class="search-container">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="searchInput" placeholder="Marka ara (Admin için ADMIN yaz)">
+            <div class="header-actions">
+                <div class="search-container">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="searchInput" placeholder="Marka veya model ara...">
+                </div>
+                <button type="button" class="btn-admin-toggle" onclick="toggleAdminPanel()"><i class="fa-solid fa-lock"></i> Yönetim Paneli</button>
             </div>
         </div>
     </header>
 
-    <!-- Hero Banner -->
     <section class="hero">
         <h1>Güvenin ve Kalitenin Tek Adresi</h1>
         <p>İkinci el premium araç portföyümüz ve detaylı ekspertiz raporlarımızla hizmetinizdeyiz.</p>
@@ -732,10 +761,9 @@
 
     <main class="main-container">
 
-        <!-- Admin Paneli -->
         <section id="admin-panel">
             <div class="admin-header">
-                <h2><i class="fa-solid fa-lock-open" style="color: var(--accent);"></i> Yönetim Paneli: İlan Ekle & Yönet</h2>
+                <h2><i class="fa-solid fa-lock-open" style="color: var(--accent);"></i> Yönetim Paneli: İlan Ekle & Kaldır</h2>
                 <button type="button" class="btn-close-admin" onclick="closeAdminPanel()"><i class="fa-solid fa-xmark"></i> Kapat</button>
             </div>
             
@@ -839,24 +867,21 @@
             </form>
 
             <div style="margin-top: 40px; border-top: 2px solid var(--border); padding-top: 25px;">
-                <h3 style="font-size: 1.2rem; color: var(--primary); margin-bottom: 15px;"><i class="fa-solid fa-trash-can" style="color: #ef4444;"></i> Yayındaki İlanları Yönet / Kaldır</h3>
+                <h3 style="font-size: 1.2rem; color: var(--primary); margin-bottom: 15px;"><i class="fa-solid fa-trash-can" style="color: #ef4444;"></i> Yayındaki İlanları Kaldır</h3>
                 <div id="adminCarListContainer"></div>
             </div>
         </section>
 
-        <!-- Galeri Listesi -->
         <section>
             <div class="section-header">
                 <h2>Galeri İlanları</h2>
             </div>
             <div id="carList" class="car-grid">
-                <!-- Araç kartları dinamik yüklenecek -->
-            </div>
+                </div>
         </section>
 
     </main>
 
-    <!-- Detay ve Ekspertiz Modalı -->
     <div id="carModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -869,15 +894,13 @@
                     <p id="modalDesc" style="font-size:0.9rem; color:var(--text-light); margin-bottom: 20px;"></p>
                     
                     <div class="modal-specs-list" id="modalSpecs">
-                        <!-- Dinamik özellikler -->
-                    </div>
+                        </div>
                 </div>
                 <div>
                     <div style="font-size:1rem; font-weight:700; margin-bottom:12px; color:var(--primary); display:flex; align-items:center; gap:8px;">
                         <i class="fa-solid fa-shield-halved" style="color:var(--accent);"></i> 3D Ekspertiz Şeması
                     </div>
                     
-                    <!-- Modal İçindeki 3D Ekspertiz Şeması -->
                     <div class="ekspertiz-3d-wrapper" style="padding: 20px;">
                         <div class="car-silhouette rear-wheels" style="width: 240px; height: 450px;">
                             <div class="car-part modal-part-kaput" id="modal-part-kaput">Ön Kaput</div>
@@ -908,12 +931,10 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2026 Adilhan Otomotiv. Tüm Hakları Saklıdır.</p>
     </footer>
 
-    <!-- Script -->
     <script>
         const colorMap = {
             'orijinal': '#22c55e',
@@ -961,9 +982,19 @@
             if(menu) menu.style.display = 'none';
         });
 
+        function toggleAdminPanel() {
+            const adminPanel = document.getElementById('admin-panel');
+            if (adminPanel.style.display === 'block') {
+                adminPanel.style.display = 'none';
+            } else {
+                adminPanel.style.display = 'block';
+                adminPanel.scrollIntoView({ behavior: 'smooth' });
+                renderAdminCarList();
+            }
+        }
+
         function closeAdminPanel() {
             document.getElementById('admin-panel').style.display = 'none';
-            document.getElementById('searchInput').value = '';
         }
 
         function closeModal() {
@@ -974,14 +1005,13 @@
             const carForm = document.getElementById('carForm');
             const carList = document.getElementById('carList');
             const searchInput = document.getElementById('searchInput');
-            const adminPanel = document.getElementById('admin-panel');
 
             for (let key in currentPartsData) {
                 const el = document.getElementById('part-' + key);
                 if(el) el.style.backgroundColor = colorMap[currentPartsData[key]];
             }
 
-            allCars = JSON.parse(localStorage.getItem('adilhan_cars_master_v3')) || [];
+            allCars = JSON.parse(localStorage.getItem('adilhan_cars_master_v4')) || [];
 
             if (allCars.length === 0) {
                 allCars.push({
@@ -1013,22 +1043,14 @@
                 renderCars(allCars);
             }
 
+            // Sadece arama ve filtreleme
             searchInput.addEventListener('input', (e) => {
-                const query = e.target.value.trim();
-
-                if (query.toUpperCase() === 'ADMIN') {
-                    adminPanel.style.display = 'block';
-                    adminPanel.scrollIntoView({ behavior: 'smooth' });
-                    renderAdminCarList();
-                    return;
-                } else {
-                    adminPanel.style.display = 'none';
-                    const filtered = allCars.filter(car => 
-                        car.brand.toLowerCase().includes(query.toLowerCase()) || 
-                        car.model.toLowerCase().includes(query.toLowerCase())
-                    );
-                    renderCars(filtered);
-                }
+                const query = e.target.value.trim().toLowerCase();
+                const filtered = allCars.filter(car => 
+                    car.brand.toLowerCase().includes(query) || 
+                    car.model.toLowerCase().includes(query)
+                );
+                renderCars(filtered);
             });
 
             carForm.addEventListener('submit', (e) => {
@@ -1107,7 +1129,7 @@
             };
 
             function saveAndRender() {
-                localStorage.setItem('adilhan_cars_master_v3', JSON.stringify(allCars));
+                localStorage.setItem('adilhan_cars_master_v4', JSON.stringify(allCars));
                 renderCars(allCars);
             }
 
@@ -1143,7 +1165,6 @@
                             
                             <div class="card-actions">
                                 <button class="btn-details"><i class="fa-solid fa-eye"></i> Detaylar & Ekspertiz</button>
-                                <button class="btn-delete" onclick="deleteCar(event, ${car.id})"><i class="fa-solid fa-trash"></i></button>
                             </div>
                         </div>
                     `;
@@ -1152,8 +1173,9 @@
                 });
             }
 
-            function renderAdminCarList() {
+            window.renderAdminCarList = function() {
                 const container = document.getElementById('adminCarListContainer');
+                if(!container) return;
                 container.innerHTML = '';
 
                 if (allCars.length === 0) {
