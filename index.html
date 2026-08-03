@@ -157,36 +157,105 @@
             outline: none;
         }
 
-        /* 2D Ekspertiz Şema Alanı */
-        .ekspertiz-container-2d {
-            background: #f1f5f9;
+        /* 3D Parçalı Ekspertiz Şeması Stilleri */
+        .ekspertiz-3d-wrapper {
+            background: #111827;
+            border-radius: 10px;
             padding: 20px;
-            border-radius: 8px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
             margin-top: 10px;
         }
 
-        .parts-grid-2d {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 12px;
+        .car-model-3d {
+            position: relative;
+            width: 280px;
+            height: 480px;
+            background: #1f2937;
+            border-radius: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 25px 15px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.6);
+            border: 2px solid #374151;
         }
 
-        .part-row-2d {
+        /* Ayrılmış Parça Blokları */
+        .car-part-3d {
+            width: 85%;
+            padding: 12px;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: #fff;
+            background: #4b5563;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            position: relative;
+            user-select: none;
+        }
+
+        .car-part-3d:hover {
+            filter: brightness(1.2);
+            transform: scale(1.02);
+        }
+
+        .car-middle-row {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            background: #fff;
-            padding: 10px 14px;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+            width: 100%;
+            gap: 10px;
         }
 
-        .part-row-2d select {
-            padding: 5px 10px;
+        .car-middle-row .car-part-3d {
+            width: 48%;
+            padding: 25px 5px;
+            font-size: 0.75rem;
+        }
+
+        /* Parçaya Basınca Çıkan Küçük Pop-up Menü */
+        .popup-menu {
+            display: none;
+            position: absolute;
+            background: #ffffff;
+            color: #333;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            padding: 8px;
+            z-index: 100;
+            width: 150px;
+            text-align: left;
+            animation: fadeIn 0.2s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .popup-menu button {
+            display: block;
+            width: 100%;
+            padding: 6px 10px;
+            background: none;
+            border: none;
+            text-align: left;
+            font-size: 0.8rem;
+            font-weight: 600;
             border-radius: 4px;
-            border: 1px solid #cbd5e1;
-            font-size: 0.85rem;
+            cursor: pointer;
+            margin-bottom: 2px;
+        }
+
+        .popup-menu button:hover {
+            background: #f1f5f9;
         }
 
         .legend {
@@ -196,6 +265,7 @@
             margin-top: 15px;
             flex-wrap: wrap;
             justify-content: center;
+            color: #fff;
         }
         .legend span { display: flex; align-items: center; gap: 5px; }
         .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
@@ -323,7 +393,7 @@
             <div class="logo">
                 <i class="fa-solid fa-car-side"></i> <span>Adilhan Otomotiv</span>
             </div>
-            <!-- Arama Kutusu (İpucu yazısı gizlendi) -->
+            <!-- Arama Kutusu (Tamamen gizli tetikleyici) -->
             <div class="search-box-wrapper">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <input type="text" id="searchInput" placeholder="Marka veya model ara...">
@@ -404,68 +474,38 @@
                     </div>
                 </div>
 
-                <!-- 2D EKSPERTİZ ŞEMASI -->
+                <!-- 3D PARÇALI EKSPERTİZ MODELİ -->
                 <div class="form-group full-width" style="margin-top: 20px;">
-                    <label><i class="fa-solid fa-car-burst"></i> 2D Ekspertiz Şeması</label>
-                    <div class="ekspertiz-container-2d">
-                        <div class="parts-grid-2d">
-                            <div class="part-row-2d"><span>Ön Kaput:</span> 
-                                <select id="p-kaput">
-                                    <option value="orijinal">Orijinal</option>
-                                    <option value="boyali">Boyalı</option>
-                                    <option value="degisen">Değişen</option>
-                                    <option value="lokal">Lokal Boyalı</option>
-                                </select>
+                    <label><i class="fa-solid fa-cube"></i> 3D Ekspertiz Şeması (Parçalara Tıklayarak Durum Seçin)</label>
+                    <div class="ekspertiz-3d-wrapper">
+                        <div class="car-model-3d">
+                            <!-- Ön Kaput -->
+                            <div class="car-part-3d" id="part-kaput" onclick="openPartMenu(event, 'kaput')">Ön Kaput</div>
+                            
+                            <!-- Orta Kısım (Yan Çamurluklar ve Tavan) -->
+                            <div class="car-middle-row">
+                                <div class="car-part-3d" id="part-sol-on-camurluk" onclick="openPartMenu(event, 'sol-on-camurluk')">Sol Ön Çamurluk</div>
+                                <div class="car-part-3d" id="part-tavan" onclick="openPartMenu(event, 'tavan')">Tavan</div>
+                                <div class="car-part-3d" id="part-sag-on-camurluk" onclick="openPartMenu(event, 'sag-on-camurluk')">Sağ Ön Çamurluk</div>
                             </div>
-                            <div class="part-row-2d"><span>Tavan:</span> 
-                                <select id="p-tavan">
-                                    <option value="orijinal">Orijinal</option>
-                                    <option value="boyali">Boyalı</option>
-                                    <option value="degisen">Değişen</option>
-                                    <option value="lokal">Lokal Boyalı</option>
-                                </select>
+
+                            <div class="car-middle-row">
+                                <div class="car-part-3d" id="part-sol-arka-camurluk" onclick="openPartMenu(event, 'sol-arka-camurluk')">Sol Arka Çamurluk</div>
+                                <div class="car-part-3d" id="part-sag-arka-camurluk" onclick="openPartMenu(event, 'sag-arka-camurluk')">Sağ Arka Çamurluk</div>
                             </div>
-                            <div class="part-row-2d"><span>Sol Ön Çamurluk:</span> 
-                                <select id="p-sol-on-camurluk">
-                                    <option value="orijinal">Orijinal</option>
-                                    <option value="boyali">Boyalı</option>
-                                    <option value="degisen">Değişen</option>
-                                    <option value="lokal">Lokal Boyalı</option>
-                                </select>
-                            </div>
-                            <div class="part-row-2d"><span>Sağ Ön Çamurluk:</span> 
-                                <select id="p-sag-on-camurluk">
-                                    <option value="orijinal">Orijinal</option>
-                                    <option value="boyali">Boyalı</option>
-                                    <option value="degisen">Değişen</option>
-                                    <option value="lokal">Lokal Boyalı</option>
-                                </select>
-                            </div>
-                            <div class="part-row-2d"><span>Sol Arka Çamurluk:</span> 
-                                <select id="p-sol-arka-camurluk">
-                                    <option value="orijinal">Orijinal</option>
-                                    <option value="boyali">Boyalı</option>
-                                    <option value="degisen">Değişen</option>
-                                    <option value="lokal">Lokal Boyalı</option>
-                                </select>
-                            </div>
-                            <div class="part-row-2d"><span>Sağ Arka Çamurluk:</span> 
-                                <select id="p-sag-arka-camurluk">
-                                    <option value="orijinal">Orijinal</option>
-                                    <option value="boyali">Boyalı</option>
-                                    <option value="degisen">Değişen</option>
-                                    <option value="lokal">Lokal Boyalı</option>
-                                </select>
-                            </div>
-                            <div class="part-row-2d"><span>Bagaj Kapağı:</span> 
-                                <select id="p-bagaj">
-                                    <option value="orijinal">Orijinal</option>
-                                    <option value="boyali">Boyalı</option>
-                                    <option value="degisen">Değişen</option>
-                                    <option value="lokal">Lokal Boyalı</option>
-                                </select>
-                            </div>
+
+                            <!-- Bagaj Kapağı -->
+                            <div class="car-part-3d" id="part-bagaj" onclick="openPartMenu(event, 'bagaj')">Bagaj Kapağı</div>
                         </div>
+
+                        <!-- Açılır Seçim Menüsü -->
+                        <div id="partPopupMenu" class="popup-menu">
+                            <button onclick="setPartStatus('orijinal')"><span class="dot" style="background:#22c55e"></span> Orijinal</button>
+                            <button onclick="setPartStatus('boyali')"><span class="dot" style="background:#3b82f6"></span> Boyalı</button>
+                            <button onclick="setPartStatus('degisen')"><span class="dot" style="background:#ef4444"></span> Değişen</button>
+                            <button onclick="setPartStatus('lokal')"><span class="dot" style="background:#eab308"></span> Lokal Boyalı</button>
+                        </div>
+
                         <div class="legend">
                             <span><i class="dot" style="background:var(--orijinal)"></i> Orijinal</span>
                             <span><i class="dot" style="background:var(--boyali)"></i> Boyalı</span>
@@ -508,6 +548,47 @@
             'lokal': '#eab308'
         };
 
+        // Form üzerindeki geçici parça durum verileri
+        let currentPartsData = {
+            kaput: 'orijinal',
+            tavan: 'orijinal',
+            'sol-on-camurluk': 'orijinal',
+            'sag-on-camurluk': 'orijinal',
+            'sol-arka-camurluk': 'orijinal',
+            'sag-arka-camurluk': 'orijinal',
+            bagaj: 'orijinal'
+        };
+
+        let activeTargetPart = null;
+
+        function openPartMenu(event, partKey) {
+            event.stopPropagation();
+            activeTargetPart = partKey;
+            const menu = document.getElementById('partPopupMenu');
+            
+            // Tıklanan parçanın konumuna göre menüyü konumlandır
+            const rect = event.currentTarget.getBoundingClientRect();
+            const wrapperRect = document.querySelector('.ekspertiz-3d-wrapper').getBoundingClientRect();
+            
+            menu.style.display = 'block';
+            menu.style.top = (rect.bottom - wrapperRect.top + 5) + 'px';
+            menu.style.left = (rect.left - wrapperRect.left) + 'px';
+        }
+
+        function setPartStatus(status) {
+            if (activeTargetPart) {
+                currentPartsData[activeTargetPart] = status;
+                const partElement = document.getElementById('part-' + activeTargetPart);
+                partElement.style.backgroundColor = colorMap[status];
+            }
+            document.getElementById('partPopupMenu').style.display = 'none';
+        }
+
+        // Sayfa herhangi bir yerinde tıklandığında açık menüyü kapat
+        window.addEventListener('click', () => {
+            document.getElementById('partPopupMenu').style.display = 'none';
+        });
+
         function closeAdminPanel() {
             document.getElementById('admin-panel').style.display = 'none';
             document.getElementById('searchInput').value = '';
@@ -519,7 +600,12 @@
             const searchInput = document.getElementById('searchInput');
             const adminPanel = document.getElementById('admin-panel');
 
-            let cars = JSON.parse(localStorage.getItem('adilhan_cars_secret')) || [];
+            // Başlangıç renklerini uygula
+            for (let key in currentPartsData) {
+                document.getElementById('part-' + key).style.backgroundColor = colorMap[currentPartsData[key]];
+            }
+
+            let cars = JSON.parse(localStorage.getItem('adilhan_cars_3d_parts')) || [];
 
             if (cars.length === 0) {
                 cars.push({
@@ -585,20 +671,19 @@
                     enginePower: document.getElementById('enginePower').value,
                     imageUrl: document.getElementById('imageUrl').value,
                     description: document.getElementById('description').value,
-                    parts: {
-                        kaput: document.getElementById('p-kaput').value,
-                        tavan: document.getElementById('p-tavan').value,
-                        'sol-on-camurluk': document.getElementById('p-sol-on-camurluk').value,
-                        'sag-on-camurluk': document.getElementById('p-sag-on-camurluk').value,
-                        'sol-arka-camurluk': document.getElementById('p-sol-arka-camurluk').value,
-                        'sag-arka-camurluk': document.getElementById('p-sag-arka-camurluk').value,
-                        bagaj: document.getElementById('p-bagaj').value
-                    }
+                    parts: { ...currentPartsData }
                 };
 
                 cars.unshift(newCar);
                 saveAndRender();
                 carForm.reset();
+                
+                // Parçaları varsayılan (orijinal) renge sıfırla
+                for (let key in currentPartsData) {
+                    currentPartsData[key] = 'orijinal';
+                    document.getElementById('part-' + key).style.backgroundColor = colorMap['orijinal'];
+                }
+
                 adminPanel.style.display = 'none';
                 alert('Araç başarıyla galeriye eklendi!');
             });
@@ -611,7 +696,7 @@
             };
 
             function saveAndRender() {
-                localStorage.setItem('adilhan_cars_secret', JSON.stringify(cars));
+                localStorage.setItem('adilhan_cars_3d_parts', JSON.stringify(cars));
                 renderCars(cars);
             }
 
