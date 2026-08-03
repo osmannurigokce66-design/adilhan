@@ -222,7 +222,7 @@
             box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
         }
 
-        /* 3D Ekspertiz Şeması Stili (Admin) */
+        /* 3D Ekspertiz Şeması Stili (Admin ve Modal ortak) */
         .ekspertiz-section-title {
             font-size: 1rem;
             font-weight: 700;
@@ -304,7 +304,7 @@
             z-index: 10;
         }
 
-        #part-kaput {
+        #part-kaput, .modal-part-kaput {
             width: 72%;
             height: 95px;
             margin: 0 auto;
@@ -320,14 +320,14 @@
             width: 100%;
         }
 
-        #part-sol-on-camurluk, #part-sag-on-camurluk {
+        #part-sol-on-camurluk, #part-sag-on-camurluk, .modal-part-sol-on-camurluk, .modal-part-sag-on-camurluk {
             width: 27%;
             height: 100%;
             border-radius: 20px 10px 10px 20px;
         }
-        #part-sag-on-camurluk { border-radius: 10px 20px 20px 10px; }
+        #part-sag-on-camurluk, .modal-part-sag-on-camurluk { border-radius: 10px 20px 20px 10px; }
 
-        #part-tavan {
+        #part-tavan, .modal-part-tavan {
             width: 40%;
             height: 100%;
             border-radius: 15px;
@@ -345,14 +345,14 @@
             width: 100%;
         }
 
-        #part-sol-arka-camurluk, #part-sag-arka-camurluk {
+        #part-sol-arka-camurluk, #part-sag-arka-camurluk, .modal-part-sol-arka-camurluk, .modal-part-sag-arka-camurluk {
             width: 32%;
             height: 100%;
             border-radius: 15px 20px 20px 15px;
         }
-        #part-sag-arka-camurluk { border-radius: 20px 15px 15px 20px; }
+        #part-sag-arka-camurluk, .modal-part-sag-arka-camurluk { border-radius: 20px 15px 15px 20px; }
 
-        #part-bagaj {
+        #part-bagaj, .modal-part-bagaj {
             width: 76%;
             height: 80px;
             margin: 0 auto;
@@ -598,7 +598,7 @@
         .modal-content {
             background: white;
             width: 100%;
-            max-width: 850px;
+            max-width: 950px;
             max-height: 90vh;
             border-radius: 16px;
             overflow-y: auto;
@@ -647,13 +647,13 @@
             gap: 25px;
         }
 
-        @media(max-width: 768px) {
+        @media(max-width: 900px) {
             .modal-body-grid { grid-template-columns: 1fr; }
         }
 
         .modal-car-img {
             width: 100%;
-            height: 280px;
+            height: 260px;
             object-fit: cover;
             border-radius: 12px;
             margin-bottom: 15px;
@@ -707,7 +707,7 @@
             </a>
             <div class="search-container">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="searchInput" placeholder="Marka, model ara (Admin için: ADMIN)">
+                <input type="text" id="searchInput" placeholder="Marka veya model ara...">
             </div>
         </div>
     </header>
@@ -849,15 +849,42 @@
             <div class="modal-body-grid">
                 <div>
                     <img id="modalImg" src="" alt="Araç Görseli" class="modal-car-img">
-                    <p id="modalDesc" style="font-size:0.9rem; color:var(--text-light);"></p>
-                </div>
-                <div>
+                    <p id="modalDesc" style="font-size:0.9rem; color:var(--text-light); margin-bottom: 20px;"></p>
+                    
                     <div class="modal-specs-list" id="modalSpecs">
                         <!-- Dinamik özellikler -->
                     </div>
-                    <div style="font-size:0.95rem; font-weight:700; margin-bottom:10px; color:var(--primary);"><i class="fa-solid fa-shield-halved" style="color:var(--accent);"></i> Ekspertiz Durumu</div>
-                    <div class="modal-specs-list" id="modalParts">
-                        <!-- Dinamik parça durumları -->
+                </div>
+                <div>
+                    <div style="font-size:1rem; font-weight:700; margin-bottom:12px; color:var(--primary); display:flex; align-items:center; gap:8px;">
+                        <i class="fa-solid fa-shield-halved" style="color:var(--accent);"></i> 3D Ekspertiz Şeması
+                    </div>
+                    
+                    <!-- Modal İçindeki 3D Ekspertiz Şeması -->
+                    <div class="ekspertiz-3d-wrapper" style="padding: 20px;">
+                        <div class="car-silhouette rear-wheels" style="width: 240px; height: 450px;">
+                            <div class="car-part modal-part-kaput" id="modal-part-kaput">Ön Kaput</div>
+                            
+                            <div class="car-row-middle" style="height: 125px;">
+                                <div class="car-part modal-part-sol-on-camurluk" id="modal-part-sol-on-camurluk">Sol Ön Çam.</div>
+                                <div class="car-part modal-part-tavan" id="modal-part-tavan">Tavan</div>
+                                <div class="car-part modal-part-sag-on-camurluk" id="modal-part-sag-on-camurluk">Sağ Ön Çam.</div>
+                            </div>
+
+                            <div class="car-row-lower" style="height: 110px;">
+                                <div class="car-part modal-part-sol-arka-camurluk" id="modal-part-sol-arka-camurluk">Sol Arka Çam.</div>
+                                <div class="car-part modal-part-sag-arka-camurluk" id="modal-part-sag-arka-camurluk">Sağ Arka Çam.</div>
+                            </div>
+
+                            <div class="car-part modal-part-bagaj" id="modal-part-bagaj">Bagaj Kapağı</div>
+                        </div>
+
+                        <div class="legend" style="margin-top: 15px; font-size: 0.75rem;">
+                            <span><i class="dot" style="background:var(--orijinal)"></i> Orijinal</span>
+                            <span><i class="dot" style="background:var(--boyali)"></i> Boyalı</span>
+                            <span><i class="dot" style="background:var(--degisen)"></i> Değişen</span>
+                            <span><i class="dot" style="background:var(--lokal)"></i> Lokal</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -876,16 +903,6 @@
             'boyali': '#3b82f6',
             'degisen': '#ef4444',
             'lokal': '#eab308'
-        };
-
-        const partNames = {
-            kaput: 'Ön Kaput',
-            tavan: 'Tavan',
-            'sol-on-camurluk': 'Sol Ön Çamurluk',
-            'sag-on-camurluk': 'Sağ Ön Çamurluk',
-            'sol-arka-camurluk': 'Sol Arka Çamurluk',
-            'sag-arka-camurluk': 'Sağ Arka Çamurluk',
-            bagaj: 'Bagaj Kapağı'
         };
 
         let currentPartsData = {
@@ -947,7 +964,7 @@
                 if(el) el.style.backgroundColor = colorMap[currentPartsData[key]];
             }
 
-            allCars = JSON.parse(localStorage.getItem('adilhan_cars_modal_v1')) || [];
+            allCars = JSON.parse(localStorage.getItem('adilhan_cars_modal_v2')) || [];
 
             if (allCars.length === 0) {
                 allCars.push({
@@ -963,7 +980,7 @@
                     color: 'Beyaz',
                     enginePower: '170 HP',
                     imageUrl: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80',
-                    description: 'Hatasız, boyasız temiz aile aracı. Yetkili servis bakımlı.',
+                    description: 'Hatasız, temiz aile aracı. Yetkili servis bakımlı.',
                     parts: {
                         kaput: 'orijinal',
                         tavan: 'orijinal',
@@ -1056,20 +1073,21 @@
                 `;
                 document.getElementById('modalSpecs').innerHTML = specsHtml;
 
-                let partsHtml = '';
-                if(car.parts) {
+                if (car.parts) {
                     for (let key in car.parts) {
                         let val = car.parts[key];
-                        partsHtml += `<div><span>${partNames[key]}:</span> <strong style="color:${colorMap[val]}">${val.toUpperCase()}</strong></div>`;
+                        let modalPartEl = document.getElementById('modal-part-' + key);
+                        if (modalPartEl) {
+                            modalPartEl.style.backgroundColor = colorMap[val];
+                        }
                     }
                 }
-                document.getElementById('modalParts').innerHTML = partsHtml;
 
                 document.getElementById('carModal').style.display = 'flex';
             };
 
             function saveAndRender() {
-                localStorage.setItem('adilhan_cars_modal_v1', JSON.stringify(allCars));
+                localStorage.setItem('adilhan_cars_modal_v2', JSON.stringify(allCars));
                 renderCars(allCars);
             }
 
@@ -1117,3 +1135,4 @@
     </script>
 </body>
 </html>
+ğ
