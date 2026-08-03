@@ -222,7 +222,7 @@
             box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
         }
 
-        /* 3D Ekspertiz Şeması Stili (Admin ve Modal ortak) */
+        /* 3D Ekspertiz Şeması Stili */
         .ekspertiz-section-title {
             font-size: 1rem;
             font-weight: 700;
@@ -579,6 +579,18 @@
             color: white;
         }
 
+        /* Admin Paneli İlan Listesi / Kaldırma Alanı */
+        .admin-car-list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
         /* Modal (Detay ve Ekspertiz Penceresi) */
         #carModal {
             display: none;
@@ -707,7 +719,7 @@
             </a>
             <div class="search-container">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="searchInput" placeholder="Marka veya model ara...">
+                <input type="text" id="searchInput" placeholder="Marka ara (Admin için ADMIN yaz)">
             </div>
         </div>
     </header>
@@ -720,10 +732,10 @@
 
     <main class="main-container">
 
-        <!-- Gizli Admin Paneli -->
+        <!-- Admin Paneli -->
         <section id="admin-panel">
             <div class="admin-header">
-                <h2><i class="fa-solid fa-lock-open" style="color: var(--accent);"></i> Yönetim Paneli: Yeni İlan Ekle</h2>
+                <h2><i class="fa-solid fa-lock-open" style="color: var(--accent);"></i> Yönetim Paneli: İlan Ekle & Yönet</h2>
                 <button type="button" class="btn-close-admin" onclick="closeAdminPanel()"><i class="fa-solid fa-xmark"></i> Kapat</button>
             </div>
             
@@ -825,6 +837,11 @@
 
                 <button type="submit" class="btn-submit"><i class="fa-solid fa-plus"></i> Aracı Galeriye Kaydet</button>
             </form>
+
+            <div style="margin-top: 40px; border-top: 2px solid var(--border); padding-top: 25px;">
+                <h3 style="font-size: 1.2rem; color: var(--primary); margin-bottom: 15px;"><i class="fa-solid fa-trash-can" style="color: #ef4444;"></i> Yayındaki İlanları Yönet / Kaldır</h3>
+                <div id="adminCarListContainer"></div>
+            </div>
         </section>
 
         <!-- Galeri Listesi -->
@@ -934,7 +951,7 @@
             if (activeTargetPart) {
                 currentPartsData[activeTargetPart] = status;
                 const partElement = document.getElementById('part-' + activeTargetPart);
-                partElement.style.backgroundColor = colorMap[status];
+                if(partElement) partElement.style.backgroundColor = colorMap[status];
             }
             document.getElementById('partPopupMenu').style.display = 'none';
         }
@@ -964,7 +981,7 @@
                 if(el) el.style.backgroundColor = colorMap[currentPartsData[key]];
             }
 
-            allCars = JSON.parse(localStorage.getItem('adilhan_cars_modal_v2')) || [];
+            allCars = JSON.parse(localStorage.getItem('adilhan_cars_master_v3')) || [];
 
             if (allCars.length === 0) {
                 allCars.push({
@@ -999,11 +1016,13 @@
             searchInput.addEventListener('input', (e) => {
                 const query = e.target.value.trim();
 
-                if (query === 'ADMIN') {
+                if (query.toUpperCase() === 'ADMIN') {
                     adminPanel.style.display = 'block';
                     adminPanel.scrollIntoView({ behavior: 'smooth' });
+                    renderAdminCarList();
                     return;
                 } else {
+                    adminPanel.style.display = 'none';
                     const filtered = allCars.filter(car => 
                         car.brand.toLowerCase().includes(query.toLowerCase()) || 
                         car.model.toLowerCase().includes(query.toLowerCase())
@@ -1041,7 +1060,7 @@
                     document.getElementById('part-' + key).style.backgroundColor = colorMap['orijinal'];
                 }
 
-                adminPanel.style.display = 'none';
+                renderAdminCarList();
                 alert('Araç başarıyla galeriye eklendi!');
             });
 
@@ -1050,6 +1069,7 @@
                 if (confirm('Bu aracı galeriden kaldırmak istediğinize emin misiniz?')) {
                     allCars = allCars.filter(car => car.id !== id);
                     saveAndRender();
+                    renderAdminCarList();
                 }
             };
 
@@ -1087,7 +1107,7 @@
             };
 
             function saveAndRender() {
-                localStorage.setItem('adilhan_cars_modal_v2', JSON.stringify(allCars));
+                localStorage.setItem('adilhan_cars_master_v3', JSON.stringify(allCars));
                 renderCars(allCars);
             }
 
@@ -1129,6 +1149,26 @@
                     `;
 
                     carList.appendChild(carCard);
+                });
+            }
+
+            function renderAdminCarList() {
+                const container = document.getElementById('adminCarListContainer');
+                container.innerHTML = '';
+
+                if (allCars.length === 0) {
+                    container.innerHTML = '<p style="color:var(--text-light); font-size:0.9rem;">Sistemde kayıtlı ilan bulunmuyor.</p>';
+                    return;
+                }
+
+                allCars.forEach(car => {
+                    const item = document.createElement('div');
+                    item.className = 'admin-car-list-item';
+                    item.innerHTML = `
+                        <span style="font-weight:600; color:var(--primary);">${car.brand} ${car.model} (${car.year}) - ${Number(car.price).toLocaleString('tr-TR')} ₺</span>
+                        <button class="btn-delete" onclick="deleteCar(event, ${car.id})"><i class="fa-solid fa-trash"></i> İlanı Kaldır</button>
+                    `;
+                    container.appendChild(item);
                 });
             }
         });
