@@ -157,67 +157,109 @@
             outline: none;
         }
 
-        /* 3D Parçalı Ekspertiz Şeması Stilleri */
+        /* Gerçek Araba Hatlarına Benzeyen Şema Tasarımı */
         .ekspertiz-3d-wrapper {
-            background: #111827;
-            border-radius: 10px;
-            padding: 20px;
+            background: #0f172a;
+            border-radius: 12px;
+            padding: 25px;
             position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
-            overflow: hidden;
             margin-top: 10px;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
         }
 
-        .car-model-3d {
+        .car-silhouette {
             position: relative;
-            width: 280px;
-            height: 480px;
-            background: #1f2937;
-            border-radius: 30px;
+            width: 320px;
+            height: 520px;
+            background: #1e293b;
+            border-radius: 40px 40px 25px 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            border: 3px solid #334155;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: space-between;
-            padding: 25px 15px;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.6);
-            border: 2px solid #374151;
+            padding: 18px 12px;
         }
 
-        /* Ayrılmış Parça Blokları */
-        .car-part-3d {
-            width: 85%;
-            padding: 12px;
-            text-align: center;
-            font-size: 0.85rem;
-            font-weight: bold;
+        /* Ortak Parça Temelleri */
+        .car-part {
+            background: #475569;
             color: #fff;
-            background: #4b5563;
-            border-radius: 8px;
+            font-weight: bold;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
             cursor: pointer;
             transition: 0.2s;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-            position: relative;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             user-select: none;
+            position: relative;
         }
 
-        .car-part-3d:hover {
-            filter: brightness(1.2);
+        .car-part:hover {
+            filter: brightness(1.25);
             transform: scale(1.02);
         }
 
-        .car-middle-row {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            gap: 10px;
+        /* Ön Kaput (Ön Kısım - Hafif kavisli görünüm) */
+        #part-kaput {
+            width: 75%;
+            height: 85px;
+            margin: 0 auto;
+            border-radius: 15px 15px 8px 8px;
+            border-top: 4px solid #334155;
         }
 
-        .car-middle-row .car-part-3d {
-            width: 48%;
-            padding: 25px 5px;
-            font-size: 0.75rem;
+        /* Orta Bölüm (Yan çamurluklar ve orta tavan) */
+        .car-row-middle {
+            display: flex;
+            justify-content: space-between;
+            height: 140px;
+            gap: 8px;
+            width: 100%;
+        }
+
+        #part-sol-on-camurluk, #part-sag-on-camurluk {
+            width: 28%;
+            height: 100%;
+            border-radius: 8px;
+        }
+
+        #part-tavan {
+            width: 40%;
+            height: 100%;
+            border-radius: 6px;
+            background: #334155; /* Tavan rengi biraz daha koyu üst yapı hissi için */
+            border-left: 2px solid #475569;
+            border-right: 2px solid #475569;
+        }
+
+        .car-row-lower {
+            display: flex;
+            justify-content: space-between;
+            height: 130px;
+            gap: 8px;
+            width: 100%;
+        }
+
+        #part-sol-arka-camurluk, #part-sag-arka-camurluk {
+            width: 30%;
+            height: 100%;
+            border-radius: 8px;
+        }
+
+        /* Bagaj Kapağı (Arka Kısım) */
+        #part-bagaj {
+            width: 75%;
+            height: 75px;
+            margin: 0 auto;
+            border-radius: 8px 8px 15px 15px;
+            border-bottom: 4px solid #334155;
         }
 
         /* Parçaya Basınca Çıkan Küçük Pop-up Menü */
@@ -262,7 +304,7 @@
             display: flex;
             gap: 15px;
             font-size: 0.8rem;
-            margin-top: 15px;
+            margin-top: 20px;
             flex-wrap: wrap;
             justify-content: center;
             color: #fff;
@@ -474,28 +516,29 @@
                     </div>
                 </div>
 
-                <!-- 3D PARÇALI EKSPERTİZ MODELİ -->
+                <!-- ARABA HATLARINA BENZER 3D ŞEMA MODELİ -->
                 <div class="form-group full-width" style="margin-top: 20px;">
-                    <label><i class="fa-solid fa-cube"></i> 3D Ekspertiz Şeması (Parçalara Tıklayarak Durum Seçin)</label>
+                    <label><i class="fa-solid fa-car"></i> Ekspertiz Şeması (Parçalara Tıklayarak Durum Seçin)</label>
                     <div class="ekspertiz-3d-wrapper">
-                        <div class="car-model-3d">
+                        <div class="car-silhouette">
                             <!-- Ön Kaput -->
-                            <div class="car-part-3d" id="part-kaput" onclick="openPartMenu(event, 'kaput')">Ön Kaput</div>
+                            <div class="car-part" id="part-kaput" onclick="openPartMenu(event, 'kaput')">Ön Kaput</div>
                             
-                            <!-- Orta Kısım (Yan Çamurluklar ve Tavan) -->
-                            <div class="car-middle-row">
-                                <div class="car-part-3d" id="part-sol-on-camurluk" onclick="openPartMenu(event, 'sol-on-camurluk')">Sol Ön Çamurluk</div>
-                                <div class="car-part-3d" id="part-tavan" onclick="openPartMenu(event, 'tavan')">Tavan</div>
-                                <div class="car-part-3d" id="part-sag-on-camurluk" onclick="openPartMenu(event, 'sag-on-camurluk')">Sağ Ön Çamurluk</div>
+                            <!-- Orta Kısım (Ön Çamurluklar ve Tavan) -->
+                            <div class="car-row-middle">
+                                <div class="car-part" id="part-sol-on-camurluk" onclick="openPartMenu(event, 'sol-on-camurluk')">Sol Ön Çamurluk</div>
+                                <div class="car-part" id="part-tavan" onclick="openPartMenu(event, 'tavan')">Tavan</div>
+                                <div class="car-part" id="part-sag-on-camurluk" onclick="openPartMenu(event, 'sag-on-camurluk')">Sağ Ön Çamurluk</div>
                             </div>
 
-                            <div class="car-middle-row">
-                                <div class="car-part-3d" id="part-sol-arka-camurluk" onclick="openPartMenu(event, 'sol-arka-camurluk')">Sol Arka Çamurluk</div>
-                                <div class="car-part-3d" id="part-sag-arka-camurluk" onclick="openPartMenu(event, 'sag-arka-camurluk')">Sağ Arka Çamurluk</div>
+                            <!-- Alt Kısım (Arka Çamurluklar) -->
+                            <div class="car-row-lower">
+                                <div class="car-part" id="part-sol-arka-camurluk" onclick="openPartMenu(event, 'sol-arka-camurluk')">Sol Arka Çamurluk</div>
+                                <div class="car-part" id="part-sag-arka-camurluk" onclick="openPartMenu(event, 'sag-arka-camurluk')">Sağ Arka Çamurluk</div>
                             </div>
 
                             <!-- Bagaj Kapağı -->
-                            <div class="car-part-3d" id="part-bagaj" onclick="openPartMenu(event, 'bagaj')">Bagaj Kapağı</div>
+                            <div class="car-part" id="part-bagaj" onclick="openPartMenu(event, 'bagaj')">Bagaj Kapağı</div>
                         </div>
 
                         <!-- Açılır Seçim Menüsü -->
@@ -548,7 +591,6 @@
             'lokal': '#eab308'
         };
 
-        // Form üzerindeki geçici parça durum verileri
         let currentPartsData = {
             kaput: 'orijinal',
             tavan: 'orijinal',
@@ -566,7 +608,6 @@
             activeTargetPart = partKey;
             const menu = document.getElementById('partPopupMenu');
             
-            // Tıklanan parçanın konumuna göre menüyü konumlandır
             const rect = event.currentTarget.getBoundingClientRect();
             const wrapperRect = document.querySelector('.ekspertiz-3d-wrapper').getBoundingClientRect();
             
@@ -584,7 +625,6 @@
             document.getElementById('partPopupMenu').style.display = 'none';
         }
 
-        // Sayfa herhangi bir yerinde tıklandığında açık menüyü kapat
         window.addEventListener('click', () => {
             document.getElementById('partPopupMenu').style.display = 'none';
         });
@@ -600,12 +640,11 @@
             const searchInput = document.getElementById('searchInput');
             const adminPanel = document.getElementById('admin-panel');
 
-            // Başlangıç renklerini uygula
             for (let key in currentPartsData) {
                 document.getElementById('part-' + key).style.backgroundColor = colorMap[currentPartsData[key]];
             }
 
-            let cars = JSON.parse(localStorage.getItem('adilhan_cars_3d_parts')) || [];
+            let cars = JSON.parse(localStorage.getItem('adilhan_cars_car_lines')) || [];
 
             if (cars.length === 0) {
                 cars.push({
@@ -637,7 +676,6 @@
                 renderCars(cars);
             }
 
-            // Arama ve gizli ADMIN tetikleyicisi
             searchInput.addEventListener('input', (e) => {
                 const query = e.target.value.trim();
 
@@ -678,7 +716,6 @@
                 saveAndRender();
                 carForm.reset();
                 
-                // Parçaları varsayılan (orijinal) renge sıfırla
                 for (let key in currentPartsData) {
                     currentPartsData[key] = 'orijinal';
                     document.getElementById('part-' + key).style.backgroundColor = colorMap['orijinal'];
@@ -696,7 +733,7 @@
             };
 
             function saveAndRender() {
-                localStorage.setItem('adilhan_cars_3d_parts', JSON.stringify(cars));
+                localStorage.setItem('adilhan_cars_car_lines', JSON.stringify(cars));
                 renderCars(cars);
             }
 
