@@ -221,7 +221,7 @@
             box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
         }
 
-        /* 3D Ekspertiz Şeması Stili (Admin ve Modal ortak) */
+        /* 3D Ekspertiz Şeması Stili */
         .ekspertiz-section-title {
             font-size: 1rem;
             font-weight: 700;
@@ -757,4 +757,135 @@
                         <label>Yakıt Türü</label>
                         <select id="fuel">
                             <option value="Benzin">Benzin</option>
+                            <option value="Dizel">Dizel</option>
+                            <option value="Hibrit">Hibrit</option>
+                            <option value="Elektrik">Elektrik</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Kasa Tipi</label>
+                        <input type="text" id="bodyType" placeholder="Sedan, SUV...">
+                    </div>
+                    <div class="form-group">
+                        <label>Renk</label>
+                        <input type="text" id="color" placeholder="Beyaz, Siyah...">
+                    </div>
+                    <div class="form-group">
+                        <label>Motor Gücü (HP)</label>
+                        <input type="text" id="enginePower" placeholder="170 HP">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Fotoğraf URL (Görsel Bağlantısı)</label>
+                        <input type="url" id="imageUrl" required placeholder="https://images.unsplash.com/photo-...">
+                    </div>
+                </div>
+
+                <div class="ekspertiz-section-title"><i class="fa-solid fa-car-rear"></i> Kuş Bakışı 3D Ekspertiz Şeması (Parçalara tıklayarak durum seçin)</div>
+                <div class="ekspertiz-3d-wrapper">
+                    <div class="car-silhouette rear-wheels">
+                        <div class="car-part" id="part-kaput" onclick="openPartMenu(event, 'kaput')">Ön Kaput</div>
+                        
+                        <div class="car-row-middle">
+                            <div class="car-part" id="part-sol-on-camurluk" onclick="openPartMenu(event, 'sol-on-camurluk')">Sol Ön Çamurluk</div>
+                            <div class="car-part" id="part-tavan" onclick="openPartMenu(event, 'tavan')">Tavan</div>
+                            <div class="car-part" id="part-sag-on-camurluk" onclick="openPartMenu(event, 'sag-on-camurluk')">Sağ Ön Çamurluk</div>
+                        </div>
+
+                        <div class="car-row-lower">
+                            <div class="car-part" id="part-sol-arka-camurluk" onclick="openPartMenu(event, 'sol-arka-camurluk')">Sol Arka Çamurluk</div>
+                            <div class="car-part" id="part-sag-arka-camurluk" onclick="openPartMenu(event, 'sag-arka-camurluk')">Sağ Arka Çamurluk</div>
+                        </div>
+
+                        <div class="car-part" id="part-bagaj" onclick="openPartMenu(event, 'bagaj')">Bagaj Kapağı</div>
+                    </div>
+
+                    <div id="partPopupMenu" class="popup-menu">
+                        <button type="button" onclick="setPartStatus('orijinal')"><span class="dot" style="background:#22c55e"></span> Orijinal</button>
+                        <button type="button" onclick="setPartStatus('boyali')"><span class="dot" style="background:#3b82f6"></span> Boyalı</button>
+                        <button type="button" onclick="setPartStatus('degisen')"><span class="dot" style="background:#ef4444"></span> Değişen</button>
+                        <button type="button" onclick="setPartStatus('lokal')"><span class="dot" style="background:#eab308"></span> Lokal Boyalı</button>
+                    </div>
+
+                    <div class="legend">
+                        <span><i class="dot" style="background:var(--orijinal)"></i> Orijinal</span>
+                        <span><i class="dot" style="background:var(--boyali)"></i> Boyalı</span>
+                        <span><i class="dot" style="background:var(--degisen)"></i> Değişen</span>
+                        <span><i class="dot" style="background:var(--lokal)"></i> Lokal Boyalı</span>
+                    </div>
+                </div>
+
+                <div class="form-group full-width" style="margin-top: 20px;">
+                    <label>Açıklama / Notlar</label>
+                    <textarea id="description" rows="3" placeholder="Araç durumu, tramer bilgisi vb. ek açıklamalar..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit"><i class="fa-solid fa-plus"></i> Aracı Galeriye Kaydet</button>
+            </form>
+        </section>
+
+        <section>
+            <div class="section-header">
+                <h2>Galeri İlanları</h2>
+            </div>
+            <div id="carList" class="car-grid">
+                </div>
+        </section>
+
+    </main>
+
+    <div id="carModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Araç Detayları</h2>
+                <button type="button" class="btn-close-modal" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body-grid">
+                <div>
+                    <img id="modalImg" src="" alt="Araç Görseli" class="modal-car-img">
+                    <p id="modalDesc" style="font-size:0.9rem; color:var(--text-light); margin-bottom: 20px;"></p>
+                    
+                    <div class="modal-specs-list" id="modalSpecs">
+                        </div>
+                </div>
+                <div>
+                    <div style="font-size:1rem; font-weight:700; margin-bottom:12px; color:var(--primary); display:flex; align-items:center; gap:8px;">
+                        <i class="fa-solid fa-shield-halved" style="color:var(--accent);"></i> 3D Ekspertiz Şeması
+                    </div>
+                    
+                    <div class="ekspertiz-3d-wrapper" style="padding: 20px;">
+                        <div class="car-silhouette rear-wheels" style="width: 240px; height: 450px;">
+                            <div class="car-part modal-part-kaput" id="modal-part-kaput">Ön Kaput</div>
                             
+                            <div class="car-row-middle" style="height: 125px;">
+                                <div class="car-part modal-part-sol-on-camurluk" id="modal-part-sol-on-camurluk">Sol Ön Çam.</div>
+                                <div class="car-part modal-part-tavan" id="modal-part-tavan">Tavan</div>
+                                <div class="car-part modal-part-sag-on-camurluk" id="modal-part-sag-on-camurluk">Sağ Ön Çam.</div>
+                            </div>
+
+                            <div class="car-row-lower" style="height: 110px;">
+                                <div class="car-part modal-part-sol-arka-camurluk" id="modal-part-sol-arka-camurluk">Sol Arka Çam.</div>
+                                <div class="car-part modal-part-sag-arka-camurluk" id="modal-part-sag-arka-camurluk">Sağ Arka Çam.</div>
+                            </div>
+
+                            <div class="car-part modal-part-bagaj" id="modal-part-bagaj">Bagaj Kapağı</div>
+                        </div>
+
+                        <div class="legend" style="margin-top: 15px; font-size: 0.75rem;">
+                            <span><i class="dot" style="background:var(--orijinal)"></i> Orijinal</span>
+                            <span><i class="dot" style="background:var(--boyali)"></i> Boyalı</span>
+                            <span><i class="dot" style="background:var(--degisen)"></i> Değişen</span>
+                            <span><i class="dot" style="background:var(--lokal)"></i> Lokal</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Adilhan Otomotiv. Tüm Hakları Saklıdır.</p>
+    </footer>
+
+    <script>
+        const colorMap = {
+            'orijinal': '#22c
