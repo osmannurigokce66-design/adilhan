@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adilhan Otomotiv | Premium Galeri</title>
+    <title>Adilhan Otomotiv | Premium Galeri ve Ekspertiz</title>
     <!-- FontAwesome İkonları -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -17,6 +17,10 @@
             --text: #334155;
             --text-light: #64748b;
             --border: #e2e8f0;
+            --boyali: #3b82f6;
+            --degisen: #ef4444;
+            --lokal: #eab308;
+            --orijinal: #22c55e;
         }
 
         * {
@@ -218,6 +222,188 @@
             box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
         }
 
+        /* 3D Ekspertiz Şeması Stili (Admin) */
+        .ekspertiz-section-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin: 25px 0 15px 0;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ekspertiz-3d-wrapper {
+            background: #090d16;
+            border-radius: 16px;
+            padding: 35px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: inset 0 0 25px rgba(0,0,0,0.8);
+        }
+
+        .car-silhouette {
+            position: relative;
+            width: 300px;
+            height: 560px;
+            background: var(--primary-light);
+            border-radius: 130px 130px 75px 75px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            border: 4px solid #334155;
+            display: flex;
+            flex-direction: column;
+            padding: 15px 12px;
+            gap: 12px;
+        }
+
+        .car-silhouette::before, .car-silhouette::after {
+            content: '';
+            position: absolute;
+            background: #090d16;
+            width: 14px;
+            height: 85px;
+            border-radius: 10px;
+            top: 110px;
+        }
+        .car-silhouette::before { left: -14px; border-radius: 10px 0 0 10px; }
+        .car-silhouette::after { right: -14px; border-radius: 0 10px 10px 0; }
+
+        .rear-wheels::before, .rear-wheels::after {
+            content: '';
+            position: absolute;
+            background: #090d16;
+            width: 14px;
+            height: 85px;
+            border-radius: 10px;
+            bottom: 130px;
+        }
+        .rear-wheels::before { left: -14px; border-radius: 10px 0 0 10px; }
+        .rear-wheels::after { right: -14px; border-radius: 0 10px 10px 0; }
+
+        .car-part {
+            background: #475569;
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+            user-select: none;
+            position: relative;
+        }
+
+        .car-part:hover {
+            filter: brightness(1.25);
+            transform: scale(1.02);
+            z-index: 10;
+        }
+
+        #part-kaput {
+            width: 72%;
+            height: 95px;
+            margin: 0 auto;
+            border-radius: 60px 60px 12px 12px;
+            border-top: 4px solid #64748b;
+        }
+
+        .car-row-middle {
+            display: flex;
+            justify-content: space-between;
+            height: 160px;
+            gap: 6px;
+            width: 100%;
+        }
+
+        #part-sol-on-camurluk, #part-sag-on-camurluk {
+            width: 27%;
+            height: 100%;
+            border-radius: 20px 10px 10px 20px;
+        }
+        #part-sag-on-camurluk { border-radius: 10px 20px 20px 10px; }
+
+        #part-tavan {
+            width: 40%;
+            height: 100%;
+            border-radius: 15px;
+            background: #334155;
+            border-left: 2px solid #64748b;
+            border-right: 2px solid #64748b;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
+        }
+
+        .car-row-lower {
+            display: flex;
+            justify-content: space-between;
+            height: 140px;
+            gap: 6px;
+            width: 100%;
+        }
+
+        #part-sol-arka-camurluk, #part-sag-arka-camurluk {
+            width: 32%;
+            height: 100%;
+            border-radius: 15px 20px 20px 15px;
+        }
+        #part-sag-arka-camurluk { border-radius: 20px 15px 15px 20px; }
+
+        #part-bagaj {
+            width: 76%;
+            height: 80px;
+            margin: 0 auto;
+            border-radius: 12px 12px 40px 40px;
+            border-bottom: 4px solid #64748b;
+        }
+
+        .popup-menu {
+            display: none;
+            position: absolute;
+            background: white;
+            color: #333;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            padding: 8px;
+            z-index: 100;
+            width: 160px;
+        }
+
+        .popup-menu button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            padding: 8px 10px;
+            background: none;
+            border: none;
+            text-align: left;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .popup-menu button:hover {
+            background: #f1f5f9;
+        }
+
+        .legend {
+            display: flex;
+            gap: 20px;
+            font-size: 0.85rem;
+            margin-top: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+            color: #fff;
+        }
+        .legend span { display: flex; align-items: center; gap: 6px; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+
         .btn-submit {
             background-color: var(--accent);
             color: #0f172a;
@@ -268,6 +454,7 @@
             justify-content: space-between;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid var(--border);
+            cursor: pointer;
         }
 
         .car-card:hover {
@@ -354,27 +541,145 @@
             overflow: hidden;
         }
 
-        .btn-delete {
-            background-color: #fee2e2;
-            color: #ef4444;
+        .card-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-details {
+            background-color: var(--primary);
+            color: white;
             border: none;
             padding: 10px;
             border-radius: 8px;
             cursor: pointer;
-            width: 100%;
+            flex: 1;
             font-weight: 700;
             font-size: 0.9rem;
             transition: 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            text-align: center;
+        }
+        .btn-details:hover {
+            background-color: var(--primary-light);
         }
 
+        .btn-delete {
+            background-color: #fee2e2;
+            color: #ef4444;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
         .btn-delete:hover {
             background-color: #ef4444;
             color: white;
         }
+
+        /* Modal (Detay ve Ekspertiz Penceresi) */
+        #carModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            width: 100%;
+            max-width: 850px;
+            max-height: 90vh;
+            border-radius: 16px;
+            overflow-y: auto;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            animation: fadeIn 0.3s ease;
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 15px;
+        }
+
+        .modal-header h2 {
+            color: var(--primary);
+            font-size: 1.6rem;
+        }
+
+        .btn-close-modal {
+            background: #fee2e2;
+            color: #ef4444;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+        }
+        .btn-close-modal:hover {
+            background: #ef4444;
+            color: white;
+        }
+
+        .modal-body-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        @media(max-width: 768px) {
+            .modal-body-grid { grid-template-columns: 1fr; }
+        }
+
+        .modal-car-img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+
+        .modal-specs-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            margin-bottom: 15px;
+        }
+
+        .modal-specs-list div {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            padding: 4px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .modal-specs-list div:last-child { border-bottom: none; }
+        .modal-specs-list span { color: var(--text-light); }
+        .modal-specs-list strong { color: var(--primary); }
 
         /* Footer */
         footer {
@@ -410,7 +715,7 @@
     <!-- Hero Banner -->
     <section class="hero">
         <h1>Güvenin ve Kalitenin Tek Adresi</h1>
-        <p>İkinci el premium araç portföyümüz ile hizmetinizdeyiz.</p>
+        <p>İkinci el premium araç portföyümüz ve detaylı ekspertiz raporlarımızla hizmetinizdeyiz.</p>
     </section>
 
     <main class="main-container">
@@ -477,10 +782,45 @@
                         <label>Fotoğraf URL (Görsel Bağlantısı)</label>
                         <input type="url" id="imageUrl" required placeholder="https://images.unsplash.com/photo-...">
                     </div>
-                    <div class="form-group full-width">
-                        <label>Açıklama / Notlar</label>
-                        <textarea id="description" rows="3" placeholder="Araç durumu, tramer bilgisi vb. ek açıklamalar..."></textarea>
+                </div>
+
+                <div class="ekspertiz-section-title"><i class="fa-solid fa-car-rear"></i> Kuş Bakışı 3D Ekspertiz Şeması (Parçalara tıklayarak durum seçin)</div>
+                <div class="ekspertiz-3d-wrapper">
+                    <div class="car-silhouette rear-wheels">
+                        <div class="car-part" id="part-kaput" onclick="openPartMenu(event, 'kaput')">Ön Kaput</div>
+                        
+                        <div class="car-row-middle">
+                            <div class="car-part" id="part-sol-on-camurluk" onclick="openPartMenu(event, 'sol-on-camurluk')">Sol Ön Çamurluk</div>
+                            <div class="car-part" id="part-tavan" onclick="openPartMenu(event, 'tavan')">Tavan</div>
+                            <div class="car-part" id="part-sag-on-camurluk" onclick="openPartMenu(event, 'sag-on-camurluk')">Sağ Ön Çamurluk</div>
+                        </div>
+
+                        <div class="car-row-lower">
+                            <div class="car-part" id="part-sol-arka-camurluk" onclick="openPartMenu(event, 'sol-arka-camurluk')">Sol Arka Çamurluk</div>
+                            <div class="car-part" id="part-sag-arka-camurluk" onclick="openPartMenu(event, 'sag-arka-camurluk')">Sağ Arka Çamurluk</div>
+                        </div>
+
+                        <div class="car-part" id="part-bagaj" onclick="openPartMenu(event, 'bagaj')">Bagaj Kapağı</div>
                     </div>
+
+                    <div id="partPopupMenu" class="popup-menu">
+                        <button type="button" onclick="setPartStatus('orijinal')"><span class="dot" style="background:#22c55e"></span> Orijinal</button>
+                        <button type="button" onclick="setPartStatus('boyali')"><span class="dot" style="background:#3b82f6"></span> Boyalı</button>
+                        <button type="button" onclick="setPartStatus('degisen')"><span class="dot" style="background:#ef4444"></span> Değişen</button>
+                        <button type="button" onclick="setPartStatus('lokal')"><span class="dot" style="background:#eab308"></span> Lokal Boyalı</button>
+                    </div>
+
+                    <div class="legend">
+                        <span><i class="dot" style="background:var(--orijinal)"></i> Orijinal</span>
+                        <span><i class="dot" style="background:var(--boyali)"></i> Boyalı</span>
+                        <span><i class="dot" style="background:var(--degisen)"></i> Değişen</span>
+                        <span><i class="dot" style="background:var(--lokal)"></i> Lokal Boyalı</span>
+                    </div>
+                </div>
+
+                <div class="form-group full-width" style="margin-top: 20px;">
+                    <label>Açıklama / Notlar</label>
+                    <textarea id="description" rows="3" placeholder="Araç durumu, tramer bilgisi vb. ek açıklamalar..."></textarea>
                 </div>
 
                 <button type="submit" class="btn-submit"><i class="fa-solid fa-plus"></i> Aracı Galeriye Kaydet</button>
@@ -499,6 +839,31 @@
 
     </main>
 
+    <!-- Detay ve Ekspertiz Modalı -->
+    <div id="carModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Araç Detayları</h2>
+                <button type="button" class="btn-close-modal" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body-grid">
+                <div>
+                    <img id="modalImg" src="" alt="Araç Görseli" class="modal-car-img">
+                    <p id="modalDesc" style="font-size:0.9rem; color:var(--text-light);"></p>
+                </div>
+                <div>
+                    <div class="modal-specs-list" id="modalSpecs">
+                        <!-- Dinamik özellikler -->
+                    </div>
+                    <div style="font-size:0.95rem; font-weight:700; margin-bottom:10px; color:var(--primary);"><i class="fa-solid fa-shield-halved" style="color:var(--accent);"></i> Ekspertiz Durumu</div>
+                    <div class="modal-specs-list" id="modalParts">
+                        <!-- Dinamik parça durumları -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
         <p>&copy; 2026 Adilhan Otomotiv. Tüm Hakları Saklıdır.</p>
@@ -506,9 +871,69 @@
 
     <!-- Script -->
     <script>
+        const colorMap = {
+            'orijinal': '#22c55e',
+            'boyali': '#3b82f6',
+            'degisen': '#ef4444',
+            'lokal': '#eab308'
+        };
+
+        const partNames = {
+            kaput: 'Ön Kaput',
+            tavan: 'Tavan',
+            'sol-on-camurluk': 'Sol Ön Çamurluk',
+            'sag-on-camurluk': 'Sağ Ön Çamurluk',
+            'sol-arka-camurluk': 'Sol Arka Çamurluk',
+            'sag-arka-camurluk': 'Sağ Arka Çamurluk',
+            bagaj: 'Bagaj Kapağı'
+        };
+
+        let currentPartsData = {
+            kaput: 'orijinal',
+            tavan: 'orijinal',
+            'sol-on-camurluk': 'orijinal',
+            'sag-on-camurluk': 'orijinal',
+            'sol-arka-camurluk': 'orijinal',
+            'sag-arka-camurluk': 'orijinal',
+            bagaj: 'orijinal'
+        };
+
+        let activeTargetPart = null;
+        let allCars = [];
+
+        function openPartMenu(event, partKey) {
+            event.stopPropagation();
+            activeTargetPart = partKey;
+            const menu = document.getElementById('partPopupMenu');
+            const rect = event.currentTarget.getBoundingClientRect();
+            const wrapperRect = document.querySelector('.ekspertiz-3d-wrapper').getBoundingClientRect();
+            
+            menu.style.display = 'block';
+            menu.style.top = (rect.bottom - wrapperRect.top + 5) + 'px';
+            menu.style.left = (rect.left - wrapperRect.left) + 'px';
+        }
+
+        function setPartStatus(status) {
+            if (activeTargetPart) {
+                currentPartsData[activeTargetPart] = status;
+                const partElement = document.getElementById('part-' + activeTargetPart);
+                partElement.style.backgroundColor = colorMap[status];
+            }
+            document.getElementById('partPopupMenu').style.display = 'none';
+        }
+
+        window.addEventListener('click', () => {
+            const menu = document.getElementById('partPopupMenu');
+            if(menu) menu.style.display = 'none';
+        });
+
         function closeAdminPanel() {
             document.getElementById('admin-panel').style.display = 'none';
             document.getElementById('searchInput').value = '';
+        }
+
+        function closeModal() {
+            document.getElementById('carModal').style.display = 'none';
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -517,10 +942,15 @@
             const searchInput = document.getElementById('searchInput');
             const adminPanel = document.getElementById('admin-panel');
 
-            let cars = JSON.parse(localStorage.getItem('adilhan_cars_pure_galeri')) || [];
+            for (let key in currentPartsData) {
+                const el = document.getElementById('part-' + key);
+                if(el) el.style.backgroundColor = colorMap[currentPartsData[key]];
+            }
 
-            if (cars.length === 0) {
-                cars.push({
+            allCars = JSON.parse(localStorage.getItem('adilhan_cars_modal_v1')) || [];
+
+            if (allCars.length === 0) {
+                allCars.push({
                     id: Date.now(),
                     brand: 'BMW',
                     model: '3.20i M Sport',
@@ -533,11 +963,20 @@
                     color: 'Beyaz',
                     enginePower: '170 HP',
                     imageUrl: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80',
-                    description: 'Temiz aile aracı. Yetkili servis bakımlı, masrafsız.'
+                    description: 'Hatasız, boyasız temiz aile aracı. Yetkili servis bakımlı.',
+                    parts: {
+                        kaput: 'orijinal',
+                        tavan: 'orijinal',
+                        'sol-on-camurluk': 'boyali',
+                        'sag-on-camurluk': 'orijinal',
+                        'sol-arka-camurluk': 'orijinal',
+                        'sag-arka-camurluk': 'orijinal',
+                        bagaj: 'orijinal'
+                    }
                 });
                 saveAndRender();
             } else {
-                renderCars(cars);
+                renderCars(allCars);
             }
 
             searchInput.addEventListener('input', (e) => {
@@ -548,7 +987,7 @@
                     adminPanel.scrollIntoView({ behavior: 'smooth' });
                     return;
                 } else {
-                    const filtered = cars.filter(car => 
+                    const filtered = allCars.filter(car => 
                         car.brand.toLowerCase().includes(query.toLowerCase()) || 
                         car.model.toLowerCase().includes(query.toLowerCase())
                     );
@@ -572,26 +1011,66 @@
                     color: document.getElementById('color').value,
                     enginePower: document.getElementById('enginePower').value,
                     imageUrl: document.getElementById('imageUrl').value,
-                    description: document.getElementById('description').value
+                    description: document.getElementById('description').value,
+                    parts: { ...currentPartsData }
                 };
 
-                cars.unshift(newCar);
+                allCars.unshift(newCar);
                 saveAndRender();
                 carForm.reset();
+                
+                for (let key in currentPartsData) {
+                    currentPartsData[key] = 'orijinal';
+                    document.getElementById('part-' + key).style.backgroundColor = colorMap['orijinal'];
+                }
+
                 adminPanel.style.display = 'none';
                 alert('Araç başarıyla galeriye eklendi!');
             });
 
-            window.deleteCar = function(id) {
+            window.deleteCar = function(event, id) {
+                event.stopPropagation();
                 if (confirm('Bu aracı galeriden kaldırmak istediğinize emin misiniz?')) {
-                    cars = cars.filter(car => car.id !== id);
+                    allCars = allCars.filter(car => car.id !== id);
                     saveAndRender();
                 }
             };
 
+            window.openCarModal = function(id) {
+                const car = allCars.find(c => c.id === id);
+                if (!car) return;
+
+                document.getElementById('modalTitle').innerText = `${car.brand} ${car.model}`;
+                document.getElementById('modalImg').src = car.imageUrl;
+                document.getElementById('modalDesc').innerText = car.description || 'Açıklama girilmemiş.';
+
+                let specsHtml = `
+                    <div><span>Fiyat</span> <strong>${Number(car.price).toLocaleString('tr-TR')} ₺</strong></div>
+                    <div><span>Yıl</span> <strong>${car.year}</strong></div>
+                    <div><span>Kilometre</span> <strong>${Number(car.km).toLocaleString('tr-TR')} KM</strong></div>
+                    <div><span>Vites Tipi</span> <strong>${car.transmission}</strong></div>
+                    <div><span>Yakıt Türü</span> <strong>${car.fuel}</strong></div>
+                    <div><span>Kasa Tipi</span> <strong>${car.bodyType || '-'}</strong></div>
+                    <div><span>Renk</span> <strong>${car.color || '-'}</strong></div>
+                    <div><span>Motor Gücü</span> <strong>${car.enginePower || '-'}</strong></div>
+                `;
+                document.getElementById('modalSpecs').innerHTML = specsHtml;
+
+                let partsHtml = '';
+                if(car.parts) {
+                    for (let key in car.parts) {
+                        let val = car.parts[key];
+                        partsHtml += `<div><span>${partNames[key]}:</span> <strong style="color:${colorMap[val]}">${val.toUpperCase()}</strong></div>`;
+                    }
+                }
+                document.getElementById('modalParts').innerHTML = partsHtml;
+
+                document.getElementById('carModal').style.display = 'flex';
+            };
+
             function saveAndRender() {
-                localStorage.setItem('adilhan_cars_pure_galeri', JSON.stringify(cars));
-                renderCars(cars);
+                localStorage.setItem('adilhan_cars_modal_v1', JSON.stringify(allCars));
+                renderCars(allCars);
             }
 
             function renderCars(carArray) {
@@ -605,6 +1084,7 @@
                 carArray.forEach(car => {
                     const carCard = document.createElement('div');
                     carCard.className = 'car-card';
+                    carCard.onclick = () => openCarModal(car.id);
 
                     carCard.innerHTML = `
                         <div class="car-img-wrapper">
@@ -623,7 +1103,10 @@
                             
                             <p class="car-desc">${car.description || 'Açıklama girilmemiş.'}</p>
                             
-                            <button class="btn-delete" onclick="deleteCar(${car.id})"><i class="fa-solid fa-trash"></i> İlanı Kaldır</button>
+                            <div class="card-actions">
+                                <button class="btn-details"><i class="fa-solid fa-eye"></i> Detaylar & Ekspertiz</button>
+                                <button class="btn-delete" onclick="deleteCar(event, ${car.id})"><i class="fa-solid fa-trash"></i></button>
+                            </div>
                         </div>
                     `;
 
