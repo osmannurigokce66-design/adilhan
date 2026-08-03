@@ -3,52 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adilhan Otomotiv | Araba Galerisi</title>
-    <!-- FontAwesome ikonları -->
+    <title>Adilhan Otomotiv | Premium Galeri</title>
+    <!-- FontAwesome İkonları -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #1e293b;
-            --accent-color: #f59e0b;
-            --bg-color: #f8fafc;
-            --text-color: #334155;
+            --primary: #0f172a;
+            --primary-light: #1e293b;
+            --accent: #f59e0b;
+            --accent-hover: #d97706;
+            --bg: #f1f5f9;
             --card-bg: #ffffff;
-            --boyali: #3b82f6;
-            --degisen: #ef4444;
-            --lokal: #eab308;
-            --orijinal: #22c55e;
+            --text: #334155;
+            --text-light: #64748b;
+            --border: #e2e8f0;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: var(--bg);
+            color: var(--text);
             line-height: 1.6;
         }
 
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* Header */
+        /* Top Bar / Header */
         header {
-            background-color: var(--primary-color);
-            color: #fff;
-            padding: 1rem 0;
+            background-color: var(--primary);
+            color: white;
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
         .navbar {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 15px 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -57,82 +54,136 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--accent-color);
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: white;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            text-decoration: none;
         }
 
-        /* Arama Kutusu (Tamamen gizli tetikleyici) */
-        .search-box-wrapper {
+        .logo span {
+            color: var(--accent);
+        }
+
+        .search-container {
             position: relative;
             display: flex;
             align-items: center;
         }
 
-        .search-box-wrapper input {
-            padding: 8px 15px 8px 35px;
-            border-radius: 20px;
-            border: 1px solid #cbd5e1;
+        .search-container input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 15px 10px 40px;
+            border-radius: 30px;
+            color: white;
             outline: none;
-            width: 250px;
-            font-size: 0.9rem;
-            background: #fff;
-            transition: 0.3s;
+            width: 280px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
         }
 
-        .search-box-wrapper input:focus {
-            border-color: var(--accent-color);
-            width: 300px;
-        }
-
-        .search-box-wrapper i {
-            position: absolute;
-            left: 12px;
+        .search-container input::placeholder {
             color: #94a3b8;
         }
 
-        /* Hero Section */
+        .search-container input:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--accent);
+            width: 330px;
+        }
+
+        .search-container i {
+            position: absolute;
+            left: 15px;
+            color: #94a3b8;
+        }
+
+        /* Hero Banner */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
             color: white;
             text-align: center;
-            padding: 80px 20px;
-            margin-bottom: 30px;
+            padding: 90px 20px;
+            margin-bottom: 40px;
+            border-bottom: 4px solid var(--accent);
         }
 
-        .hero-content h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
         }
 
-        /* Gizli Admin Panel */
+        .hero p {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .main-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 25px 60px 25px;
+        }
+
+        /* Admin Paneli */
         #admin-panel {
             display: none;
             background: var(--card-bg);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             margin-bottom: 40px;
-            border: 2px dashed var(--accent-color);
+            border: 2px dashed var(--accent);
+            animation: fadeIn 0.3s ease;
         }
 
-        .admin-card h2 {
-            margin-bottom: 20px;
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 10px;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .admin-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 15px;
+        }
+
+        .admin-header h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-close-admin {
+            background: #fee2e2;
+            color: #ef4444;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        .btn-close-admin:hover {
+            background: #ef4444;
+            color: white;
         }
 
         .form-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
         }
 
         .form-group {
@@ -146,358 +197,231 @@
 
         .form-group label {
             font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 5px;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            color: var(--text);
         }
 
         .form-group input, .form-group select, .form-group textarea {
-            padding: 10px;
-            border: 1px solid #cbd5e1;
-            border-radius: 5px;
-            outline: none;
-        }
-
-        /* GERÇEK OTOMOBİL HATLARINA SAHİP 3D ŞEMA TASARIMI */
-        .ekspertiz-3d-wrapper {
-            background: #090d16;
-            border-radius: 16px;
-            padding: 30px;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 10px;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
-        }
-
-        /* Ana Araç Gövde Silüeti (Kuş Bakışı / Top-Down Realistik Hatlar) */
-        .car-silhouette {
-            position: relative;
-            width: 290px;
-            height: 540px;
-            background: #1e293b;
-            /* Aerodinamik Kavisler: Ön taraf sivri, orta geniş, arka hafif dar */
-            border-radius: 120px 120px 70px 70px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-            border: 4px solid #334155;
-            display: flex;
-            flex-direction: column;
-            padding: 15px 12px;
-            gap: 10px;
-        }
-
-        /* Tekerlek Çıkıntıları (Gerçekçi Şişkin Çamurluk Efekti için Gövde İçi Çıkıntılar) */
-        .car-silhouette::before, .car-silhouette::after {
-            content: '';
-            position: absolute;
-            background: #0f172a;
-            width: 14px;
-            height: 80px;
-            border-radius: 10px;
-            top: 110px;
-        }
-        .car-silhouette::before { left: -14px; border-right: none; border-radius: 10px 0 0 10px; }
-        .car-silhouette::after { right: -14px; border-left: none; border-radius: 0 10px 10px 0; }
-
-        .rear-wheels::before, .rear-wheels::after {
-            content: '';
-            position: absolute;
-            background: #0f172a;
-            width: 14px;
-            height: 80px;
-            border-radius: 10px;
-            bottom: 130px;
-        }
-        .rear-wheels::before { left: -14px; border-radius: 10px 0 0 10px; }
-        .rear-wheels::after { right: -14px; border-radius: 0 10px 10px 0; }
-
-        /* Ortak Parça Temelleri */
-        .car-part {
-            background: #475569;
-            color: #fff;
-            font-weight: bold;
-            font-size: 0.73rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            cursor: pointer;
-            transition: 0.2s;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-            user-select: none;
-            position: relative;
-        }
-
-        .car-part:hover {
-            filter: brightness(1.2);
-            transform: scale(1.02);
-            z-index: 10;
-        }
-
-        /* 1. Ön Kaput (Ön Burun Kısmı - Aerodinamik Konik Tasarım) */
-        #part-kaput {
-            width: 72%;
-            height: 90px;
-            margin: 0 auto;
-            border-radius: 60px 60px 12px 12px;
-            border-top: 4px solid #475569;
-        }
-
-        /* 2. Orta Bölüm (Sol Çamurluk, Kabin/Tavan, Sağ Çamurluk) */
-        .car-row-middle {
-            display: flex;
-            justify-content: space-between;
-            height: 155px;
-            gap: 6px;
-            width: 100%;
-            position: relative;
-        }
-
-        #part-sol-on-camurluk, #part-sag-on-camurluk {
-            width: 27%;
-            height: 100%;
-            border-radius: 20px 10px 10px 20px;
-        }
-        #part-sag-on-camurluk {
-            border-radius: 10px 20px 20px 10px;
-        }
-
-        /* Kokpit / Cam Tavan Alanı (Hafif Daraltılmış Kabin Efekti) */
-        #part-tavan {
-            width: 40%;
-            height: 100%;
-            border-radius: 15px;
-            background: #334155; 
-            border-left: 2px solid #64748b;
-            border-right: 2px solid #64748b;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
-        }
-
-        /* 3. Alt Kısım (Arka Çamurluklar) */
-        .car-row-lower {
-            display: flex;
-            justify-content: space-between;
-            height: 135px;
-            gap: 6px;
-            width: 100%;
-            position: relative;
-        }
-
-        #part-sol-arka-camurluk, #part-sag-arka-camurluk {
-            width: 32%;
-            height: 100%;
-            border-radius: 15px 20px 20px 15px;
-        }
-        #part-sag-arka-camurluk {
-            border-radius: 20px 15px 15px 20px;
-        }
-
-        /* 4. Bagaj Kapağı (Arka Kısım) */
-        #part-bagaj {
-            width: 76%;
-            height: 80px;
-            margin: 0 auto;
-            border-radius: 12px 12px 40px 40px;
-            border-bottom: 4px solid #475569;
-        }
-
-        /* Parçaya Basınca Çıkan Küçük Pop-up Menü */
-        .popup-menu {
-            display: none;
-            position: absolute;
-            background: #ffffff;
-            color: #333;
+            padding: 12px;
+            border: 1px solid var(--border);
             border-radius: 8px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-            padding: 8px;
-            z-index: 100;
-            width: 150px;
-            text-align: left;
-            animation: fadeIn 0.2s ease;
+            outline: none;
+            font-size: 0.95rem;
+            background: #f8fafc;
+            transition: 0.2s;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-5px); }
-            to { opacity: 1; transform: translateY(0); }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--accent);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
         }
 
-        .popup-menu button {
-            display: block;
-            width: 100%;
-            padding: 6px 10px;
-            background: none;
+        .btn-submit {
+            background-color: var(--accent);
+            color: #0f172a;
             border: none;
-            text-align: left;
-            font-size: 0.8rem;
-            font-weight: 600;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-bottom: 2px;
-        }
-
-        .popup-menu button:hover {
-            background: #f1f5f9;
-        }
-
-        .legend {
-            display: flex;
-            gap: 15px;
-            font-size: 0.8rem;
-            margin-top: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-            color: #fff;
-        }
-        .legend span { display: flex; align-items: center; gap: 5px; }
-        .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
-
-        .btn-primary {
-            background-color: var(--accent-color);
-            color: #000;
-            border: none;
-            padding: 12px 20px;
+            padding: 14px 20px;
             font-size: 1rem;
-            font-weight: bold;
-            border-radius: 5px;
+            font-weight: 700;
+            border-radius: 8px;
             cursor: pointer;
-            margin-top: 20px;
+            margin-top: 25px;
             width: 100%;
             transition: 0.3s;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
         }
 
-        .btn-primary:hover {
-            background-color: #d97706;
+        .btn-submit:hover {
+            background-color: var(--accent-hover);
             color: white;
         }
 
-        /* Galeri Listesi */
-        .gallery-section h2 {
-            margin-bottom: 20px;
-            color: var(--primary-color);
+        /* Galeri Grid Alanı */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .section-header h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
         }
 
         .car-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
         }
 
         .car-card {
-            background: white;
-            border-radius: 10px;
+            background: var(--card-bg);
+            border-radius: 14px;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border);
+        }
+
+        .car-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+        }
+
+        .car-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            background: #cbd5e1;
         }
 
         .car-image {
             width: 100%;
-            height: 200px;
+            height: 100%;
             object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .car-card:hover .car-image {
+            transform: scale(1.05);
+        }
+
+        .car-price-badge {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(5px);
+            color: #4ade80;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 1.25rem;
+            font-weight: 800;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
         .car-details {
-            padding: 20px;
+            padding: 22px;
         }
 
         .car-title {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            margin-bottom: 5px;
-        }
-
-        .car-price {
-            font-size: 1.4rem;
-            color: #16a34a;
-            font-weight: bold;
-            margin-bottom: 15px;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 12px;
         }
 
         .specs-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 8px;
+            gap: 10px;
             font-size: 0.85rem;
-            background: #f1f5f9;
-            padding: 10px;
-            border-radius: 5px;
+            background: #f8fafc;
+            padding: 12px;
+            border-radius: 8px;
             margin-bottom: 15px;
+            border: 1px solid var(--border);
+        }
+
+        .specs-grid div {
+            display: flex;
+            justify-content: space-between;
         }
 
         .specs-grid div span {
-            font-weight: 600;
+            color: var(--text-light);
         }
 
-        .card-expert-summary {
-            font-size: 0.8rem;
-            background: #fff;
-            border: 1px solid #e2e8f0;
-            padding: 8px;
-            border-radius: 5px;
-            margin-bottom: 15px;
+        .specs-grid div strong {
+            color: var(--primary);
         }
-        .card-expert-summary div {
-            display: flex;
-            justify-content: space-between;
-            padding: 3px 0;
-            border-bottom: 1px solid #f1f5f9;
+
+        .car-desc {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .btn-delete {
-            background-color: #ef4444;
-            color: white;
+            background-color: #fee2e2;
+            color: #ef4444;
             border: none;
-            padding: 8px;
-            border-radius: 5px;
+            padding: 10px;
+            border-radius: 8px;
             cursor: pointer;
             width: 100%;
-            font-weight: bold;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
-        footer {
-            text-align: center;
-            background-color: var(--primary-color);
+        .btn-delete:hover {
+            background-color: #ef4444;
             color: white;
-            padding: 20px 0;
-            margin-top: 50px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+            border-top: 4px solid var(--accent);
+        }
+
+        footer p {
+            color: #94a3b8;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
 
-    <!-- ÜST BİLGİ & NAVİGASYON -->
+    <!-- Header -->
     <header>
-        <div class="container navbar">
-            <div class="logo">
-                <i class="fa-solid fa-car-side"></i> <span>Adilhan Otomotiv</span>
-            </div>
-            <!-- Arama Kutusu (Tamamen gizli tetikleyici) -->
-            <div class="search-box-wrapper">
+        <div class="navbar">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-car-side" style="color: var(--accent);"></i> ADİLHAN <span>OTOMOTİV</span>
+            </a>
+            <div class="search-container">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="searchInput" placeholder="Marka veya model ara...">
+                <input type="text" id="searchInput" placeholder="Marka, model ara (Admin için: ADMIN)">
             </div>
         </div>
     </header>
 
-    <!-- HERO -->
+    <!-- Hero Banner -->
     <section class="hero">
-        <div class="hero-content">
-            <h1>Güvenin ve Kalitenin Adresi</h1>
-            <p>Hayalinizdeki aracı en avantajlı koşullarla Adilhan Otomotiv'de bulun.</p>
-        </div>
+        <h1>Güvenin ve Kalitenin Tek Adresi</h1>
+        <p>İkinci el premium araç portföyümüz ile hizmetinizdeyiz.</p>
     </section>
 
-    <main class="container">
+    <main class="main-container">
 
-        <!-- GİZLİ ARAÇ EKLEME PANELİ ("ADMIN" yazınca açılır) -->
-        <section id="admin-panel" class="card admin-card">
-            <h2>
-                <span><i class="fa-solid fa-lock-open" style="color:var(--accent-color)"></i> Admin Paneli: Yeni Araç Ekle</span>
-                <button type="button" onclick="closeAdminPanel()" style="background:none; border:none; color:#ef4444; cursor:pointer; font-size:1rem;"><i class="fa-solid fa-xmark"></i> Kapat</button>
-            </h2>
+        <!-- Gizli Admin Paneli -->
+        <section id="admin-panel">
+            <div class="admin-header">
+                <h2><i class="fa-solid fa-lock-open" style="color: var(--accent);"></i> Yönetim Paneli: Yeni İlan Ekle</h2>
+                <button type="button" class="btn-close-admin" onclick="closeAdminPanel()"><i class="fa-solid fa-xmark"></i> Kapat</button>
+            </div>
+            
             <form id="carForm">
                 <div class="form-grid">
                     <div class="form-group">
@@ -514,11 +438,11 @@
                     </div>
                     <div class="form-group">
                         <label>Fiyat (TL)</label>
-                        <input type="number" id="price" required placeholder="1500000">
+                        <input type="number" id="price" required placeholder="2150000">
                     </div>
                     <div class="form-group">
                         <label>Kilometre (KM)</label>
-                        <input type="number" id="km" required placeholder="45000">
+                        <input type="number" id="km" required placeholder="38000">
                     </div>
                     <div class="form-group">
                         <label>Vites Tipi</label>
@@ -551,124 +475,37 @@
                     </div>
                     <div class="form-group full-width">
                         <label>Fotoğraf URL (Görsel Bağlantısı)</label>
-                        <input type="url" id="imageUrl" required placeholder="https://ornek.com/arac.jpg">
+                        <input type="url" id="imageUrl" required placeholder="https://images.unsplash.com/photo-...">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Açıklama / Notlar</label>
+                        <textarea id="description" rows="3" placeholder="Araç durumu, tramer bilgisi vb. ek açıklamalar..."></textarea>
                     </div>
                 </div>
 
-                <!-- GERÇEK OTOMOBİL HATLARINA BENZER 3D ŞEMA MODELİ -->
-                <div class="form-group full-width" style="margin-top: 20px;">
-                    <label><i class="fa-solid fa-car"></i> Ekspertiz Şeması (Parçalara Tıklayarak Durum Seçin)</label>
-                    <div class="ekspertiz-3d-wrapper">
-                        <!-- Arka tekerlek grupları kapsayıcısı -->
-                        <div class="car-silhouette rear-wheels">
-                            <!-- Ön Kaput -->
-                            <div class="car-part" id="part-kaput" onclick="openPartMenu(event, 'kaput')">Ön Kaput</div>
-                            
-                            <!-- Orta Kısım (Ön Çamurluklar ve Tavan) -->
-                            <div class="car-row-middle">
-                                <div class="car-part" id="part-sol-on-camurluk" onclick="openPartMenu(event, 'sol-on-camurluk')">Sol Ön Çamurluk</div>
-                                <div class="car-part" id="part-tavan" onclick="openPartMenu(event, 'tavan')">Tavan</div>
-                                <div class="car-part" id="part-sag-on-camurluk" onclick="openPartMenu(event, 'sag-on-camurluk')">Sağ Ön Çamurluk</div>
-                            </div>
-
-                            <!-- Alt Kısım (Arka Çamurluklar) -->
-                            <div class="car-row-lower">
-                                <div class="car-part" id="part-sol-arka-camurluk" onclick="openPartMenu(event, 'sol-arka-camurluk')">Sol Arka Çamurluk</div>
-                                <div class="car-part" id="part-sag-arka-camurluk" onclick="openPartMenu(event, 'sag-arka-camurluk')">Sağ Arka Çamurluk</div>
-                            </div>
-
-                            <!-- Bagaj Kapağı -->
-                            <div class="car-part" id="part-bagaj" onclick="openPartMenu(event, 'bagaj')">Bagaj Kapağı</div>
-                        </div>
-
-                        <!-- Açılır Seçim Menüsü -->
-                        <div id="partPopupMenu" class="popup-menu">
-                            <button onclick="setPartStatus('orijinal')"><span class="dot" style="background:#22c55e"></span> Orijinal</button>
-                            <button onclick="setPartStatus('boyali')"><span class="dot" style="background:#3b82f6"></span> Boyalı</button>
-                            <button onclick="setPartStatus('degisen')"><span class="dot" style="background:#ef4444"></span> Değişen</button>
-                            <button onclick="setPartStatus('lokal')"><span class="dot" style="background:#eab308"></span> Lokal Boyalı</button>
-                        </div>
-
-                        <div class="legend">
-                            <span><i class="dot" style="background:var(--orijinal)"></i> Orijinal</span>
-                            <span><i class="dot" style="background:var(--boyali)"></i> Boyalı</span>
-                            <span><i class="dot" style="background:var(--degisen)"></i> Değişen</span>
-                            <span><i class="dot" style="background:var(--lokal)"></i> Lokal Boyalı</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group full-width" style="margin-top: 15px;">
-                    <label>Açıklama</label>
-                    <textarea id="description" rows="2" placeholder="Araç hakkında ek bilgiler..."></textarea>
-                </div>
-
-                <button type="submit" class="btn-primary"><i class="fa-solid fa-check"></i> Aracı Kaydet</button>
+                <button type="submit" class="btn-submit"><i class="fa-solid fa-plus"></i> Aracı Galeriye Kaydet</button>
             </form>
         </section>
 
-        <!-- GALERİ LİSTESİ -->
-        <section id="galeri" class="gallery-section">
-            <h2>Galerideki Araçlar</h2>
+        <!-- Galeri Listesi -->
+        <section>
+            <div class="section-header">
+                <h2>Galeri İlanları</h2>
+            </div>
             <div id="carList" class="car-grid">
-                <!-- Araçlar buraya yüklenecek -->
+                <!-- Araç kartları dinamik yüklenecek -->
             </div>
         </section>
 
     </main>
 
-    <!-- FOOTER -->
+    <!-- Footer -->
     <footer>
         <p>&copy; 2026 Adilhan Otomotiv. Tüm Hakları Saklıdır.</p>
     </footer>
 
-    <!-- SCRIPT -->
+    <!-- Script -->
     <script>
-        const colorMap = {
-            'orijinal': '#22c55e',
-            'boyali': '#3b82f6',
-            'degisen': '#ef4444',
-            'lokal': '#eab308'
-        };
-
-        let currentPartsData = {
-            kaput: 'orijinal',
-            tavan: 'orijinal',
-            'sol-on-camurluk': 'orijinal',
-            'sag-on-camurluk': 'orijinal',
-            'sol-arka-camurluk': 'orijinal',
-            'sag-arka-camurluk': 'orijinal',
-            bagaj: 'orijinal'
-        };
-
-        let activeTargetPart = null;
-
-        function openPartMenu(event, partKey) {
-            event.stopPropagation();
-            activeTargetPart = partKey;
-            const menu = document.getElementById('partPopupMenu');
-            
-            const rect = event.currentTarget.getBoundingClientRect();
-            const wrapperRect = document.querySelector('.ekspertiz-3d-wrapper').getBoundingClientRect();
-            
-            menu.style.display = 'block';
-            menu.style.top = (rect.bottom - wrapperRect.top + 5) + 'px';
-            menu.style.left = (rect.left - wrapperRect.left) + 'px';
-        }
-
-        function setPartStatus(status) {
-            if (activeTargetPart) {
-                currentPartsData[activeTargetPart] = status;
-                const partElement = document.getElementById('part-' + activeTargetPart);
-                partElement.style.backgroundColor = colorMap[status];
-            }
-            document.getElementById('partPopupMenu').style.display = 'none';
-        }
-
-        window.addEventListener('click', () => {
-            document.getElementById('partPopupMenu').style.display = 'none';
-        });
-
         function closeAdminPanel() {
             document.getElementById('admin-panel').style.display = 'none';
             document.getElementById('searchInput').value = '';
@@ -680,11 +517,7 @@
             const searchInput = document.getElementById('searchInput');
             const adminPanel = document.getElementById('admin-panel');
 
-            for (let key in currentPartsData) {
-                document.getElementById('part-' + key).style.backgroundColor = colorMap[currentPartsData[key]];
-            }
-
-            let cars = JSON.parse(localStorage.getItem('adilhan_cars_car_lines_v2')) || [];
+            let cars = JSON.parse(localStorage.getItem('adilhan_cars_pure_galeri')) || [];
 
             if (cars.length === 0) {
                 cars.push({
@@ -699,17 +532,8 @@
                     bodyType: 'Sedan',
                     color: 'Beyaz',
                     enginePower: '170 HP',
-                    imageUrl: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=600&q=80',
-                    description: 'Hatasız, boyasız temiz aile aracı.',
-                    parts: {
-                        kaput: 'orijinal',
-                        tavan: 'orijinal',
-                        'sol-on-camurluk': 'boyali',
-                        'sag-on-camurluk': 'orijinal',
-                        'sol-arka-camurluk': 'orijinal',
-                        'sag-arka-camurluk': 'orijinal',
-                        bagaj: 'orijinal'
-                    }
+                    imageUrl: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80',
+                    description: 'Temiz aile aracı. Yetkili servis bakımlı, masrafsız.'
                 });
                 saveAndRender();
             } else {
@@ -748,32 +572,25 @@
                     color: document.getElementById('color').value,
                     enginePower: document.getElementById('enginePower').value,
                     imageUrl: document.getElementById('imageUrl').value,
-                    description: document.getElementById('description').value,
-                    parts: { ...currentPartsData }
+                    description: document.getElementById('description').value
                 };
 
                 cars.unshift(newCar);
                 saveAndRender();
                 carForm.reset();
-                
-                for (let key in currentPartsData) {
-                    currentPartsData[key] = 'orijinal';
-                    document.getElementById('part-' + key).style.backgroundColor = colorMap['orijinal'];
-                }
-
                 adminPanel.style.display = 'none';
                 alert('Araç başarıyla galeriye eklendi!');
             });
 
             window.deleteCar = function(id) {
-                if (confirm('Bu aracı silmek istediğinize emin misiniz?')) {
+                if (confirm('Bu aracı galeriden kaldırmak istediğinize emin misiniz?')) {
                     cars = cars.filter(car => car.id !== id);
                     saveAndRender();
                 }
             };
 
             function saveAndRender() {
-                localStorage.setItem('adilhan_cars_car_lines_v2', JSON.stringify(cars));
+                localStorage.setItem('adilhan_cars_pure_galeri', JSON.stringify(cars));
                 renderCars(cars);
             }
 
@@ -781,7 +598,7 @@
                 carList.innerHTML = '';
 
                 if (carArray.length === 0) {
-                    carList.innerHTML = '<p>Aradığınız kriterlere uygun araç bulunamadı.</p>';
+                    carList.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color:var(--text-light); padding:40px;">Aradığınız kriterlere uygun araç bulunamadı.</p>';
                     return;
                 }
 
@@ -789,45 +606,24 @@
                     const carCard = document.createElement('div');
                     carCard.className = 'car-card';
 
-                    let partsHtml = '';
-                    const partNames = {
-                        kaput: 'Ön Kaput',
-                        tavan: 'Tavan',
-                        'sol-on-camurluk': 'Sol Ön Çamurluk',
-                        'sag-on-camurluk': 'Sağ Ön Çamurluk',
-                        'sol-arka-camurluk': 'Sol Arka Çamurluk',
-                        'sag-arka-camurluk': 'Sağ Arka Çamurluk',
-                        bagaj: 'Bagaj Kapağı'
-                    };
-
-                    if(car.parts) {
-                        for (let key in car.parts) {
-                            let val = car.parts[key];
-                            partsHtml += `<div><span>${partNames[key]}:</span> <strong style="color:${colorMap[val]}">${val.toUpperCase()}</strong></div>`;
-                        }
-                    }
-
                     carCard.innerHTML = `
-                        <img src="${car.imageUrl}" alt="${car.brand}" class="car-image" onerror="this.src='https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=600&q=80'">
+                        <div class="car-img-wrapper">
+                            <img src="${car.imageUrl}" alt="${car.brand}" class="car-image" onerror="this.src='https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80'">
+                            <div class="car-price-badge">${Number(car.price).toLocaleString('tr-TR')} ₺</div>
+                        </div>
                         <div class="car-details">
                             <h3 class="car-title">${car.brand} ${car.model}</h3>
-                            <div class="car-price">${Number(car.price).toLocaleString('tr-TR')} ₺</div>
                             
                             <div class="specs-grid">
-                                <div><span>Yıl:</span> ${car.year}</div>
-                                <div><span>KM:</span> ${Number(car.km).toLocaleString('tr-TR')}</div>
-                                <div><span>Vites:</span> ${car.transmission}</div>
-                                <div><span>Yakıt:</span> ${car.fuel}</div>
-                            </div>
-
-                            <div style="font-size:0.85rem; font-weight:bold; margin-bottom:5px;"><i class="fa-solid fa-shield-halved"></i> Ekspertiz Durumu</div>
-                            <div class="card-expert-summary">
-                                ${partsHtml}
+                                <div><span>Yıl</span> <strong>${car.year}</strong></div>
+                                <div><span>KM</span> <strong>${Number(car.km).toLocaleString('tr-TR')}</strong></div>
+                                <div><span>Vites</span> <strong>${car.transmission}</strong></div>
+                                <div><span>Yakıt</span> <strong>${car.fuel}</strong></div>
                             </div>
                             
-                            <p class="car-desc" style="font-size:0.85rem; color:#64748b; margin-bottom:15px;">${car.description || ''}</p>
+                            <p class="car-desc">${car.description || 'Açıklama girilmemiş.'}</p>
                             
-                            <button class="btn-delete" onclick="deleteCar(${car.id})"><i class="fa-solid fa-trash"></i> Aracı Kaldır</button>
+                            <button class="btn-delete" onclick="deleteCar(${car.id})"><i class="fa-solid fa-trash"></i> İlanı Kaldır</button>
                         </div>
                     `;
 
