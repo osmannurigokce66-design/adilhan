@@ -157,109 +157,148 @@
             outline: none;
         }
 
-        /* Gerçek Araba Hatlarına Benzeyen Şema Tasarımı */
+        /* GERÇEK OTOMOBİL HATLARINA SAHİP 3D ŞEMA TASARIMI */
         .ekspertiz-3d-wrapper {
-            background: #0f172a;
-            border-radius: 12px;
-            padding: 25px;
+            background: #090d16;
+            border-radius: 16px;
+            padding: 30px;
             position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
             margin-top: 10px;
-            box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
         }
 
+        /* Ana Araç Gövde Silüeti (Kuş Bakışı / Top-Down Realistik Hatlar) */
         .car-silhouette {
             position: relative;
-            width: 320px;
-            height: 520px;
+            width: 290px;
+            height: 540px;
             background: #1e293b;
-            border-radius: 40px 40px 25px 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-            border: 3px solid #334155;
+            /* Aerodinamik Kavisler: Ön taraf sivri, orta geniş, arka hafif dar */
+            border-radius: 120px 120px 70px 70px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            border: 4px solid #334155;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            padding: 18px 12px;
+            padding: 15px 12px;
+            gap: 10px;
         }
+
+        /* Tekerlek Çıkıntıları (Gerçekçi Şişkin Çamurluk Efekti için Gövde İçi Çıkıntılar) */
+        .car-silhouette::before, .car-silhouette::after {
+            content: '';
+            position: absolute;
+            background: #0f172a;
+            width: 14px;
+            height: 80px;
+            border-radius: 10px;
+            top: 110px;
+        }
+        .car-silhouette::before { left: -14px; border-right: none; border-radius: 10px 0 0 10px; }
+        .car-silhouette::after { right: -14px; border-left: none; border-radius: 0 10px 10px 0; }
+
+        .rear-wheels::before, .rear-wheels::after {
+            content: '';
+            position: absolute;
+            background: #0f172a;
+            width: 14px;
+            height: 80px;
+            border-radius: 10px;
+            bottom: 130px;
+        }
+        .rear-wheels::before { left: -14px; border-radius: 10px 0 0 10px; }
+        .rear-wheels::after { right: -14px; border-radius: 0 10px 10px 0; }
 
         /* Ortak Parça Temelleri */
         .car-part {
             background: #475569;
             color: #fff;
             font-weight: bold;
-            font-size: 0.75rem;
+            font-size: 0.73rem;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             cursor: pointer;
             transition: 0.2s;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
             user-select: none;
             position: relative;
         }
 
         .car-part:hover {
-            filter: brightness(1.25);
+            filter: brightness(1.2);
             transform: scale(1.02);
+            z-index: 10;
         }
 
-        /* Ön Kaput (Ön Kısım - Hafif kavisli görünüm) */
+        /* 1. Ön Kaput (Ön Burun Kısmı - Aerodinamik Konik Tasarım) */
         #part-kaput {
-            width: 75%;
-            height: 85px;
+            width: 72%;
+            height: 90px;
             margin: 0 auto;
-            border-radius: 15px 15px 8px 8px;
-            border-top: 4px solid #334155;
+            border-radius: 60px 60px 12px 12px;
+            border-top: 4px solid #475569;
         }
 
-        /* Orta Bölüm (Yan çamurluklar ve orta tavan) */
+        /* 2. Orta Bölüm (Sol Çamurluk, Kabin/Tavan, Sağ Çamurluk) */
         .car-row-middle {
             display: flex;
             justify-content: space-between;
-            height: 140px;
-            gap: 8px;
+            height: 155px;
+            gap: 6px;
             width: 100%;
+            position: relative;
         }
 
         #part-sol-on-camurluk, #part-sag-on-camurluk {
-            width: 28%;
+            width: 27%;
             height: 100%;
-            border-radius: 8px;
+            border-radius: 20px 10px 10px 20px;
+        }
+        #part-sag-on-camurluk {
+            border-radius: 10px 20px 20px 10px;
         }
 
+        /* Kokpit / Cam Tavan Alanı (Hafif Daraltılmış Kabin Efekti) */
         #part-tavan {
             width: 40%;
             height: 100%;
-            border-radius: 6px;
-            background: #334155; /* Tavan rengi biraz daha koyu üst yapı hissi için */
-            border-left: 2px solid #475569;
-            border-right: 2px solid #475569;
+            border-radius: 15px;
+            background: #334155; 
+            border-left: 2px solid #64748b;
+            border-right: 2px solid #64748b;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
         }
 
+        /* 3. Alt Kısım (Arka Çamurluklar) */
         .car-row-lower {
             display: flex;
             justify-content: space-between;
-            height: 130px;
-            gap: 8px;
+            height: 135px;
+            gap: 6px;
             width: 100%;
+            position: relative;
         }
 
         #part-sol-arka-camurluk, #part-sag-arka-camurluk {
-            width: 30%;
+            width: 32%;
             height: 100%;
-            border-radius: 8px;
+            border-radius: 15px 20px 20px 15px;
+        }
+        #part-sag-arka-camurluk {
+            border-radius: 20px 15px 15px 20px;
         }
 
-        /* Bagaj Kapağı (Arka Kısım) */
+        /* 4. Bagaj Kapağı (Arka Kısım) */
         #part-bagaj {
-            width: 75%;
-            height: 75px;
+            width: 76%;
+            height: 80px;
             margin: 0 auto;
-            border-radius: 8px 8px 15px 15px;
-            border-bottom: 4px solid #334155;
+            border-radius: 12px 12px 40px 40px;
+            border-bottom: 4px solid #475569;
         }
 
         /* Parçaya Basınca Çıkan Küçük Pop-up Menü */
@@ -269,7 +308,7 @@
             background: #ffffff;
             color: #333;
             border-radius: 8px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
             padding: 8px;
             z-index: 100;
             width: 150px;
@@ -516,11 +555,12 @@
                     </div>
                 </div>
 
-                <!-- ARABA HATLARINA BENZER 3D ŞEMA MODELİ -->
+                <!-- GERÇEK OTOMOBİL HATLARINA BENZER 3D ŞEMA MODELİ -->
                 <div class="form-group full-width" style="margin-top: 20px;">
                     <label><i class="fa-solid fa-car"></i> Ekspertiz Şeması (Parçalara Tıklayarak Durum Seçin)</label>
                     <div class="ekspertiz-3d-wrapper">
-                        <div class="car-silhouette">
+                        <!-- Arka tekerlek grupları kapsayıcısı -->
+                        <div class="car-silhouette rear-wheels">
                             <!-- Ön Kaput -->
                             <div class="car-part" id="part-kaput" onclick="openPartMenu(event, 'kaput')">Ön Kaput</div>
                             
@@ -644,7 +684,7 @@
                 document.getElementById('part-' + key).style.backgroundColor = colorMap[currentPartsData[key]];
             }
 
-            let cars = JSON.parse(localStorage.getItem('adilhan_cars_car_lines')) || [];
+            let cars = JSON.parse(localStorage.getItem('adilhan_cars_car_lines_v2')) || [];
 
             if (cars.length === 0) {
                 cars.push({
@@ -733,7 +773,7 @@
             };
 
             function saveAndRender() {
-                localStorage.setItem('adilhan_cars_car_lines', JSON.stringify(cars));
+                localStorage.setItem('adilhan_cars_car_lines_v2', JSON.stringify(cars));
                 renderCars(cars);
             }
 
