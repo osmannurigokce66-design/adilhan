@@ -563,15 +563,33 @@
             background-color: var(--primary-light);
         }
 
+        /* Admin Paneli İçindeki İlan Yönetimi Listesi */
+        .admin-car-list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .admin-car-list-item span {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+
         .btn-delete {
             background-color: #fee2e2;
             color: #ef4444;
             border: none;
-            padding: 10px 15px;
+            padding: 8px 14px;
             border-radius: 8px;
             cursor: pointer;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: 0.2s;
         }
         .btn-delete:hover {
@@ -723,7 +741,7 @@
         <!-- Gizli Admin Paneli -->
         <section id="admin-panel">
             <div class="admin-header">
-                <h2><i class="fa-solid fa-lock-open" style="color: var(--accent);"></i> Yönetim Paneli: Yeni İlan Ekle</h2>
+                <h2><i class="fa-solid fa-lock-open" style="color: var(--accent);"></i> Yönetim Paneli: İlan Ekle & Yönet</h2>
                 <button type="button" class="btn-close-admin" onclick="closeAdminPanel()"><i class="fa-solid fa-xmark"></i> Kapat</button>
             </div>
             
@@ -825,6 +843,14 @@
 
                 <button type="submit" class="btn-submit"><i class="fa-solid fa-plus"></i> Aracı Galeriye Kaydet</button>
             </form>
+
+            <!-- Admin Paneli İlan Kaldırma Bölümü -->
+            <div style="margin-top: 40px; border-top: 2px solid var(--border); padding-top: 25px;">
+                <h3 style="font-size: 1.2rem; color: var(--primary); margin-bottom: 15px;"><i class="fa-solid fa-trash-can" style="color: #ef4444;"></i> Yayındaki İlanları Yönet / Kaldır</h3>
+                <div id="adminCarListContainer">
+                    <!-- Admin panelindeki ilan yönetim listesi -->
+                </div>
+            </div>
         </section>
 
         <!-- Galeri Listesi -->
@@ -964,7 +990,7 @@
                 if(el) el.style.backgroundColor = colorMap[currentPartsData[key]];
             }
 
-            allCars = JSON.parse(localStorage.getItem('adilhan_cars_modal_v5')) || [];
+            allCars = JSON.parse(localStorage.getItem('adilhan_cars_modal_v6')) || [];
 
             if (allCars.length === 0) {
                 allCars.push({
@@ -979,7 +1005,7 @@
                     bodyType: 'SUV',
                     color: 'Gri',
                     enginePower: '130 HP',
-                    imageUrl: 'https://cdn.pixabay.com/photo/2021/02/01/17/30/car-5971936_1280.jpg',
+                    imageUrl: 'https://i.sahibinden.com/photos/33/73/87/1332137387_921_1200.jpg', // Sahibinden görsel bağlantısı eklendi
                     description: '2023 MAKYAJLI | 33.500 KM | CAM TAVAN - SUNROOF | ŞERİT TAKİP | KABLOSUZ ŞARJ | NAVİGASYON | HATASIZ',
                     parts: {
                         kaput: 'orijinal',
@@ -1002,6 +1028,7 @@
                 if (query.toUpperCase() === 'ADMIN') {
                     adminPanel.style.display = 'block';
                     adminPanel.scrollIntoView({ behavior: 'smooth' });
+                    renderAdminCarList();
                     return;
                 } else {
                     adminPanel.style.display = 'none';
@@ -1042,15 +1069,15 @@
                     document.getElementById('part-' + key).style.backgroundColor = colorMap['orijinal'];
                 }
 
-                adminPanel.style.display = 'none';
+                renderAdminCarList();
                 alert('Araç başarıyla galeriye eklendi!');
             });
 
-            window.deleteCar = function(event, id) {
-                event.stopPropagation();
+            window.deleteCar = function(id) {
                 if (confirm('Bu aracı galeriden kaldırmak istediğinize emin misiniz?')) {
                     allCars = allCars.filter(car => car.id !== id);
                     saveAndRender();
+                    renderAdminCarList();
                 }
             };
 
@@ -1088,7 +1115,7 @@
             };
 
             function saveAndRender() {
-                localStorage.setItem('adilhan_cars_modal_v5', JSON.stringify(allCars));
+                localStorage.setItem('adilhan_cars_modal_v6', JSON.stringify(allCars));
                 renderCars(allCars);
             }
 
@@ -1124,12 +1151,31 @@
                             
                             <div class="card-actions">
                                 <button class="btn-details"><i class="fa-solid fa-eye"></i> Detaylar & Ekspertiz</button>
-                                <button class="btn-delete" onclick="deleteCar(event, ${car.id})"><i class="fa-solid fa-trash"></i></button>
                             </div>
                         </div>
                     `;
 
                     carList.appendChild(carCard);
+                });
+            }
+
+            function renderAdminCarList() {
+                const container = document.getElementById('adminCarListContainer');
+                container.innerHTML = '';
+
+                if (allCars.length === 0) {
+                    container.innerHTML = '<p style="color:var(--text-light); font-size:0.9rem;">Sistemde kayıtlı ilan bulunmuyor.</p>';
+                    return;
+                }
+
+                allCars.forEach(car => {
+                    const item = document.createElement('div');
+                    item.className = 'admin-car-list-item';
+                    item.innerHTML = `
+                        <span>${car.brand} ${car.model} (${car.year}) - ${Number(car.price).toLocaleString('tr-TR')} ₺</span>
+                        <button class="btn-delete" onclick="deleteCar(${car.id})"><i class="fa-solid fa-trash"></i> İlanı Kaldır</button>
+                    `;
+                    container.appendChild(item);
                 });
             }
         });
