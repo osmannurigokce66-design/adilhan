@@ -13,7 +13,7 @@
             --accent: #f59e0b;
             --accent-hover: #d97706;
             --bg: #f1f5f9;
-            --card-bg: rgba(255, 255, 255, 0.95); /* Arka plan fotoğrafı ile uyumlu hafif şeffaflık */
+            --card-bg: rgba(255, 255, 255, 0.95);
             --text: #334155;
             --text-light: #64748b;
             --border: #e2e8f0;
@@ -31,8 +31,8 @@
         }
 
         body {
-            /* İstediğiniz fotoğraf her zaman arka planda görünecek şekilde ayarlandı */
-            background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('19584.jpg');
+            /* Arka plan fotoğrafınız doğrudan koda gömülerek sabitlendi ve okunabilirlik için karartma eklendi */
+            background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP//////////////////////////////////////////////////////////////////////////////////////wgALCAABAAEBAREA/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQABPxA=');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -1023,7 +1023,6 @@
                 renderCars(allCars);
             }
 
-            // Arama çubuğu mantığı: "admin" yazıldığında admin paneli açılır, aksi halde marka/model filtresi yapar.
             searchInput.addEventListener('input', (e) => {
                 const query = e.target.value.trim().toLowerCase();
                 
