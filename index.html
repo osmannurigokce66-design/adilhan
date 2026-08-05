@@ -31,13 +31,12 @@
         }
 
         body {
-            /* Arka plan fotoğrafınız doğrudan koda gömülerek sabitlendi ve okunabilirlik için karartma eklendi */
+            /* Arka plan dinamik olarak ayarlanır */
             background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP//////////////////////////////////////////////////////////////////////////////////////wgALCAABAAEBAREA/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQABPxA=');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             background-repeat: no-repeat;
-            
             color: var(--text);
             line-height: 1.6;
         }
@@ -189,6 +188,36 @@
         .btn-close-admin:hover {
             background: #ef4444;
             color: white;
+        }
+
+        /* Arka Plan Değiştirme Paneli */
+        .bg-changer-box {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .btn-file-select {
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+        }
+        .btn-file-select:hover {
+            background-color: var(--primary-light);
         }
 
         .form-grid {
@@ -750,6 +779,20 @@
                 <button type="button" class="btn-close-admin" onclick="closeAdminPanel()"><i class="fa-solid fa-xmark"></i> Kapat</button>
             </div>
             
+            <!-- Arka Plan Fotoğrafı Seçme Alanı -->
+            <div class="bg-changer-box">
+                <div>
+                    <h3 style="font-size: 1.1rem; color: var(--primary); margin-bottom: 4px;"><i class="fa-solid fa-image" style="color: var(--accent);"></i> Arka Plan Fotoğrafını Değiştir</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-light);">Galerinizden bir fotoğraf seçerek sitenin arka planını güncelleyin.</p>
+                </div>
+                <div>
+                    <label for="bgImageInput" class="btn-file-select">
+                        <i class="fa-solid fa-folder-open"></i> Fotoğraf Seç (Galeri)
+                    </label>
+                    <input type="file" id="bgImageInput" accept="image/*" style="display: none;" onchange="changeBackground(event)">
+                </div>
+            </div>
+
             <form id="carForm">
                 <div class="form-grid">
                     <div class="form-group">
@@ -946,6 +989,21 @@
         let activeTargetPart = null;
         let allCars = [];
 
+        // Galeriden seçilen fotoğrafı arka plana uygulama fonksiyonu
+        function changeBackground(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const base64Image = e.target.result;
+                    document.body.style.backgroundImage = `linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('${base64Image}')`;
+                    localStorage.setItem('adilhan_custom_bg', base64Image);
+                    alert('Arka plan fotoğrafı başarıyla değiştirildi ve kaydedildi!');
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
         function openPartMenu(event, partKey) {
             event.stopPropagation();
             activeTargetPart = partKey;
@@ -981,6 +1039,12 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
+            // Kayıtlı özel arka plan varsa yükle
+            const savedBg = localStorage.getItem('adilhan_custom_bg');
+            if (savedBg) {
+                document.body.style.backgroundImage = `linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('${savedBg}')`;
+            }
+
             const carForm = document.getElementById('carForm');
             const carList = document.getElementById('carList');
             const searchInput = document.getElementById('searchInput');
