@@ -31,7 +31,6 @@
         }
 
         body {
-            /* Arka plan dinamik olarak ayarlanır */
             background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP//////////////////////////////////////////////////////////////////////////////////////wgALCAABAAEBAREA/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQABPxA=');
             background-size: cover;
             background-position: center;
@@ -41,7 +40,6 @@
             line-height: 1.6;
         }
 
-        /* Top Bar / Header */
         header {
             background-color: var(--primary);
             color: white;
@@ -110,7 +108,6 @@
             color: #94a3b8;
         }
 
-        /* Hero Banner */
         .hero {
             background: rgba(15, 23, 42, 0.6);
             backdrop-filter: blur(4px);
@@ -141,7 +138,6 @@
             padding: 0 25px 60px 25px;
         }
 
-        /* Admin Paneli */
         #admin-panel {
             display: none;
             background: var(--card-bg);
@@ -190,7 +186,6 @@
             color: white;
         }
 
-        /* Arka Plan Değiştirme Paneli */
         .bg-changer-box {
             background: #f8fafc;
             border: 1px solid var(--border);
@@ -258,7 +253,6 @@
             box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
         }
 
-        /* 3D Ekspertiz Şeması Stili */
         .ekspertiz-section-title {
             font-size: 1rem;
             font-weight: 700;
@@ -460,7 +454,6 @@
             color: white;
         }
 
-        /* Galeri Grid Alanı */
         .section-header {
             display: flex;
             justify-content: space-between;
@@ -600,6 +593,17 @@
             background-color: var(--primary-light);
         }
 
+        .admin-car-list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
         .btn-delete {
             background-color: #fee2e2;
             color: #ef4444;
@@ -619,19 +623,6 @@
             color: white;
         }
 
-        /* Admin Paneli İlan Listesi / Kaldırma Alanı */
-        .admin-car-list-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 15px;
-            background: #f8fafc;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            margin-bottom: 10px;
-        }
-
-        /* Modal (Detay ve Ekspertiz Penceresi) */
         #carModal {
             display: none;
             position: fixed;
@@ -733,7 +724,6 @@
         .modal-specs-list span { color: var(--text-light); }
         .modal-specs-list strong { color: var(--primary); }
 
-        /* Footer */
         footer {
             background-color: var(--primary);
             color: white;
@@ -793,6 +783,9 @@
                 </div>
             </div>
 
+            <!-- Gizli çoklu fotoğraf seçici (İlan verirken 5 kez tetiklenecek) -->
+            <input type="file" id="carMultiImageInput" accept="image/*" style="display: none;" onchange="handleAdImageSelection(event)">
+
             <form id="carForm">
                 <div class="form-grid">
                     <div class="form-group">
@@ -845,8 +838,8 @@
                         <input type="text" id="enginePower" placeholder="170 HP">
                     </div>
                     <div class="form-group full-width">
-                        <label>Fotoğraf URL (Görsel Bağlantısı)</label>
-                        <input type="url" id="imageUrl" required placeholder="https://images.unsplash.com/photo-...">
+                        <label>Fotoğraf URL (Otomatik veya Bağlantı)</label>
+                        <input type="url" id="imageUrl" required placeholder="İlan ver tuşuna basınca 5 fotoğraf seçilerek otomatik doldurulur">
                     </div>
                 </div>
 
@@ -889,7 +882,7 @@
                     <textarea id="description" rows="3" placeholder="Araç durumu, tramer bilgisi vb. ek açıklamalar..."></textarea>
                 </div>
 
-                <button type="submit" class="btn-submit"><i class="fa-solid fa-plus"></i> Aracı Galeriye Kaydet</button>
+                <button type="submit" class="btn-submit"><i class="fa-solid fa-plus"></i> Aracı Galeriye Kaydet (İlan Ver)</button>
             </form>
 
             <div style="margin-top: 40px; border-top: 2px solid var(--border); padding-top: 25px;">
@@ -931,7 +924,6 @@
                         <i class="fa-solid fa-shield-halved" style="color:var(--accent);"></i> 3D Ekspertiz Şeması
                     </div>
                     
-                    <!-- Modal İçindeki 3D Ekspertiz Şeması -->
                     <div class="ekspertiz-3d-wrapper" style="padding: 20px;">
                         <div class="car-silhouette rear-wheels" style="width: 240px; height: 450px;">
                             <div class="car-part modal-part-kaput" id="modal-part-kaput">Ön Kaput</div>
@@ -989,7 +981,11 @@
         let activeTargetPart = null;
         let allCars = [];
 
-        // Galeriden seçilen fotoğrafı arka plana uygulama fonksiyonu
+        // İlan verme süreci için değişkenler
+        let adStepCount = 0;
+        let collectedImages = [];
+        let pendingCarData = null;
+
         function changeBackground(event) {
             const file = event.target.files[0];
             if (file) {
@@ -1039,7 +1035,6 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            // Kayıtlı özel arka plan varsa yükle
             const savedBg = localStorage.getItem('adilhan_custom_bg');
             if (savedBg) {
                 document.body.style.backgroundImage = `linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('${savedBg}')`;
@@ -1055,7 +1050,7 @@
                 if(el) el.style.backgroundColor = colorMap[currentPartsData[key]];
             }
 
-            allCars = JSON.parse(localStorage.getItem('adilhan_cars_master_v4')) || [];
+            allCars = JSON.parse(localStorage.getItem('adilhan_cars_master_v5')) || [];
 
             if (allCars.length === 0) {
                 allCars.push({
@@ -1105,10 +1100,11 @@
                 renderCars(filtered);
             });
 
+            // İLAN VER TUŞUNA BASILINCA (5 KEZ GALERİDEN İLK FOTOĞRAFI SEÇME SÜRECİ BAŞLAR)
             carForm.addEventListener('submit', (e) => {
                 e.preventDefault();
 
-                const newCar = {
+                pendingCarData = {
                     id: Date.now(),
                     brand: document.getElementById('brand').value,
                     model: document.getElementById('model').value,
@@ -1120,22 +1116,15 @@
                     bodyType: document.getElementById('bodyType').value,
                     color: document.getElementById('color').value,
                     enginePower: document.getElementById('enginePower').value,
-                    imageUrl: document.getElementById('imageUrl').value,
                     description: document.getElementById('description').value,
                     parts: { ...currentPartsData }
                 };
 
-                allCars.unshift(newCar);
-                saveAndRender();
-                carForm.reset();
+                adStepCount = 0;
+                collectedImages = [];
                 
-                for (let key in currentPartsData) {
-                    currentPartsData[key] = 'orijinal';
-                    document.getElementById('part-' + key).style.backgroundColor = colorMap['orijinal'];
-                }
-
-                renderAdminCarList();
-                alert('Araç başarıyla galeriye eklendi!');
+                alert('İlan vermek için lütfen galerinizden sırayla 1. fotoğrafı seçin.');
+                document.getElementById('carMultiImageInput').click();
             });
 
             window.deleteCar = function(event, id) {
@@ -1181,7 +1170,7 @@
             };
 
             function saveAndRender() {
-                localStorage.setItem('adilhan_cars_master_v4', JSON.stringify(allCars));
+                localStorage.setItem('adilhan_cars_master_v5', JSON.stringify(allCars));
                 renderCars(allCars);
             }
 
@@ -1246,6 +1235,36 @@
                 });
             }
         });
+
+        // 5 kere sırayla fotoğraf seçtiren döngü fonksiyonu
+        function handleAdImageSelection(event) {
+            const files = event.target.files;
+            if (files && files.length > 0) {
+                const file = files[0]; // İlk fotoğraf
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    collectedImages.push(e.target.result);
+                    adStepCount++;
+
+                    if (adStepCount < 5) {
+                        alert(`Harika! ${adStepCount}. fotoğraf seçildi. Şimdi lütfen ${adStepCount + 1}. fotoğrafı seçin.`);
+                        event.target.value = ''; // Sıfırla ki tekrar tetiklenebilsin
+                        document.getElementById('carMultiImageInput').click();
+                    } else {
+                        // 5 fotoğraf da tamamlandı, ilanı kaydet
+                        pendingCarData.imageUrl = collectedImages[0]; // Ana kapak fotoğrafı ilk seçilen olsun
+                        pendingCarData.allImages = collectedImages; // İsteğe bağlı tüm fotoğraflar
+
+                        allCars.unshift(pendingCarData);
+                        localStorage.setItem('adilhan_cars_master_v5', JSON.stringify(allCars));
+                        
+                        // Ekranı güncelle
+                        location.reload(); 
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        }
     </script>
 </body>
 </html>
