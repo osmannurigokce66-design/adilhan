@@ -1679,6 +1679,8 @@
         let activeModalCarId = null;
         let isRegisterMode = false;
 
+        const ADMIN_EMAIL = "osmikdesiyor66@gmail.com";
+
         function changeBackground(event) {
             const file = event.target.files[0];
             if (file) {
@@ -1740,6 +1742,10 @@
         });
 
         function openAdminPanel() {
+            if (!currentUser || currentUser.email !== ADMIN_EMAIL) {
+                alert('Bu alana sadece yönetici (osmikdesiyor66@gmail.com) hesabı ile erişilebilir!');
+                return;
+            }
             document.getElementById('admin-panel').style.display = 'block';
             document.getElementById('admin-panel').scrollIntoView({ behavior: 'smooth' });
             renderAdminCarList();
@@ -1816,6 +1822,8 @@
             const nameInput = document.getElementById('authName').value.trim();
             const dateStr = new Date().toLocaleDateString('tr-TR');
 
+            const isThisAdmin = (email === ADMIN_EMAIL);
+
             if (isRegisterMode) {
                 const name = nameInput || email.split('@')[0];
                 const existing = usersList.find(u => u.email === email);
@@ -1829,18 +1837,16 @@
                     email: email,
                     password: password,
                     date: dateStr,
-                    role: email.includes('admin') ? 'Yönetici' : 'Müşteri'
+                    role: isThisAdmin ? 'Yönetici' : 'Müşteri'
                 };
                 usersList.push(newUser);
                 currentUser = newUser;
                 saveUsers();
                 alert('Kayıt işlemi başarılı!');
             } else {
-                // Giriş kontrolü (admin için örnek veya kayıtlı kullanıcı)
                 let found = usersList.find(u => u.email === email && u.password === password);
                 if (!found) {
-                    // Eğer admin e-postası ise ve listede yoksa otomatik oluştur
-                    if (email === 'admin@adilhan.com' && password === 'admin123') {
+                    if (isThisAdmin) {
                         found = {
                             id: Date.now(),
                             name: 'Sistem Yöneticisi',
@@ -1854,6 +1860,11 @@
                     } else {
                         alert('E-posta veya şifre hatalı!');
                         return;
+                    }
+                } else {
+                    if (isThisAdmin && found.role !== 'Yönetici') {
+                        found.role = 'Yönetici';
+                        saveUsers();
                     }
                 }
                 currentUser = found;
@@ -1883,7 +1894,7 @@
             if (currentUser) {
                 authBtns.style.display = 'none';
                 userMenu.style.display = 'flex';
-                if (currentUser.role === 'Yönetici' || currentUser.email.includes('admin')) {
+                if (currentUser.email === ADMIN_EMAIL) {
                     adminNavBtn.style.display = 'flex';
                 } else {
                     adminNavBtn.style.display = 'none';
@@ -1973,12 +1984,11 @@
             allCars = JSON.parse(localStorage.getItem('adilhan_cars_master_v7_light')) || [];
             messagesList = JSON.parse(localStorage.getItem('adilhan_messages_master')) || [];
 
-            // Varsayılan admin kullanıcısını ekle yoksa
-            if (!usersList.some(u => u.email === 'admin@adilhan.com')) {
+            if (!usersList.some(u => u.email === ADMIN_EMAIL)) {
                 usersList.push({
                     id: 1,
                     name: 'Sistem Yöneticisi',
-                    email: 'admin@adilhan.com',
+                    email: ADMIN_EMAIL,
                     password: 'admin123',
                     date: '01.01.2026',
                     role: 'Yönetici'
@@ -2041,6 +2051,11 @@
             carForm.addEventListener('submit', (e) => {
                 e.preventDefault();
 
+                if (!currentUser || currentUser.email !== ADMIN_EMAIL) {
+                    alert('Bu işlem için yönetici yetkisi gereklidir!');
+                    return;
+                }
+
                 if (uploadedCarImages.length === 0) {
                     alert('Lütfen ilan için galeriden en az bir fotoğraf seçin!');
                     return;
@@ -2080,6 +2095,10 @@
 
             window.deleteCar = function(event, id) {
                 event.stopPropagation();
+                if (!currentUser || currentUser.email !== ADMIN_EMAIL) {
+                    alert('Bu işlem için yönetici yetkisi gereklidir!');
+                    return;
+                }
                 if (confirm('Bu aracı galeriden kaldırmak istediğinize emin misiniz?')) {
                     allCars = allCars.filter(car => car.id !== id);
                     saveAndRender();
@@ -2298,6 +2317,10 @@
         }
 
         function sendAdminReply(msgId) {
+            if (!currentUser || currentUser.email !== ADMIN_EMAIL) {
+                alert('Bu işlem için yönetici yetkisi gereklidir!');
+                return;
+            }
             const inputVal = document.getElementById(`adminReplyInput_${msgId}`).value.trim();
             if(!inputVal) {
                 alert('Lütfen bir yanıt yazın.');
