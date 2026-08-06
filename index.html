@@ -20,7 +20,7 @@
             --boyali: #3b82f6;
             --degisen: #ef4444;
             --lokal: #eab308;
-            --orijinal: #22c55e;
+            --orijinal: #94a3b8; /* Yeni şemaya uygun gri tonu */
         }
 
         * {
@@ -274,28 +274,30 @@
             box-shadow: inset 0 0 25px rgba(0,0,0,0.8);
         }
 
+        /* Yeni Yüklenen 19604 Şemasına Uygun 3D Araç Yapısı */
         .car-silhouette {
             position: relative;
-            width: 300px;
-            height: 560px;
-            background: var(--primary-light);
-            border-radius: 130px 130px 75px 75px;
+            width: 280px;
+            height: 520px;
+            background: #111827;
+            border-radius: 110px 110px 65px 65px;
             box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-            border: 4px solid #334155;
+            border: 4px solid #374151;
             display: flex;
             flex-direction: column;
-            padding: 15px 12px;
-            gap: 12px;
+            padding: 12px 10px;
+            gap: 10px;
         }
 
+        /* Tamponlar ve Çamurluk Çıkıntıları */
         .car-silhouette::before, .car-silhouette::after {
             content: '';
             position: absolute;
-            background: #090d16;
+            background: #111827;
             width: 14px;
-            height: 85px;
+            height: 75px;
             border-radius: 10px;
-            top: 110px;
+            top: 100px;
         }
         .car-silhouette::before { left: -14px; border-radius: 10px 0 0 10px; }
         .car-silhouette::after { right: -14px; border-radius: 0 10px 10px 0; }
@@ -303,20 +305,20 @@
         .rear-wheels::before, .rear-wheels::after {
             content: '';
             position: absolute;
-            background: #090d16;
+            background: #111827;
             width: 14px;
-            height: 85px;
+            height: 75px;
             border-radius: 10px;
-            bottom: 130px;
+            bottom: 110px;
         }
         .rear-wheels::before { left: -14px; border-radius: 10px 0 0 10px; }
         .rear-wheels::after { right: -14px; border-radius: 0 10px 10px 0; }
 
         .car-part {
-            background: #475569;
-            color: #fff;
+            background: var(--orijinal);
+            color: #1f2937;
             font-weight: 700;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -329,23 +331,30 @@
         }
 
         .car-part:hover {
-            filter: brightness(1.25);
+            filter: brightness(1.2);
             transform: scale(1.02);
             z-index: 10;
         }
 
+        #part-on-tampon, .modal-part-on-tampon {
+            width: 65%;
+            height: 35px;
+            margin: 0 auto;
+            border-radius: 15px 15px 6px 6px;
+            font-size: 0.65rem;
+        }
+
         #part-kaput, .modal-part-kaput {
-            width: 72%;
+            width: 76%;
             height: 95px;
             margin: 0 auto;
-            border-radius: 60px 60px 12px 12px;
-            border-top: 4px solid #64748b;
+            border-radius: 45px 45px 10px 10px;
         }
 
         .car-row-middle {
             display: flex;
             justify-content: space-between;
-            height: 160px;
+            height: 150px;
             gap: 6px;
             width: 100%;
         }
@@ -353,24 +362,26 @@
         #part-sol-on-camurluk, #part-sag-on-camurluk, .modal-part-sol-on-camurluk, .modal-part-sag-on-camurluk {
             width: 27%;
             height: 100%;
-            border-radius: 20px 10px 10px 20px;
+            border-radius: 18px 10px 10px 18px;
+            font-size: 0.65rem;
         }
-        #part-sag-on-camurluk, .modal-part-sag-on-camurluk { border-radius: 10px 20px 20px 10px; }
+        #part-sag-on-camurluk, .modal-part-sag-on-camurluk { border-radius: 10px 18px 18px 10px; }
 
         #part-tavan, .modal-part-tavan {
             width: 40%;
             height: 100%;
-            border-radius: 15px;
-            background: #334155;
-            border-left: 2px solid #64748b;
-            border-right: 2px solid #64748b;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
+            border-radius: 12px;
+            background: #e2e8f0;
+            color: #1f2937;
+            border-left: 2px solid #cbd5e1;
+            border-right: 2px solid #cbd5e1;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
         }
 
         .car-row-lower {
             display: flex;
             justify-content: space-between;
-            height: 140px;
+            height: 130px;
             gap: 6px;
             width: 100%;
         }
@@ -378,16 +389,24 @@
         #part-sol-arka-camurluk, #part-sag-arka-camurluk, .modal-part-sol-arka-camurluk, .modal-part-sag-arka-camurluk {
             width: 32%;
             height: 100%;
-            border-radius: 15px 20px 20px 15px;
+            border-radius: 12px 18px 18px 12px;
+            font-size: 0.65rem;
         }
-        #part-sag-arka-camurluk, .modal-part-sag-arka-camurluk { border-radius: 20px 15px 15px 20px; }
+        #part-sag-arka-camurluk, .modal-part-sag-arka-camurluk { border-radius: 18px 12px 12px 18px; }
 
         #part-bagaj, .modal-part-bagaj {
             width: 76%;
-            height: 80px;
+            height: 70px;
             margin: 0 auto;
-            border-radius: 12px 12px 40px 40px;
-            border-bottom: 4px solid #64748b;
+            border-radius: 10px 10px 30px 30px;
+        }
+
+        #part-arka-tampon, .modal-part-arka-tampon {
+            width: 65%;
+            height: 32px;
+            margin: 0 auto;
+            border-radius: 6px 6px 15px 15px;
+            font-size: 0.65rem;
         }
 
         .popup-menu {
@@ -424,7 +443,7 @@
 
         .legend {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             font-size: 0.85rem;
             margin-top: 25px;
             flex-wrap: wrap;
@@ -433,6 +452,61 @@
         }
         .legend span { display: flex; align-items: center; gap: 6px; }
         .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+
+        /* Donanım Seçim Alanı Stilleri (Görsel 19605'e Uygun) */
+        .donanim-box {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .donanim-category-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .donanim-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .donanim-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--text);
+            cursor: pointer;
+            background: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            transition: 0.2s;
+        }
+
+        .donanim-item:hover {
+            border-color: var(--accent);
+            background: #fffbeb;
+        }
+
+        .donanim-item input[type="checkbox"] {
+            accent-color: var(--accent);
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
 
         .btn-submit {
             background-color: var(--accent);
@@ -641,7 +715,7 @@
         .modal-content {
             background: white;
             width: 100%;
-            max-width: 950px;
+            max-width: 1000px;
             max-height: 90vh;
             border-radius: 16px;
             overflow-y: auto;
@@ -702,7 +776,6 @@
             margin-bottom: 15px;
         }
 
-        /* Küçük çoklu fotoğraf önizleme alanı */
         .modal-thumbnails {
             display: flex;
             gap: 8px;
@@ -744,6 +817,26 @@
         .modal-specs-list div:last-child { border-bottom: none; }
         .modal-specs-list span { color: var(--text-light); }
         .modal-specs-list strong { color: var(--primary); }
+
+        .modal-donanim-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 15px;
+        }
+
+        .modal-donanim-tag {
+            background: #f1f5f9;
+            color: var(--primary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
 
         footer {
             background-color: var(--primary);
@@ -856,7 +949,7 @@
                         <input type="text" id="enginePower" placeholder="170 HP">
                     </div>
                     
-                    <!-- Çoklu Fotoğraf Seçim Alanı (Tek tuşla galeriden birden fazla fotoğraf seçme) -->
+                    <!-- Çoklu Fotoğraf Seçim Alanı -->
                     <div class="form-group full-width">
                         <label><i class="fa-solid fa-images" style="color: var(--accent);"></i> Araç Fotoğrafları (Galeriden Birden Fazla Seçebilirsiniz)</label>
                         <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
@@ -872,6 +965,7 @@
                 <div class="ekspertiz-section-title"><i class="fa-solid fa-car-rear"></i> Kuş Bakışı 3D Ekspertiz Şeması (Parçalara tıklayarak durum seçin)</div>
                 <div class="ekspertiz-3d-wrapper">
                     <div class="car-silhouette rear-wheels">
+                        <div class="car-part" id="part-on-tampon" onclick="openPartMenu(event, 'on-tampon')">Ön Tampon</div>
                         <div class="car-part" id="part-kaput" onclick="openPartMenu(event, 'kaput')">Ön Kaput</div>
                         
                         <div class="car-row-middle">
@@ -886,10 +980,11 @@
                         </div>
 
                         <div class="car-part" id="part-bagaj" onclick="openPartMenu(event, 'bagaj')">Bagaj Kapağı</div>
+                        <div class="car-part" id="part-arka-tampon" onclick="openPartMenu(event, 'arka-tampon')">Arka Tampon</div>
                     </div>
 
                     <div id="partPopupMenu" class="popup-menu">
-                        <button type="button" onclick="setPartStatus('orijinal')"><span class="dot" style="background:#22c55e"></span> Orijinal</button>
+                        <button type="button" onclick="setPartStatus('orijinal')"><span class="dot" style="background:var(--orijinal)"></span> Orijinal</button>
                         <button type="button" onclick="setPartStatus('boyali')"><span class="dot" style="background:#3b82f6"></span> Boyalı</button>
                         <button type="button" onclick="setPartStatus('degisen')"><span class="dot" style="background:#ef4444"></span> Değişen</button>
                         <button type="button" onclick="setPartStatus('lokal')"><span class="dot" style="background:#eab308"></span> Lokal Boyalı</button>
@@ -897,9 +992,70 @@
 
                     <div class="legend">
                         <span><i class="dot" style="background:var(--orijinal)"></i> Orijinal</span>
+                        <span><i class="dot" style="background:var(--lokal)"></i> Lokal Boyalı</span>
                         <span><i class="dot" style="background:var(--boyali)"></i> Boyalı</span>
                         <span><i class="dot" style="background:var(--degisen)"></i> Değişen</span>
-                        <span><i class="dot" style="background:var(--lokal)"></i> Lokal Boyalı</span>
+                    </div>
+                </div>
+
+                <!-- Donanım Seçim Alanı (Görsel 19605'e Uygun) -->
+                <div class="donanim-box">
+                    <div class="donanim-category-title"><i class="fa-solid fa-shield-halved" style="color: var(--accent);"></i> Güvenlik Donanımları</div>
+                    <div class="donanim-grid" id="guvenlikDonanimlar">
+                        <label class="donanim-item"><input type="checkbox" value="ABS"> ABS</label>
+                        <label class="donanim-item"><input type="checkbox" value="Distronic"> Distronic</label>
+                        <label class="donanim-item"><input type="checkbox" value="Hava Yastığı (Yolcu)"> Hava Yastığı (Yolcu)</label>
+                        <label class="donanim-item"><input type="checkbox" value="Merkezi Kilit"> Merkezi Kilit</label>
+                        <label class="donanim-item"><input type="checkbox" value="Yorgunluk Tespit Sistemi"> Yorgunluk Tespit Sistemi</label>
+                        <label class="donanim-item"><input type="checkbox" value="AEB"> AEB</label>
+                        <label class="donanim-item"><input type="checkbox" value="ESP / VSA"> ESP / VSA</label>
+                        <label class="donanim-item"><input type="checkbox" value="İmmobiliser"> İmmobiliser</label>
+                        <label class="donanim-item"><input type="checkbox" value="Şerit Takip Sistemi"> Şerit Takip Sistemi</label>
+                        <label class="donanim-item"><input type="checkbox" value="BAS"> BAS</label>
+                        <label class="donanim-item"><input type="checkbox" value="Isofix"> Isofix</label>
+                        <label class="donanim-item"><input type="checkbox" value="Şeritten Ayrılma İkazı"> Şeritten Ayrılma İkazı</label>
+                        <label class="donanim-item"><input type="checkbox" value="Çocuk Kilidi"> Çocuk Kilidi</label>
+                        <label class="donanim-item"><input type="checkbox" value="Hava Yastığı (Sürücü)"> Hava Yastığı (Sürücü)</label>
+                        <label class="donanim-item"><input type="checkbox" value="Kör Nokta Uyarı Sistemi"> Kör Nokta Uyarı Sistemi</label>
+                        <label class="donanim-item"><input type="checkbox" value="Yokuş Kalkış Desteği"> Yokuş Kalkış Desteği</label>
+                    </div>
+
+                    <div class="donanim-category-title"><i class="fa-solid fa-couch" style="color: var(--accent);"></i> İç Donanım</div>
+                    <div class="donanim-grid" id="icDonanimlar">
+                        <label class="donanim-item"><input type="checkbox" value="Adaptive Cruise Control"> Adaptive Cruise Control</label>
+                        <label class="donanim-item"><input type="checkbox" value="Fonksiyonel Direksiyon"> Fonksiyonel Direksiyon</label>
+                        <label class="donanim-item"><input type="checkbox" value="Hidrolik Direksiyon"> Hidrolik Direksiyon</label>
+                        <label class="donanim-item"><input type="checkbox" value="Otm. Kararan Dikiz Aynası"> Otm. Kararan Dikiz Aynası</label>
+                        <label class="donanim-item"><input type="checkbox" value="Start / Stop"> Start / Stop</label>
+                        <label class="donanim-item"><input type="checkbox" value="Anahtarsız Giriş ve Çalıştırma"> Anahtarsız Giriş ve Çalıştırma</label>
+                        <label class="donanim-item"><input type="checkbox" value="Geri Görüş Kamerası"> Geri Görüş Kamerası</label>
+                        <label class="donanim-item"><input type="checkbox" value="Ön Görüş Kamerası"> Ön Görüş Kamerası</label>
+                        <label class="donanim-item"><input type="checkbox" value="Klima"> Klima</label>
+                        <label class="donanim-item"><input type="checkbox" value="Ön Koltuk Kol Dayaması"> Ön Koltuk Kol Dayaması</label>
+                        <label class="donanim-item"><input type="checkbox" value="Yol Bilgisayarı"> Yol Bilgisayarı</label>
+                        <label class="donanim-item"><input type="checkbox" value="Elektrikli Camlar"> Elektrikli Camlar</label>
+                        <label class="donanim-item"><input type="checkbox" value="Hız Sabitleme Sistemi"> Hız Sabitleme Sistemi</label>
+                        <label class="donanim-item"><input type="checkbox" value="Kumaş Koltuk"> Kumaş Koltuk</label>
+                    </div>
+
+                    <div class="donanim-category-title"><i class="fa-solid fa-car" style="color: var(--accent);"></i> Dış Donanım</div>
+                    <div class="donanim-grid" id="disDonanimlar">
+                        <label class="donanim-item"><input type="checkbox" value="Aynalar (Isıtmalı)"> Aynalar (Isıtmalı)</label>
+                        <label class="donanim-item"><input type="checkbox" value="Park Sensörü (Arka)"> Park Sensörü (Arka)</label>
+                        <label class="donanim-item"><input type="checkbox" value="Far (Adaptif)"> Far (Adaptif)</label>
+                        <label class="donanim-item"><input type="checkbox" value="Park Sensörü (Ön)"> Park Sensörü (Ön)</label>
+                        <label class="donanim-item"><input type="checkbox" value="Aynalar (Elektrikli)"> Aynalar (Elektrikli)</label>
+                        <label class="donanim-item"><input type="checkbox" value="Panoramik Cam Tavan"> Panoramik Cam Tavan</label>
+                        <label class="donanim-item"><input type="checkbox" value="Aynalar (Hafızalı)"> Aynalar (Hafızalı)</label>
+                        <label class="donanim-item"><input type="checkbox" value="Sunroof"> Sunroof</label>
+                    </div>
+
+                    <div class="donanim-category-title"><i class="fa-solid fa-icons" style="color: var(--accent);"></i> Multimedya</div>
+                    <div class="donanim-grid" id="multimedyaDonanimlar">
+                        <label class="donanim-item"><input type="checkbox" value="Android Auto"> Android Auto</label>
+                        <label class="donanim-item"><input type="checkbox" value="Apple CarPlay"> Apple CarPlay</label>
+                        <label class="donanim-item"><input type="checkbox" value="Bluetooth"> Bluetooth</label>
+                        <label class="donanim-item"><input type="checkbox" value="USB / AUX"> USB / AUX</label>
                     </div>
                 </div>
 
@@ -948,6 +1104,9 @@
                     <div class="modal-specs-list" id="modalSpecs">
                         <!-- Dinamik özellikler -->
                     </div>
+
+                    <div style="font-size:0.95rem; font-weight:700; margin-bottom:8px; color:var(--primary);">Donanım Özellikleri</div>
+                    <div id="modalDonanimlar" class="modal-donanim-tags"></div>
                 </div>
                 <div>
                     <div style="font-size:1rem; font-weight:700; margin-bottom:12px; color:var(--primary); display:flex; align-items:center; gap:8px;">
@@ -955,28 +1114,30 @@
                     </div>
                     
                     <div class="ekspertiz-3d-wrapper" style="padding: 20px;">
-                        <div class="car-silhouette rear-wheels" style="width: 240px; height: 450px;">
+                        <div class="car-silhouette rear-wheels" style="width: 220px; height: 420px;">
+                            <div class="car-part modal-part-on-tampon" id="modal-part-on-tampon">Ön Tampon</div>
                             <div class="car-part modal-part-kaput" id="modal-part-kaput">Ön Kaput</div>
                             
-                            <div class="car-row-middle" style="height: 125px;">
+                            <div class="car-row-middle" style="height: 120px;">
                                 <div class="car-part modal-part-sol-on-camurluk" id="modal-part-sol-on-camurluk">Sol Ön Çam.</div>
                                 <div class="car-part modal-part-tavan" id="modal-part-tavan">Tavan</div>
                                 <div class="car-part modal-part-sag-on-camurluk" id="modal-part-sag-on-camurluk">Sağ Ön Çam.</div>
                             </div>
 
-                            <div class="car-row-lower" style="height: 110px;">
+                            <div class="car-row-lower" style="height: 100px;">
                                 <div class="car-part modal-part-sol-arka-camurluk" id="modal-part-sol-arka-camurluk">Sol Arka Çam.</div>
                                 <div class="car-part modal-part-sag-arka-camurluk" id="modal-part-sag-arka-camurluk">Sağ Arka Çam.</div>
                             </div>
 
                             <div class="car-part modal-part-bagaj" id="modal-part-bagaj">Bagaj Kapağı</div>
+                            <div class="car-part modal-part-arka-tampon" id="modal-part-arka-tampon">Arka Tampon</div>
                         </div>
 
                         <div class="legend" style="margin-top: 15px; font-size: 0.75rem;">
                             <span><i class="dot" style="background:var(--orijinal)"></i> Orijinal</span>
+                            <span><i class="dot" style="background:var(--lokal)"></i> Lokal</span>
                             <span><i class="dot" style="background:var(--boyali)"></i> Boyalı</span>
                             <span><i class="dot" style="background:var(--degisen)"></i> Değişen</span>
-                            <span><i class="dot" style="background:var(--lokal)"></i> Lokal</span>
                         </div>
                     </div>
                 </div>
@@ -992,25 +1153,27 @@
     <!-- Script -->
     <script>
         const colorMap = {
-            'orijinal': '#22c55e',
+            'orijinal': '#94a3b8',
             'boyali': '#3b82f6',
             'degisen': '#ef4444',
             'lokal': '#eab308'
         };
 
         let currentPartsData = {
+            'on-tampon': 'orijinal',
             kaput: 'orijinal',
             tavan: 'orijinal',
             'sol-on-camurluk': 'orijinal',
             'sag-on-camurluk': 'orijinal',
             'sol-arka-camurluk': 'orijinal',
             'sag-arka-camurluk': 'orijinal',
-            bagaj: 'orijinal'
+            bagaj: 'orijinal',
+            'arka-tampon': 'orijinal'
         };
 
         let activeTargetPart = null;
         let allCars = [];
-        let uploadedCarImages = []; // Seçilen çoklu fotoğrafları tutar
+        let uploadedCarImages = [];
 
         function changeBackground(event) {
             const file = event.target.files[0];
@@ -1026,14 +1189,13 @@
             }
         }
 
-        // Galeriden birden fazla fotoğraf seçme fonksiyonu
         function handleCarImagesSelection(event) {
             const files = event.target.files;
             if (files && files.length > 0) {
                 uploadedCarImages = [];
                 let loadedCount = 0;
                 
-                Array.from(files).forEach((file, index) => {
+                Array.from(files).forEach((file) => {
                     const reader = new FileReader();
                     reader.onload = function(e) {
                         uploadedCarImages.push(e.target.result);
@@ -1097,7 +1259,7 @@
                 if(el) el.style.backgroundColor = colorMap[currentPartsData[key]];
             }
 
-            allCars = JSON.parse(localStorage.getItem('adilhan_cars_master_v6')) || [];
+            allCars = JSON.parse(localStorage.getItem('adilhan_cars_master_v7')) || [];
 
             if (allCars.length === 0) {
                 allCars.push({
@@ -1114,14 +1276,17 @@
                     enginePower: '170 HP',
                     images: ['https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80'],
                     description: 'Hatasız, temiz aile aracı. Yetkili servis bakımlı.',
+                    donanimlar: ['ABS', 'ESP / VSA', 'Isofix', 'Hız Sabitleme Sistemi', 'Geri Görüş Kamerası', 'Klima', 'Bluetooth'],
                     parts: {
+                        'on-tampon': 'orijinal',
                         kaput: 'orijinal',
                         tavan: 'orijinal',
                         'sol-on-camurluk': 'boyali',
                         'sag-on-camurluk': 'orijinal',
                         'sol-arka-camurluk': 'orijinal',
                         'sag-arka-camurluk': 'orijinal',
-                        bagaj: 'orijinal'
+                        bagaj: 'orijinal',
+                        'arka-tampon': 'orijinal'
                     }
                 });
                 saveAndRender();
@@ -1155,6 +1320,12 @@
                     return;
                 }
 
+                // Seçilen donanımları topla
+                const selectedDonanimlar = [];
+                document.querySelectorAll('.donanim-item input[type="checkbox"]:checked').forEach(chk => {
+                    selectedDonanimlar.push(chk.value);
+                });
+
                 const newCar = {
                     id: Date.now(),
                     brand: document.getElementById('brand').value,
@@ -1169,13 +1340,13 @@
                     enginePower: document.getElementById('enginePower').value,
                     description: document.getElementById('description').value,
                     images: [...uploadedCarImages],
+                    donanimlar: selectedDonanimlar,
                     parts: { ...currentPartsData }
                 };
 
                 allCars.unshift(newCar);
                 saveAndRender();
                 
-                // Formu sıfırla
                 carForm.reset();
                 uploadedCarImages = [];
                 document.getElementById('selectedImagesCount').innerText = 'Fotoğraf seçilmedi';
@@ -1236,6 +1407,20 @@
                 `;
                 document.getElementById('modalSpecs').innerHTML = specsHtml;
 
+                // Donanımları modalda listele
+                const donanimContainer = document.getElementById('modalDonanimlar');
+                donanimContainer.innerHTML = '';
+                if (car.donanimlar && car.donanimlar.length > 0) {
+                    car.donanimlar.forEach(d => {
+                        const tag = document.createElement('span');
+                        tag.className = 'modal-donanim-tag';
+                        tag.innerHTML = `<i class="fa-solid fa-check" style="color:var(--accent);"></i> ${d}`;
+                        donanimContainer.appendChild(tag);
+                    });
+                } else {
+                    donanimContainer.innerHTML = '<span style="font-size:0.85rem; color:var(--text-light);">Donanım bilgisi belirtilmemiş.</span>';
+                }
+
                 if (car.parts) {
                     for (let key in car.parts) {
                         let val = car.parts[key];
@@ -1250,7 +1435,7 @@
             };
 
             function saveAndRender() {
-                localStorage.setItem('adilhan_cars_master_v6', JSON.stringify(allCars));
+                localStorage.setItem('adilhan_cars_master_v7', JSON.stringify(allCars));
                 renderCars(allCars);
             }
 
