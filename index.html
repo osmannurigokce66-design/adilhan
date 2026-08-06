@@ -6,72 +6,99 @@
     <title>Adilhan Otomotiv | Premium Galeri ve Ekspertiz</title>
     <!-- FontAwesome İkonları -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0f172a;
+            --primary: #0b0f19;
             --primary-light: #1e293b;
-            --accent: #f59e0b;
-            --accent-hover: #d97706;
-            --bg: #f1f5f9;
-            --card-bg: rgba(255, 255, 255, 0.95);
-            --text: #334155;
-            --text-light: #64748b;
-            --border: #e2e8f0;
+            --accent: #38bdf8;
+            --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+            --gold: #f59e0b;
+            --bg: #030712;
+            --card-bg: rgba(15, 23, 42, 0.85);
+            --text: #f8fafc;
+            --text-light: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-glow: rgba(56, 189, 248, 0.3);
             --boyali: #3b82f6;
             --degisen: #ef4444;
             --lokal: #eab308;
-            --orijinal: #94a3b8; /* Yeni şemaya uygun gri tonu */
+            --orijinal: #64748b;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Inter', 'Segoe UI', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         body {
-            background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP//////////////////////////////////////////////////////////////////////////////////////wgALCAABAAEBAREA/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQABPxA=');
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.03) 0%, transparent 40%),
+                url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP//////////////////////////////////////////////////////////////////////////////////////wgALCAABAAEBAREA/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQABPxA=');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             background-repeat: no-repeat;
             color: var(--text);
             line-height: 1.6;
+            min-height: 100vh;
         }
 
+        /* Header & Nav */
         header {
-            background-color: var(--primary);
-            color: white;
+            background: rgba(3, 7, 18, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-bottom: 1px solid var(--border);
         }
 
         .navbar {
-            max-width: 1300px;
+            max-width: 1350px;
             margin: 0 auto;
-            padding: 15px 25px;
+            padding: 18px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 20px;
         }
 
         .logo {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 800;
             color: white;
             display: flex;
             align-items: center;
             gap: 12px;
             text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: var(--accent-gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.2rem;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
         }
 
         .logo span {
-            color: var(--accent);
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .search-container {
@@ -81,76 +108,110 @@
         }
 
         .search-container input {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 10px 15px 10px 40px;
-            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            padding: 12px 20px 12px 45px;
+            border-radius: 14px;
             color: white;
             outline: none;
             width: 320px;
             font-size: 0.95rem;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .search-container input::placeholder {
-            color: #94a3b8;
+            color: var(--text-light);
         }
 
         .search-container input:focus {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.08);
             border-color: var(--accent);
-            width: 370px;
+            width: 380px;
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.2);
         }
 
         .search-container i {
             position: absolute;
-            left: 15px;
-            color: #94a3b8;
+            left: 16px;
+            color: var(--text-light);
+            font-size: 1rem;
+            transition: color 0.3s;
         }
 
+        .search-container input:focus + i {
+            color: var(--accent);
+        }
+
+        /* Hero Banner */
         .hero {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(4px);
-            color: white;
+            position: relative;
+            background: linear-gradient(180deg, rgba(3, 7, 18, 0.4) 0%, rgba(3, 7, 18, 0.8) 100%), rgba(11, 15, 25, 0.6);
+            backdrop-filter: blur(8px);
             text-align: center;
-            padding: 90px 20px;
-            margin-bottom: 40px;
-            border-bottom: 4px solid var(--accent);
+            padding: 110px 20px 80px 20px;
+            margin-bottom: 50px;
+            border-bottom: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
+            z-index: -1;
+            filter: blur(50px);
         }
 
         .hero h1 {
-            font-size: 2.8rem;
+            font-size: 3.2rem;
             font-weight: 800;
-            margin-bottom: 15px;
-            letter-spacing: -0.5px;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+            color: white;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .hero h1 span {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero p {
-            font-size: 1.1rem;
-            color: #cbd5e1;
-            max-width: 600px;
+            font-size: 1.15rem;
+            color: var(--text-light);
+            max-width: 650px;
             margin: 0 auto;
+            font-weight: 400;
         }
 
         .main-container {
-            max-width: 1300px;
+            max-width: 1350px;
             margin: 0 auto;
-            padding: 0 25px 60px 25px;
+            padding: 0 30px 80px 30px;
         }
 
+        /* Admin Paneli */
         #admin-panel {
             display: none;
             background: var(--card-bg);
-            padding: 35px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            margin-bottom: 40px;
-            border: 2px dashed var(--accent);
-            animation: fadeIn 0.3s ease;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            margin-bottom: 50px;
+            border: 1px solid var(--border-glow);
+            animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-5px); }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -158,67 +219,74 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 15px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
         }
 
         .admin-header h2 {
-            color: var(--primary);
-            font-size: 1.5rem;
+            color: white;
+            font-size: 1.6rem;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .btn-close-admin {
-            background: #fee2e2;
+            background: rgba(239, 68, 68, 0.15);
             color: #ef4444;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 8px;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 10px 18px;
+            border-radius: 12px;
             cursor: pointer;
             font-weight: 600;
             transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         .btn-close-admin:hover {
             background: #ef4444;
             color: white;
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
         }
 
         .bg-changer-box {
-            background: #f8fafc;
+            background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border);
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 25px;
+            padding: 24px;
+            border-radius: 16px;
+            margin-bottom: 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 20px;
         }
 
         .btn-file-select {
-            background-color: var(--primary);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 12px 22px;
+            border-radius: 12px;
             cursor: pointer;
             font-weight: 600;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            transition: 0.2s;
+            gap: 10px;
+            transition: all 0.3s;
         }
         .btn-file-select:hover {
-            background-color: var(--primary-light);
+            background: var(--accent);
+            color: var(--primary);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
         }
 
         .form-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
         }
 
         .form-group {
@@ -232,91 +300,101 @@
 
         .form-group label {
             font-weight: 600;
-            font-size: 0.85rem;
-            margin-bottom: 8px;
-            color: var(--text);
-        }
-
-        .form-group input, .form-group select, .form-group textarea {
-            padding: 12px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            outline: none;
-            font-size: 0.95rem;
-            background: #f8fafc;
-            transition: 0.2s;
-        }
-
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-            border-color: var(--accent);
-            background: white;
-            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
-        }
-
-        .ekspertiz-section-title {
-            font-size: 1rem;
-            font-weight: 700;
-            margin: 25px 0 15px 0;
-            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            color: var(--text-light);
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            outline: none;
+            font-size: 0.95rem;
+            background: rgba(255, 255, 255, 0.03);
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .form-group select option {
+            background: var(--primary);
+            color: white;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
+        }
+
+        .ekspertiz-section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 35px 0 20px 0;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
         .ekspertiz-3d-wrapper {
-            background: #090d16;
-            border-radius: 16px;
-            padding: 35px;
+            background: #020617;
+            border-radius: 20px;
+            padding: 40px;
             position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
-            box-shadow: inset 0 0 25px rgba(0,0,0,0.8);
+            box-shadow: inset 0 0 40px rgba(0,0,0,0.8);
+            border: 1px solid var(--border);
         }
 
-        /* Yeni Yüklenen 19604 Şemasına Uygun 3D Araç Yapısı */
         .car-silhouette {
             position: relative;
             width: 280px;
             height: 520px;
-            background: #111827;
+            background: #0f172a;
             border-radius: 110px 110px 65px 65px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-            border: 4px solid #374151;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+            border: 4px solid #334155;
             display: flex;
             flex-direction: column;
             padding: 12px 10px;
             gap: 10px;
         }
 
-        /* Tamponlar ve Çamurluk Çıkıntıları */
         .car-silhouette::before, .car-silhouette::after {
             content: '';
             position: absolute;
-            background: #111827;
+            background: #0f172a;
             width: 14px;
             height: 75px;
             border-radius: 10px;
             top: 100px;
+            border: 2px solid #334155;
         }
-        .car-silhouette::before { left: -14px; border-radius: 10px 0 0 10px; }
-        .car-silhouette::after { right: -14px; border-radius: 0 10px 10px 0; }
+        .car-silhouette::before { left: -16px; border-radius: 10px 0 0 10px; }
+        .car-silhouette::after { right: -16px; border-radius: 0 10px 10px 0; }
 
         .rear-wheels::before, .rear-wheels::after {
             content: '';
             position: absolute;
-            background: #111827;
+            background: #0f172a;
             width: 14px;
             height: 75px;
             border-radius: 10px;
             bottom: 110px;
+            border: 2px solid #334155;
         }
-        .rear-wheels::before { left: -14px; border-radius: 10px 0 0 10px; }
-        .rear-wheels::after { right: -14px; border-radius: 0 10px 10px 0; }
+        .rear-wheels::before { left: -16px; border-radius: 10px 0 0 10px; }
+        .rear-wheels::after { right: -16px; border-radius: 0 10px 10px 0; }
 
         .car-part {
             background: var(--orijinal);
-            color: #1f2937;
+            color: #ffffff;
             font-weight: 700;
             font-size: 0.7rem;
             display: flex;
@@ -324,15 +402,16 @@
             justify-content: center;
             text-align: center;
             cursor: pointer;
-            transition: all 0.2s;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             user-select: none;
             position: relative;
+            border-radius: 8px;
         }
 
         .car-part:hover {
-            filter: brightness(1.2);
-            transform: scale(1.02);
+            filter: brightness(1.25);
+            transform: scale(1.03);
             z-index: 10;
         }
 
@@ -371,11 +450,11 @@
             width: 40%;
             height: 100%;
             border-radius: 12px;
-            background: #e2e8f0;
-            color: #1f2937;
-            border-left: 2px solid #cbd5e1;
-            border-right: 2px solid #cbd5e1;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+            background: #475569;
+            color: #ffffff;
+            border-left: 2px solid #64748b;
+            border-right: 2px solid #64748b;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.2);
         }
 
         .car-row-lower {
@@ -412,202 +491,230 @@
         .popup-menu {
             display: none;
             position: absolute;
-            background: white;
-            color: #333;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-            padding: 8px;
+            background: #1e293b;
+            color: white;
+            border-radius: 14px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            padding: 10px;
             z-index: 100;
-            width: 160px;
+            width: 180px;
+            border: 1px solid var(--border);
         }
 
         .popup-menu button {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             width: 100%;
-            padding: 8px 10px;
+            padding: 10px 12px;
             background: none;
             border: none;
             text-align: left;
             font-size: 0.85rem;
             font-weight: 600;
-            border-radius: 6px;
+            color: white;
+            border-radius: 8px;
             cursor: pointer;
             transition: 0.2s;
         }
 
         .popup-menu button:hover {
-            background: #f1f5f9;
+            background: rgba(255, 255, 255, 0.08);
         }
 
         .legend {
             display: flex;
-            gap: 15px;
+            gap: 20px;
             font-size: 0.85rem;
             margin-top: 25px;
             flex-wrap: wrap;
             justify-content: center;
             color: #fff;
-        }
-        .legend span { display: flex; align-items: center; gap: 6px; }
-        .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
-
-        /* Donanım Seçim Alanı Stilleri (Görsel 19605'e Uygun) */
-        .donanim-box {
-            background: #f8fafc;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 12px 24px;
+            border-radius: 30px;
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 20px;
+        }
+        .legend span { display: flex; align-items: center; gap: 8px; font-weight: 500; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; box-shadow: 0 0 10px currentColor; }
+
+        /* Donanım Alanı */
+        .donanim-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 25px;
+            margin-top: 25px;
         }
 
         .donanim-category-title {
             font-size: 1.05rem;
             font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 12px;
-            padding-bottom: 6px;
-            border-bottom: 2px solid var(--border);
+            color: white;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         .donanim-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
-            margin-bottom: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 12px;
+            margin-bottom: 25px;
         }
 
         .donanim-item {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             font-size: 0.88rem;
             font-weight: 500;
-            color: var(--text);
+            color: var(--text-light);
             cursor: pointer;
-            background: white;
-            padding: 8px 12px;
-            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 10px 14px;
+            border-radius: 10px;
             border: 1px solid var(--border);
-            transition: 0.2s;
+            transition: all 0.2s;
         }
 
         .donanim-item:hover {
             border-color: var(--accent);
-            background: #fffbeb;
+            background: rgba(56, 189, 248, 0.05);
+            color: white;
         }
 
         .donanim-item input[type="checkbox"] {
             accent-color: var(--accent);
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
             cursor: pointer;
+            border-radius: 4px;
         }
 
         .btn-submit {
-            background-color: var(--accent);
-            color: #0f172a;
+            background: var(--accent-gradient);
+            color: var(--primary);
             border: none;
-            padding: 14px 20px;
-            font-size: 1rem;
-            font-weight: 700;
-            border-radius: 8px;
+            padding: 16px 24px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            border-radius: 14px;
             cursor: pointer;
-            margin-top: 25px;
+            margin-top: 30px;
             width: 100%;
-            transition: 0.3s;
-            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+            transition: all 0.3s;
+            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.3);
         }
 
         .btn-submit:hover {
-            background-color: var(--accent-hover);
-            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(56, 189, 248, 0.5);
         }
 
+        /* Araç Listesi Grid & Kartlar */
         .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .section-header h2 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 800;
-            color: #ffffff;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            color: white;
+            letter-spacing: -0.5px;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .section-header h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 5px;
+            height: 24px;
+            background: var(--accent);
+            border-radius: 4px;
         }
 
         .car-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
             gap: 30px;
         }
 
         .car-card {
             background: var(--card-bg);
-            border-radius: 14px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             border: 1px solid var(--border);
             cursor: pointer;
         }
 
         .car-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+            transform: translateY(-8px);
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.6), 0 0 30px rgba(56, 189, 248, 0.15);
         }
 
         .car-img-wrapper {
             position: relative;
             width: 100%;
-            height: 220px;
+            height: 240px;
             overflow: hidden;
-            background: #cbd5e1;
+            background: #0f172a;
         }
 
         .car-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .car-card:hover .car-image {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
 
         .car-price-badge {
             position: absolute;
-            bottom: 12px;
-            left: 12px;
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(5px);
-            color: #4ade80;
-            padding: 6px 14px;
-            border-radius: 8px;
-            font-size: 1.25rem;
+            bottom: 16px;
+            left: 16px;
+            background: rgba(3, 7, 18, 0.85);
+            backdrop-filter: blur(8px);
+            color: #38bdf8;
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 1.35rem;
             font-weight: 800;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            border: 1px solid rgba(56, 189, 248, 0.2);
         }
 
         .car-details {
-            padding: 22px;
+            padding: 24px;
         }
 
         .car-title {
-            font-size: 1.25rem;
+            font-size: 1.35rem;
             font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 12px;
+            color: white;
+            margin-bottom: 14px;
+            letter-spacing: -0.5px;
         }
 
         .specs-grid {
@@ -615,10 +722,10 @@
             grid-template-columns: 1fr 1fr;
             gap: 10px;
             font-size: 0.85rem;
-            background: #f8fafc;
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 14px;
+            border-radius: 12px;
+            margin-bottom: 18px;
             border: 1px solid var(--border);
         }
 
@@ -632,17 +739,18 @@
         }
 
         .specs-grid div strong {
-            color: var(--primary);
+            color: white;
         }
 
         .car-desc {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--text-light);
-            margin-bottom: 20px;
+            margin-bottom: 22px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            line-height: 1.5;
         }
 
         .card-actions {
@@ -651,39 +759,45 @@
         }
 
         .btn-details {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 8px;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            padding: 12px;
+            border-radius: 12px;
             cursor: pointer;
             width: 100%;
             font-weight: 700;
-            font-size: 0.9rem;
-            transition: 0.2s;
+            font-size: 0.95rem;
+            transition: all 0.3s;
             text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
         .btn-details:hover {
-            background-color: var(--primary-light);
+            background: var(--accent);
+            color: var(--primary);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
         }
 
         .admin-car-list-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 15px;
-            background: #f8fafc;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border);
-            border-radius: 8px;
-            margin-bottom: 10px;
+            border-radius: 12px;
+            margin-bottom: 12px;
         }
 
         .btn-delete {
-            background-color: #fee2e2;
+            background: rgba(239, 68, 68, 0.15);
             color: #ef4444;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 8px;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 8px 14px;
+            border-radius: 10px;
             cursor: pointer;
             font-weight: 700;
             font-size: 0.85rem;
@@ -693,10 +807,12 @@
             gap: 6px;
         }
         .btn-delete:hover {
-            background-color: #ef4444;
+            background: #ef4444;
             color: white;
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
         }
 
+        /* Modal */
         #carModal {
             display: none;
             position: fixed;
@@ -704,8 +820,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(15, 23, 42, 0.75);
-            backdrop-filter: blur(5px);
+            background: rgba(3, 7, 18, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             z-index: 2000;
             justify-content: center;
             align-items: center;
@@ -713,41 +830,48 @@
         }
 
         .modal-content {
-            background: white;
+            background: #0f172a;
+            border: 1px solid var(--border-glow);
             width: 100%;
-            max-width: 1000px;
+            max-width: 1050px;
             max-height: 90vh;
-            border-radius: 16px;
+            border-radius: 24px;
             overflow-y: auto;
-            padding: 30px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            animation: fadeIn 0.3s ease;
+            padding: 35px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+            animation: scaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
+        }
+
+        @keyframes scaleUp {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 15px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
         }
 
         .modal-header h2 {
-            color: var(--primary);
-            font-size: 1.6rem;
+            color: white;
+            font-size: 1.8rem;
+            letter-spacing: -0.5px;
         }
 
         .btn-close-modal {
-            background: #fee2e2;
+            background: rgba(239, 68, 68, 0.15);
             color: #ef4444;
-            border: none;
-            width: 36px;
-            height: 36px;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 1.1rem;
+            font-size: 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -756,100 +880,104 @@
         .btn-close-modal:hover {
             background: #ef4444;
             color: white;
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
         }
 
         .modal-body-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 25px;
+            gap: 30px;
         }
 
-        @media(max-width: 900px) {
+        @media(max-width: 950px) {
             .modal-body-grid { grid-template-columns: 1fr; }
         }
 
         .modal-car-img {
             width: 100%;
-            height: 260px;
+            height: 280px;
             object-fit: cover;
-            border-radius: 12px;
+            border-radius: 16px;
             margin-bottom: 15px;
+            border: 1px solid var(--border);
         }
 
         .modal-thumbnails {
             display: flex;
-            gap: 8px;
+            gap: 10px;
             overflow-x: auto;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             padding-bottom: 5px;
         }
         .modal-thumb {
-            width: 60px;
-            height: 50px;
+            width: 70px;
+            height: 55px;
             object-fit: cover;
-            border-radius: 6px;
+            border-radius: 10px;
             cursor: pointer;
             border: 2px solid transparent;
             transition: 0.2s;
         }
         .modal-thumb:hover, .modal-thumb.active {
             border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
         }
 
         .modal-specs-list {
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            background: #f8fafc;
-            padding: 15px;
-            border-radius: 10px;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 18px;
+            border-radius: 14px;
             border: 1px solid var(--border);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .modal-specs-list div {
             display: flex;
             justify-content: space-between;
-            font-size: 0.9rem;
-            padding: 4px 0;
-            border-bottom: 1px solid #e2e8f0;
+            font-size: 0.95rem;
+            padding: 6px 0;
+            border-bottom: 1px solid var(--border);
         }
         .modal-specs-list div:last-child { border-bottom: none; }
         .modal-specs-list span { color: var(--text-light); }
-        .modal-specs-list strong { color: var(--primary); }
+        .modal-specs-list strong { color: white; }
 
         .modal-donanim-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 6px;
+            gap: 8px;
             margin-top: 15px;
         }
 
         .modal-donanim-tag {
-            background: #f1f5f9;
-            color: var(--primary);
-            font-size: 0.8rem;
+            background: rgba(56, 189, 248, 0.08);
+            color: var(--accent);
+            font-size: 0.85rem;
             font-weight: 600;
-            padding: 5px 10px;
-            border-radius: 6px;
-            border: 1px solid var(--border);
+            padding: 6px 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(56, 189, 248, 0.2);
             display: inline-flex;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
         }
 
+        /* Footer */
         footer {
-            background-color: var(--primary);
+            background: rgba(3, 7, 18, 0.9);
             color: white;
             text-align: center;
-            padding: 30px 20px;
-            margin-top: 60px;
-            border-top: 4px solid var(--accent);
+            padding: 40px 20px;
+            margin-top: 80px;
+            border-top: 1px solid var(--border);
         }
 
         footer p {
-            color: #94a3b8;
-            font-size: 0.9rem;
+            color: var(--text-light);
+            font-size: 0.95rem;
         }
     </style>
 </head>
@@ -859,19 +987,22 @@
     <header>
         <div class="navbar">
             <a href="#" class="logo">
-                <i class="fa-solid fa-car-side" style="color: var(--accent);"></i> ADİLHAN <span>OTOMOTİV</span>
+                <div class="logo-icon">
+                    <i class="fa-solid fa-car-side"></i>
+                </div>
+                ADİLHAN <span>OTOMOTİV</span>
             </a>
             <div class="search-container">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="searchInput" placeholder="Marka veya model ara...">
+                <input type="text" id="searchInput" placeholder="Marka, model ara veya 'admin' yaz...">
             </div>
         </div>
     </header>
 
     <!-- Hero Banner -->
     <section class="hero">
-        <h1>Güvenin ve Kalitenin Tek Adresi</h1>
-        <p>İkinci el premium araç portföyümüz ve detaylı ekspertiz raporlarımızla hizmetinizdeyiz.</p>
+        <h1>Güvenin ve Kalitenin <span>Tek Adresi</span></h1>
+        <p>İkinci el premium araç portföyümüz ve şeffaf 3D ekspertiz raporlarımızla hayalinizdeki araca sahip olun.</p>
     </section>
 
     <main class="main-container">
@@ -879,19 +1010,19 @@
         <!-- Admin Paneli -->
         <section id="admin-panel">
             <div class="admin-header">
-                <h2><i class="fa-solid fa-lock-open" style="color: var(--accent);"></i> Admin Paneli: İlan Ekle & Kaldır</h2>
-                <button type="button" class="btn-close-admin" onclick="closeAdminPanel()"><i class="fa-solid fa-xmark"></i> Kapat</button>
+                <h2><i class="fa-solid fa-shield-halved" style="color: var(--accent);"></i> Yönetici Paneli: İlan Yönetimi</h2>
+                <button type="button" class="btn-close-admin" onclick="closeAdminPanel()"><i class="fa-solid fa-xmark"></i> Paneli Kapat</button>
             </div>
             
             <!-- Arka Plan Fotoğrafı Seçme Alanı -->
             <div class="bg-changer-box">
                 <div>
-                    <h3 style="font-size: 1.1rem; color: var(--primary); margin-bottom: 4px;"><i class="fa-solid fa-image" style="color: var(--accent);"></i> Arka Plan Fotoğrafını Değiştir</h3>
-                    <p style="font-size: 0.85rem; color: var(--text-light);">Galerinizden bir fotoğraf seçerek sitenin arka planını güncelleyin.</p>
+                    <h3 style="font-size: 1.1rem; color: white; margin-bottom: 4px;"><i class="fa-solid fa-image" style="color: var(--accent);"></i> Arka Plan Görselini Değiştir</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-light);">Cihazınızdan özel bir fotoğraf seçerek sitenin atmosferini kişiselleştirin.</p>
                 </div>
                 <div>
                     <label for="bgImageInput" class="btn-file-select">
-                        <i class="fa-solid fa-folder-open"></i> Fotoğraf Seç (Galeri)
+                        <i class="fa-solid fa-folder-open"></i> Fotoğraf Seç
                     </label>
                     <input type="file" id="bgImageInput" accept="image/*" style="display: none;" onchange="changeBackground(event)">
                 </div>
@@ -900,27 +1031,27 @@
             <form id="carForm">
                 <div class="form-grid">
                     <div class="form-group">
-                        <label>Marka</label>
+                        <label><i class="fa-solid fa-tag"></i> Marka</label>
                         <input type="text" id="brand" required placeholder="Örn: BMW">
                     </div>
                     <div class="form-group">
-                        <label>Model</label>
+                        <label><i class="fa-solid fa-car"></i> Model</label>
                         <input type="text" id="model" required placeholder="Örn: 3.20i M Sport">
                     </div>
                     <div class="form-group">
-                        <label>Yıl</label>
+                        <label><i class="fa-solid fa-calendar"></i> Yıl</label>
                         <input type="number" id="year" required placeholder="2023">
                     </div>
                     <div class="form-group">
-                        <label>Fiyat (TL)</label>
+                        <label><i class="fa-solid fa-wallet"></i> Fiyat (TL)</label>
                         <input type="number" id="price" required placeholder="2150000">
                     </div>
                     <div class="form-group">
-                        <label>Kilometre (KM)</label>
+                        <label><i class="fa-solid fa-road"></i> Kilometre (KM)</label>
                         <input type="number" id="km" required placeholder="38000">
                     </div>
                     <div class="form-group">
-                        <label>Vites Tipi</label>
+                        <label><i class="fa-solid fa-gears"></i> Vites Tipi</label>
                         <select id="transmission">
                             <option value="Otomatik">Otomatik</option>
                             <option value="Düz (Manuel)">Düz (Manuel)</option>
@@ -928,7 +1059,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Yakıt Türü</label>
+                        <label><i class="fa-solid fa-gas-pump"></i> Yakıt Türü</label>
                         <select id="fuel">
                             <option value="Benzin">Benzin</option>
                             <option value="Dizel">Dizel</option>
@@ -937,22 +1068,22 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Kasa Tipi</label>
+                        <label><i class="fa-solid fa-car-side"></i> Kasa Tipi</label>
                         <input type="text" id="bodyType" placeholder="Sedan, SUV...">
                     </div>
                     <div class="form-group">
-                        <label>Renk</label>
+                        <label><i class="fa-solid fa-palette"></i> Renk</label>
                         <input type="text" id="color" placeholder="Beyaz, Siyah...">
                     </div>
                     <div class="form-group">
-                        <label>Motor Gücü (HP)</label>
+                        <label><i class="fa-solid fa-bolt"></i> Motor Gücü</label>
                         <input type="text" id="enginePower" placeholder="170 HP">
                     </div>
                     
                     <!-- Çoklu Fotoğraf Seçim Alanı -->
                     <div class="form-group full-width">
-                        <label><i class="fa-solid fa-images" style="color: var(--accent);"></i> Araç Fotoğrafları (Galeriden Birden Fazla Seçebilirsiniz)</label>
-                        <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                        <label><i class="fa-solid fa-images" style="color: var(--accent);"></i> Araç Fotoğrafları (Birden Fazla Seçebilirsiniz)</label>
+                        <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
                             <label for="carMultiImagesInput" class="btn-file-select" style="margin: 0;">
                                 <i class="fa-solid fa-folder-open"></i> Galeriden Fotoğraf Seç
                             </label>
@@ -962,7 +1093,7 @@
                     </div>
                 </div>
 
-                <div class="ekspertiz-section-title"><i class="fa-solid fa-car-rear"></i> Kuş Bakışı 3D Ekspertiz Şeması (Parçalara tıklayarak durum seçin)</div>
+                <div class="ekspertiz-section-title"><i class="fa-solid fa-car-rear"></i> Kuş Bakışı 3D Ekspertiz Şeması (Parçalara tıklayarak boya/değişen durumunu belirleyin)</div>
                 <div class="ekspertiz-3d-wrapper">
                     <div class="car-silhouette rear-wheels">
                         <div class="car-part" id="part-on-tampon" onclick="openPartMenu(event, 'on-tampon')">Ön Tampon</div>
@@ -998,7 +1129,7 @@
                     </div>
                 </div>
 
-                <!-- Donanım Seçim Alanı (Görsel 19605'e Uygun) -->
+                <!-- Donanım Seçim Alanı -->
                 <div class="donanim-box">
                     <div class="donanim-category-title"><i class="fa-solid fa-shield-halved" style="color: var(--accent);"></i> Güvenlik Donanımları</div>
                     <div class="donanim-grid" id="guvenlikDonanimlar">
@@ -1059,16 +1190,16 @@
                     </div>
                 </div>
 
-                <div class="form-group full-width" style="margin-top: 20px;">
-                    <label>Açıklama / Notlar</label>
-                    <textarea id="description" rows="3" placeholder="Araç durumu, tramer bilgisi vb. ek açıklamalar..."></textarea>
+                <div class="form-group full-width" style="margin-top: 25px;">
+                    <label><i class="fa-solid fa-align-left"></i> Açıklama / Notlar</label>
+                    <textarea id="description" rows="3" placeholder="Araç durumu, tramer kaydı vb. ek detaylar..."></textarea>
                 </div>
 
-                <button type="submit" class="btn-submit"><i class="fa-solid fa-plus"></i> Aracı Galeriye Kaydet (İlan Ver)</button>
+                <button type="submit" class="btn-submit"><i class="fa-solid fa-plus-circle"></i> Aracı Galeriye Kaydet (İlan Ver)</button>
             </form>
 
-            <div style="margin-top: 40px; border-top: 2px solid var(--border); padding-top: 25px;">
-                <h3 style="font-size: 1.2rem; color: var(--primary); margin-bottom: 15px;"><i class="fa-solid fa-trash-can" style="color: #ef4444;"></i> Yayındaki İlanları Kaldır</h3>
+            <div style="margin-top: 40px; border-top: 1px solid var(--border); padding-top: 25px;">
+                <h3 style="font-size: 1.2rem; color: white; margin-bottom: 15px;"><i class="fa-solid fa-trash-can" style="color: #ef4444;"></i> Yayındaki İlanları Yönet / Kaldır</h3>
                 <div id="adminCarListContainer"></div>
             </div>
         </section>
@@ -1105,15 +1236,15 @@
                         <!-- Dinamik özellikler -->
                     </div>
 
-                    <div style="font-size:0.95rem; font-weight:700; margin-bottom:8px; color:var(--primary);">Donanım Özellikleri</div>
+                    <div style="font-size:1rem; font-weight:700; margin-bottom:10px; color:white;">Donanım Özellikleri</div>
                     <div id="modalDonanimlar" class="modal-donanim-tags"></div>
                 </div>
                 <div>
-                    <div style="font-size:1rem; font-weight:700; margin-bottom:12px; color:var(--primary); display:flex; align-items:center; gap:8px;">
+                    <div style="font-size:1.1rem; font-weight:700; margin-bottom:15px; color:white; display:flex; align-items:center; gap:10px;">
                         <i class="fa-solid fa-shield-halved" style="color:var(--accent);"></i> 3D Ekspertiz Şeması
                     </div>
                     
-                    <div class="ekspertiz-3d-wrapper" style="padding: 20px;">
+                    <div class="ekspertiz-3d-wrapper" style="padding: 25px;">
                         <div class="car-silhouette rear-wheels" style="width: 220px; height: 420px;">
                             <div class="car-part modal-part-on-tampon" id="modal-part-on-tampon">Ön Tampon</div>
                             <div class="car-part modal-part-kaput" id="modal-part-kaput">Ön Kaput</div>
@@ -1133,7 +1264,7 @@
                             <div class="car-part modal-part-arka-tampon" id="modal-part-arka-tampon">Arka Tampon</div>
                         </div>
 
-                        <div class="legend" style="margin-top: 15px; font-size: 0.75rem;">
+                        <div class="legend" style="margin-top: 15px; font-size: 0.75rem; padding: 8px 16px;">
                             <span><i class="dot" style="background:var(--orijinal)"></i> Orijinal</span>
                             <span><i class="dot" style="background:var(--lokal)"></i> Lokal</span>
                             <span><i class="dot" style="background:var(--boyali)"></i> Boyalı</span>
@@ -1153,7 +1284,7 @@
     <!-- Script -->
     <script>
         const colorMap = {
-            'orijinal': '#94a3b8',
+            'orijinal': '#64748b',
             'boyali': '#3b82f6',
             'degisen': '#ef4444',
             'lokal': '#eab308'
@@ -1181,9 +1312,9 @@
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     const base64Image = e.target.result;
-                    document.body.style.backgroundImage = `linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('${base64Image}')`;
+                    document.body.style.backgroundImage = `radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.05) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.03) 0%, transparent 40%), url('${base64Image}')`;
                     localStorage.setItem('adilhan_custom_bg', base64Image);
-                    alert('Arka plan fotoğrafı başarıyla değiştirildi ve kaydedildi!');
+                    alert('Arka plan fotoğrafı başarıyla güncellendi!');
                 };
                 reader.readAsDataURL(file);
             }
@@ -1246,7 +1377,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             const savedBg = localStorage.getItem('adilhan_custom_bg');
             if (savedBg) {
-                document.body.style.backgroundImage = `linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('${savedBg}')`;
+                document.body.style.backgroundImage = `radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.05) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.03) 0%, transparent 40%), url('${savedBg}')`;
             }
 
             const carForm = document.getElementById('carForm');
@@ -1320,7 +1451,6 @@
                     return;
                 }
 
-                // Seçilen donanımları topla
                 const selectedDonanimlar = [];
                 document.querySelectorAll('.donanim-item input[type="checkbox"]:checked').forEach(chk => {
                     selectedDonanimlar.push(chk.value);
@@ -1407,7 +1537,6 @@
                 `;
                 document.getElementById('modalSpecs').innerHTML = specsHtml;
 
-                // Donanımları modalda listele
                 const donanimContainer = document.getElementById('modalDonanimlar');
                 donanimContainer.innerHTML = '';
                 if (car.donanimlar && car.donanimlar.length > 0) {
@@ -1443,7 +1572,7 @@
                 carList.innerHTML = '';
 
                 if (carArray.length === 0) {
-                    carList.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color:#fff; padding:40px; background:rgba(15,23,42,0.6); border-radius:8px;">Aradığınız kriterlere uygun araç bulunamadı.</p>';
+                    carList.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color:var(--text-light); padding:50px; background:rgba(255,255,255,0.02); border-radius:16px; border:1px solid var(--border);">Aradığınız kriterlere uygun araç bulunamadı.</p>';
                     return;
                 }
 
@@ -1495,7 +1624,7 @@
                     const item = document.createElement('div');
                     item.className = 'admin-car-list-item';
                     item.innerHTML = `
-                        <span style="font-weight:600; color:var(--primary);">${car.brand} ${car.model} (${car.year}) - ${Number(car.price).toLocaleString('tr-TR')} ₺</span>
+                        <span style="font-weight:600; color:white;">${car.brand} ${car.model} (${car.year}) - ${Number(car.price).toLocaleString('tr-TR')} ₺</span>
                         <button class="btn-delete" onclick="deleteCar(event, ${car.id})"><i class="fa-solid fa-trash"></i> İlanı Kaldır</button>
                     `;
                     container.appendChild(item);
