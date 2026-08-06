@@ -10,21 +10,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0b0f19;
-            --primary-light: #1e293b;
-            --accent: #38bdf8;
-            --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
-            --gold: #f59e0b;
-            --bg: #030712;
-            --card-bg: rgba(15, 23, 42, 0.85);
-            --text: #f8fafc;
-            --text-light: #94a3b8;
-            --border: rgba(255, 255, 255, 0.08);
-            --border-glow: rgba(56, 189, 248, 0.3);
-            --boyali: #3b82f6;
-            --degisen: #ef4444;
-            --lokal: #eab308;
-            --orijinal: #64748b;
+            --primary: #0f172a;
+            --primary-light: #334155;
+            --accent: #0284c7;
+            --accent-gradient: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+            --gold: #d97706;
+            --bg: #f8fafc;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --text: #0f172a;
+            --text-light: #64748b;
+            --border: rgba(15, 23, 42, 0.08);
+            --border-glow: rgba(2, 132, 199, 0.3);
+            --boyali: #2563eb;
+            --degisen: #dc2626;
+            --lokal: #ca8a04;
+            --orijinal: #94a3b8;
         }
 
         * {
@@ -37,8 +37,8 @@
         body {
             background-color: var(--bg);
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.03) 0%, transparent 40%),
+                radial-gradient(circle at 10% 20%, rgba(2, 132, 199, 0.04) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(217, 119, 6, 0.03) 0%, transparent 40%),
                 url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP//////////////////////////////////////////////////////////////////////////////////////wgALCAABAAEBAREA/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQABPxA=');
             background-size: cover;
             background-position: center;
@@ -51,7 +51,7 @@
 
         /* Header & Nav */
         header {
-            background: rgba(3, 7, 18, 0.85);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             position: sticky;
@@ -74,7 +74,7 @@
         .logo {
             font-size: 1.5rem;
             font-weight: 800;
-            color: white;
+            color: var(--primary);
             display: flex;
             align-items: center;
             gap: 12px;
@@ -90,15 +90,21 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--primary);
+            color: white;
             font-size: 1.2rem;
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.25);
         }
 
         .logo span {
-            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
         .search-container {
@@ -108,15 +114,16 @@
         }
 
         .search-container input {
-            background: rgba(255, 255, 255, 0.04);
+            background: #ffffff;
             border: 1px solid var(--border);
             padding: 12px 20px 12px 45px;
             border-radius: 14px;
-            color: white;
+            color: var(--text);
             outline: none;
-            width: 320px;
+            width: 280px;
             font-size: 0.95rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
         }
 
         .search-container input::placeholder {
@@ -124,10 +131,10 @@
         }
 
         .search-container input:focus {
-            background: rgba(255, 255, 255, 0.08);
+            background: #ffffff;
             border-color: var(--accent);
-            width: 380px;
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.2);
+            width: 330px;
+            box-shadow: 0 0 20px rgba(2, 132, 199, 0.15);
         }
 
         .search-container i {
@@ -142,10 +149,44 @@
             color: var(--accent);
         }
 
+        .nav-btn {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.01);
+            text-decoration: none;
+        }
+
+        .nav-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: rgba(2, 132, 199, 0.03);
+        }
+
+        .nav-btn.primary {
+            background: var(--accent-gradient);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.25);
+        }
+        .nav-btn.primary:hover {
+            opacity: 0.9;
+            color: white;
+        }
+
         /* Hero Banner */
         .hero {
             position: relative;
-            background: linear-gradient(180deg, rgba(3, 7, 18, 0.4) 0%, rgba(3, 7, 18, 0.8) 100%), rgba(11, 15, 25, 0.6);
+            background: linear-gradient(180deg, rgba(248, 250, 252, 0.6) 0%, rgba(241, 245, 249, 0.9) 100%), rgba(255, 255, 255, 0.5);
             backdrop-filter: blur(8px);
             text-align: center;
             padding: 110px 20px 80px 20px;
@@ -154,26 +195,12 @@
             overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 600px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
-            z-index: -1;
-            filter: blur(50px);
-        }
-
         .hero h1 {
             font-size: 3.2rem;
             font-weight: 800;
             margin-bottom: 16px;
             letter-spacing: -1px;
-            color: white;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            color: var(--primary);
         }
 
         .hero h1 span {
@@ -196,6 +223,55 @@
             padding: 0 30px 80px 30px;
         }
 
+        /* Müşteri Paneli / Sekmeleri (Favoriler & Sohbetler) */
+        #userPanelSection {
+            display: none;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            padding: 35px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 50px;
+            border: 1px solid var(--border-glow);
+        }
+
+        .panel-tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 15px;
+        }
+
+        .tab-btn {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tab-btn.active {
+            background: var(--accent-gradient);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.25);
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
         /* Admin Paneli */
         #admin-panel {
             display: none;
@@ -204,7 +280,7 @@
             -webkit-backdrop-filter: blur(20px);
             padding: 40px;
             border-radius: 24px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.08);
             margin-bottom: 50px;
             border: 1px solid var(--border-glow);
             animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -225,7 +301,7 @@
         }
 
         .admin-header h2 {
-            color: white;
+            color: var(--primary);
             font-size: 1.6rem;
             display: flex;
             align-items: center;
@@ -233,9 +309,9 @@
         }
 
         .btn-close-admin {
-            background: rgba(239, 68, 68, 0.15);
-            color: #ef4444;
-            border: 1px solid rgba(239, 68, 68, 0.3);
+            background: rgba(220, 38, 38, 0.1);
+            color: #dc2626;
+            border: 1px solid rgba(220, 38, 38, 0.2);
             padding: 10px 18px;
             border-radius: 12px;
             cursor: pointer;
@@ -246,13 +322,44 @@
             gap: 8px;
         }
         .btn-close-admin:hover {
-            background: #ef4444;
+            background: #dc2626;
             color: white;
-            box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+            box-shadow: 0 0 15px rgba(220, 38, 38, 0.3);
+        }
+
+        .admin-sub-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .admin-tab-btn {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: 0.2s;
+        }
+        .admin-tab-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .admin-tab-pane {
+            display: none;
+        }
+        .admin-tab-pane.active {
+            display: block;
         }
 
         .bg-changer-box {
-            background: rgba(255, 255, 255, 0.02);
+            background: #ffffff;
             border: 1px solid var(--border);
             padding: 24px;
             border-radius: 16px;
@@ -262,12 +369,13 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
         }
 
         .btn-file-select {
-            background: rgba(56, 189, 248, 0.1);
+            background: rgba(2, 132, 199, 0.08);
             color: var(--accent);
-            border: 1px solid rgba(56, 189, 248, 0.3);
+            border: 1px solid rgba(2, 132, 199, 0.2);
             padding: 12px 22px;
             border-radius: 12px;
             cursor: pointer;
@@ -279,8 +387,8 @@
         }
         .btn-file-select:hover {
             background: var(--accent);
-            color: var(--primary);
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+            color: white;
+            box-shadow: 0 0 20px rgba(2, 132, 199, 0.3);
         }
 
         .form-grid {
@@ -314,41 +422,42 @@
             border-radius: 14px;
             outline: none;
             font-size: 0.95rem;
-            background: rgba(255, 255, 255, 0.03);
-            color: white;
+            background: #ffffff;
+            color: var(--text);
             transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.01);
         }
 
         .form-group select option {
-            background: var(--primary);
-            color: white;
+            background: #ffffff;
+            color: var(--text);
         }
 
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
             border-color: var(--accent);
-            background: rgba(255, 255, 255, 0.06);
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
+            background: #ffffff;
+            box-shadow: 0 0 15px rgba(2, 132, 199, 0.1);
         }
 
         .ekspertiz-section-title {
             font-size: 1.1rem;
             font-weight: 700;
             margin: 35px 0 20px 0;
-            color: white;
+            color: var(--primary);
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
         .ekspertiz-3d-wrapper {
-            background: #020617;
+            background: #ffffff;
             border-radius: 20px;
             padding: 40px;
             position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
-            box-shadow: inset 0 0 40px rgba(0,0,0,0.8);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
             border: 1px solid var(--border);
         }
 
@@ -356,10 +465,10 @@
             position: relative;
             width: 280px;
             height: 520px;
-            background: #0f172a;
+            background: #f1f5f9;
             border-radius: 110px 110px 65px 65px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
-            border: 4px solid #334155;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+            border: 4px solid #cbd5e1;
             display: flex;
             flex-direction: column;
             padding: 12px 10px;
@@ -369,12 +478,12 @@
         .car-silhouette::before, .car-silhouette::after {
             content: '';
             position: absolute;
-            background: #0f172a;
+            background: #f1f5f9;
             width: 14px;
             height: 75px;
             border-radius: 10px;
             top: 100px;
-            border: 2px solid #334155;
+            border: 2px solid #cbd5e1;
         }
         .car-silhouette::before { left: -16px; border-radius: 10px 0 0 10px; }
         .car-silhouette::after { right: -16px; border-radius: 0 10px 10px 0; }
@@ -382,12 +491,12 @@
         .rear-wheels::before, .rear-wheels::after {
             content: '';
             position: absolute;
-            background: #0f172a;
+            background: #f1f5f9;
             width: 14px;
             height: 75px;
             border-radius: 10px;
             bottom: 110px;
-            border: 2px solid #334155;
+            border: 2px solid #cbd5e1;
         }
         .rear-wheels::before { left: -16px; border-radius: 10px 0 0 10px; }
         .rear-wheels::after { right: -16px; border-radius: 0 10px 10px 0; }
@@ -403,14 +512,14 @@
             text-align: center;
             cursor: pointer;
             transition: all 0.2s ease;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
             user-select: none;
             position: relative;
             border-radius: 8px;
         }
 
         .car-part:hover {
-            filter: brightness(1.25);
+            filter: brightness(1.1);
             transform: scale(1.03);
             z-index: 10;
         }
@@ -450,11 +559,11 @@
             width: 40%;
             height: 100%;
             border-radius: 12px;
-            background: #475569;
+            background: #64748b;
             color: #ffffff;
-            border-left: 2px solid #64748b;
-            border-right: 2px solid #64748b;
-            box-shadow: inset 0 0 15px rgba(0,0,0,0.2);
+            border-left: 2px solid #94a3b8;
+            border-right: 2px solid #94a3b8;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
         }
 
         .car-row-lower {
@@ -491,10 +600,10 @@
         .popup-menu {
             display: none;
             position: absolute;
-            background: #1e293b;
-            color: white;
+            background: #ffffff;
+            color: var(--text);
             border-radius: 14px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
             padding: 10px;
             z-index: 100;
             width: 180px;
@@ -512,14 +621,14 @@
             text-align: left;
             font-size: 0.85rem;
             font-weight: 600;
-            color: white;
+            color: var(--text);
             border-radius: 8px;
             cursor: pointer;
             transition: 0.2s;
         }
 
         .popup-menu button:hover {
-            background: rgba(255, 255, 255, 0.08);
+            background: #f1f5f9;
         }
 
         .legend {
@@ -529,28 +638,29 @@
             margin-top: 25px;
             flex-wrap: wrap;
             justify-content: center;
-            color: #fff;
-            background: rgba(255, 255, 255, 0.02);
+            color: var(--text);
+            background: #f8fafc;
             padding: 12px 24px;
             border-radius: 30px;
             border: 1px solid var(--border);
         }
         .legend span { display: flex; align-items: center; gap: 8px; font-weight: 500; }
-        .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; box-shadow: 0 0 10px currentColor; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; box-shadow: 0 0 6px currentColor; }
 
         /* Donanım Alanı */
         .donanim-box {
-            background: rgba(255, 255, 255, 0.02);
+            background: #ffffff;
             border: 1px solid var(--border);
             border-radius: 20px;
             padding: 25px;
             margin-top: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
         }
 
         .donanim-category-title {
             font-size: 1.05rem;
             font-weight: 700;
-            color: white;
+            color: var(--primary);
             margin-bottom: 15px;
             padding-bottom: 8px;
             border-bottom: 1px solid var(--border);
@@ -574,7 +684,7 @@
             font-weight: 500;
             color: var(--text-light);
             cursor: pointer;
-            background: rgba(255, 255, 255, 0.02);
+            background: #f8fafc;
             padding: 10px 14px;
             border-radius: 10px;
             border: 1px solid var(--border);
@@ -583,8 +693,8 @@
 
         .donanim-item:hover {
             border-color: var(--accent);
-            background: rgba(56, 189, 248, 0.05);
-            color: white;
+            background: rgba(2, 132, 199, 0.03);
+            color: var(--primary);
         }
 
         .donanim-item input[type="checkbox"] {
@@ -597,7 +707,7 @@
 
         .btn-submit {
             background: var(--accent-gradient);
-            color: var(--primary);
+            color: white;
             border: none;
             padding: 16px 24px;
             font-size: 1.05rem;
@@ -607,12 +717,12 @@
             margin-top: 30px;
             width: 100%;
             transition: all 0.3s;
-            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.3);
+            box-shadow: 0 8px 20px rgba(2, 132, 199, 0.25);
         }
 
         .btn-submit:hover {
             transform: translateY(-2px);
-            box-shadow: 0 15px 30px rgba(56, 189, 248, 0.5);
+            box-shadow: 0 12px 25px rgba(2, 132, 199, 0.4);
         }
 
         /* Araç Listesi Grid & Kartlar */
@@ -626,7 +736,7 @@
         .section-header h2 {
             font-size: 2rem;
             font-weight: 800;
-            color: white;
+            color: var(--primary);
             letter-spacing: -0.5px;
             position: relative;
             padding-left: 15px;
@@ -656,19 +766,20 @@
             -webkit-backdrop-filter: blur(12px);
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             border: 1px solid var(--border);
             cursor: pointer;
+            position: relative;
         }
 
         .car-card:hover {
             transform: translateY(-8px);
-            border-color: rgba(56, 189, 248, 0.4);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.6), 0 0 30px rgba(56, 189, 248, 0.15);
+            border-color: rgba(2, 132, 199, 0.4);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.09), 0 0 20px rgba(2, 132, 199, 0.1);
         }
 
         .car-img-wrapper {
@@ -676,7 +787,7 @@
             width: 100%;
             height: 240px;
             overflow: hidden;
-            background: #0f172a;
+            background: #e2e8f0;
         }
 
         .car-image {
@@ -694,15 +805,41 @@
             position: absolute;
             bottom: 16px;
             left: 16px;
-            background: rgba(3, 7, 18, 0.85);
+            background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(8px);
-            color: #38bdf8;
+            color: var(--accent);
             padding: 8px 16px;
             border-radius: 12px;
             font-size: 1.35rem;
             font-weight: 800;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-            border: 1px solid rgba(56, 189, 248, 0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border: 1px solid rgba(2, 132, 199, 0.2);
+        }
+
+        .btn-fav-card {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: 0.2s;
+            z-index: 10;
+        }
+        .btn-fav-card:hover {
+            transform: scale(1.1);
+        }
+        .btn-fav-card.favorited {
+            color: #dc2626;
         }
 
         .car-details {
@@ -712,7 +849,7 @@
         .car-title {
             font-size: 1.35rem;
             font-weight: 800;
-            color: white;
+            color: var(--primary);
             margin-bottom: 14px;
             letter-spacing: -0.5px;
         }
@@ -722,7 +859,7 @@
             grid-template-columns: 1fr 1fr;
             gap: 10px;
             font-size: 0.85rem;
-            background: rgba(255, 255, 255, 0.02);
+            background: #f8fafc;
             padding: 14px;
             border-radius: 12px;
             margin-bottom: 18px;
@@ -739,7 +876,7 @@
         }
 
         .specs-grid div strong {
-            color: white;
+            color: var(--primary);
         }
 
         .car-desc {
@@ -759,9 +896,9 @@
         }
 
         .btn-details {
-            background: rgba(56, 189, 248, 0.1);
+            background: rgba(2, 132, 199, 0.08);
             color: var(--accent);
-            border: 1px solid rgba(56, 189, 248, 0.25);
+            border: 1px solid rgba(2, 132, 199, 0.2);
             padding: 12px;
             border-radius: 12px;
             cursor: pointer;
@@ -777,8 +914,8 @@
         }
         .btn-details:hover {
             background: var(--accent);
-            color: var(--primary);
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+            color: white;
+            box-shadow: 0 0 15px rgba(2, 132, 199, 0.3);
         }
 
         .admin-car-list-item {
@@ -786,16 +923,17 @@
             justify-content: space-between;
             align-items: center;
             padding: 14px 18px;
-            background: rgba(255, 255, 255, 0.02);
+            background: #ffffff;
             border: 1px solid var(--border);
             border-radius: 12px;
             margin-bottom: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.01);
         }
 
         .btn-delete {
-            background: rgba(239, 68, 68, 0.15);
-            color: #ef4444;
-            border: 1px solid rgba(239, 68, 68, 0.3);
+            background: rgba(220, 38, 38, 0.1);
+            color: #dc2626;
+            border: 1px solid rgba(220, 38, 38, 0.2);
             padding: 8px 14px;
             border-radius: 10px;
             cursor: pointer;
@@ -807,22 +945,22 @@
             gap: 6px;
         }
         .btn-delete:hover {
-            background: #ef4444;
+            background: #dc2626;
             color: white;
-            box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+            box-shadow: 0 0 15px rgba(220, 38, 38, 0.3);
         }
 
-        /* Modal */
-        #carModal {
+        /* Modal (Genel) */
+        .modal-overlay {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(3, 7, 18, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             z-index: 2000;
             justify-content: center;
             align-items: center;
@@ -830,7 +968,7 @@
         }
 
         .modal-content {
-            background: #0f172a;
+            background: #ffffff;
             border: 1px solid var(--border-glow);
             width: 100%;
             max-width: 1050px;
@@ -838,9 +976,13 @@
             border-radius: 24px;
             overflow-y: auto;
             padding: 35px;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
             animation: scaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
+        }
+
+        .modal-content.small {
+            max-width: 480px;
         }
 
         @keyframes scaleUp {
@@ -858,15 +1000,15 @@
         }
 
         .modal-header h2 {
-            color: white;
+            color: var(--primary);
             font-size: 1.8rem;
             letter-spacing: -0.5px;
         }
 
         .btn-close-modal {
-            background: rgba(239, 68, 68, 0.15);
-            color: #ef4444;
-            border: 1px solid rgba(239, 68, 68, 0.3);
+            background: rgba(220, 38, 38, 0.1);
+            color: #dc2626;
+            border: 1px solid rgba(220, 38, 38, 0.2);
             width: 40px;
             height: 40px;
             border-radius: 50%;
@@ -878,9 +1020,9 @@
             transition: 0.2s;
         }
         .btn-close-modal:hover {
-            background: #ef4444;
+            background: #dc2626;
             color: white;
-            box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+            box-shadow: 0 0 15px rgba(220, 38, 38, 0.3);
         }
 
         .modal-body-grid {
@@ -920,14 +1062,14 @@
         }
         .modal-thumb:hover, .modal-thumb.active {
             border-color: var(--accent);
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+            box-shadow: 0 0 10px rgba(2, 132, 199, 0.3);
         }
 
         .modal-specs-list {
             display: flex;
             flex-direction: column;
             gap: 10px;
-            background: rgba(255, 255, 255, 0.02);
+            background: #f8fafc;
             padding: 18px;
             border-radius: 14px;
             border: 1px solid var(--border);
@@ -943,7 +1085,7 @@
         }
         .modal-specs-list div:last-child { border-bottom: none; }
         .modal-specs-list span { color: var(--text-light); }
-        .modal-specs-list strong { color: white; }
+        .modal-specs-list strong { color: var(--primary); }
 
         .modal-donanim-tags {
             display: flex;
@@ -953,22 +1095,64 @@
         }
 
         .modal-donanim-tag {
-            background: rgba(56, 189, 248, 0.08);
+            background: rgba(2, 132, 199, 0.06);
             color: var(--accent);
             font-size: 0.85rem;
             font-weight: 600;
             padding: 6px 12px;
             border-radius: 10px;
-            border: 1px solid rgba(56, 189, 248, 0.2);
+            border: 1px solid rgba(2, 132, 199, 0.2);
             display: inline-flex;
             align-items: center;
             gap: 8px;
         }
 
+        /* Soru Sor / İletişim Alanı */
+        .question-box {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 16px;
+            margin-top: 25px;
+        }
+        .question-box h3 {
+            font-size: 1.05rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .question-box textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            outline: none;
+            font-size: 0.9rem;
+            background: #ffffff;
+            margin-bottom: 12px;
+            resize: vertical;
+        }
+        .btn-send-question {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+        .btn-send-question:hover {
+            opacity: 0.9;
+        }
+
         /* Footer */
         footer {
-            background: rgba(3, 7, 18, 0.9);
-            color: white;
+            background: #ffffff;
+            color: var(--primary);
             text-align: center;
             padding: 40px 20px;
             margin-top: 80px;
@@ -978,6 +1162,73 @@
         footer p {
             color: var(--text-light);
             font-size: 0.95rem;
+        }
+
+        /* Müşteriler / Sohbetler Tabloları vb. */
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #ffffff;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            margin-top: 15px;
+        }
+        .admin-table th, .admin-table td {
+            padding: 14px 18px;
+            text-align: left;
+            font-size: 0.9rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .admin-table th {
+            background: #f8fafc;
+            color: var(--primary);
+            font-weight: 700;
+        }
+        .admin-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .chat-admin-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.01);
+        }
+        .chat-admin-card h4 {
+            color: var(--primary);
+            font-size: 1rem;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .chat-admin-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+        }
+        .reply-box {
+            display: flex;
+            gap: 10px;
+        }
+        .reply-box input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            outline: none;
+            font-size: 0.9rem;
+        }
+        .btn-reply {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -992,9 +1243,25 @@
                 </div>
                 ADİLHAN <span>OTOMOTİV</span>
             </a>
-            <div class="search-container">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="searchInput" placeholder="Marka, model ara veya 'admin' yaz...">
+            
+            <div class="nav-right">
+                <div class="search-container">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="searchInput" placeholder="Marka, model ara...">
+                </div>
+
+                <!-- Giriş Öncesi Butonlar -->
+                <div id="authButtonsContainer" style="display: flex; gap: 10px;">
+                    <button class="nav-btn" onclick="openAuthModal('login')"><i class="fa-solid fa-right-to-bracket"></i> Giriş Yap</button>
+                    <button class="nav-btn primary" onclick="openAuthModal('register')"><i class="fa-solid fa-user-plus"></i> Kayıt Ol</button>
+                </div>
+
+                <!-- Giriş Sonrası Butonlar -->
+                <div id="userMenuContainer" style="display: none; gap: 10px; align-items: center;">
+                    <button class="nav-btn" onclick="openUserPanel()"><i class="fa-solid fa-user-gear"></i> Hesabım</button>
+                    <button id="adminPanelNavBtn" class="nav-btn primary" style="display: none;" onclick="openAdminPanel()"><i class="fa-solid fa-shield-halved"></i> Admin Paneli</button>
+                    <button class="nav-btn" style="color: #dc2626; border-color: rgba(220,38,38,0.2);" onclick="logout()"><i class="fa-solid fa-power-off"></i> Çıkış</button>
+                </div>
             </div>
         </div>
     </header>
@@ -1007,201 +1274,265 @@
 
     <main class="main-container">
 
+        <!-- Müşteri Paneli (Favorilerim ve Sohbetlerim) -->
+        <section id="userPanelSection">
+            <div class="admin-header" style="margin-bottom: 20px;">
+                <h2><i class="fa-solid fa-user-circle" style="color: var(--accent);"></i> Müşteri Hesap Paneli</h2>
+                <button type="button" class="btn-close-admin" onclick="closeUserPanel()"><i class="fa-solid fa-xmark"></i> Paneli Kapat</button>
+            </div>
+            
+            <div class="panel-tabs">
+                <button class="tab-btn active" onclick="switchUserTab('favTabContent', this)"><i class="fa-solid fa-heart"></i> Favorilerim (<span id="favCountBadge">0</span>)</button>
+                <button class="tab-btn" onclick="switchUserTab('chatTabContent', this)"><i class="fa-solid fa-comments"></i> Soru & Sohbetler (<span id="chatCountBadge">0</span>)</button>
+            </div>
+
+            <div id="favTabContent" class="tab-content active">
+                <div id="userFavsGrid" class="car-grid" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">
+                    <!-- Favori araçlar buraya gelecek -->
+                </div>
+            </div>
+
+            <div id="chatTabContent" class="tab-content">
+                <div id="userChatsList">
+                    <!-- Müşterinin sorduğu sorular ve cevaplar buraya gelecek -->
+                </div>
+            </div>
+        </section>
+
         <!-- Admin Paneli -->
         <section id="admin-panel">
             <div class="admin-header">
-                <h2><i class="fa-solid fa-shield-halved" style="color: var(--accent);"></i> Yönetici Paneli: İlan Yönetimi</h2>
+                <h2><i class="fa-solid fa-shield-halved" style="color: var(--accent);"></i> Yönetici Paneli</h2>
                 <button type="button" class="btn-close-admin" onclick="closeAdminPanel()"><i class="fa-solid fa-xmark"></i> Paneli Kapat</button>
             </div>
             
-            <!-- Arka Plan Fotoğrafı Seçme Alanı -->
-            <div class="bg-changer-box">
-                <div>
-                    <h3 style="font-size: 1.1rem; color: white; margin-bottom: 4px;"><i class="fa-solid fa-image" style="color: var(--accent);"></i> Arka Plan Görselini Değiştir</h3>
-                    <p style="font-size: 0.85rem; color: var(--text-light);">Cihazınızdan özel bir fotoğraf seçerek sitenin atmosferini kişiselleştirin.</p>
-                </div>
-                <div>
-                    <label for="bgImageInput" class="btn-file-select">
-                        <i class="fa-solid fa-folder-open"></i> Fotoğraf Seç
-                    </label>
-                    <input type="file" id="bgImageInput" accept="image/*" style="display: none;" onchange="changeBackground(event)">
-                </div>
+            <!-- Admin Alt Sekmeler -->
+            <div class="admin-sub-tabs">
+                <button class="admin-tab-btn active" onclick="switchAdminTab('pane-ilanlar', this)"><i class="fa-solid fa-car"></i> İlan Yönetimi & Ekle</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('pane-musteriler', this)"><i class="fa-solid fa-users"></i> Müşteriler</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('pane-sohbetler', this)"><i class="fa-solid fa-comments"></i> Sohbetler & Sorular</button>
             </div>
 
-            <form id="carForm">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label><i class="fa-solid fa-tag"></i> Marka</label>
-                        <input type="text" id="brand" required placeholder="Örn: BMW">
+            <!-- TAB 1: İlanlar & Ekleme -->
+            <div id="pane-ilanlar" class="admin-tab-pane active">
+                <!-- Arka Plan Fotoğrafı Seçme Alanı -->
+                <div class="bg-changer-box">
+                    <div>
+                        <h3 style="font-size: 1.1rem; color: var(--primary); margin-bottom: 4px;"><i class="fa-solid fa-image" style="color: var(--accent);"></i> Arka Plan Görselini Değiştir</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-light);">Cihazınızdan özel bir fotoğraf seçerek sitenin atmosferini kişiselleştirin.</p>
                     </div>
-                    <div class="form-group">
-                        <label><i class="fa-solid fa-car"></i> Model</label>
-                        <input type="text" id="model" required placeholder="Örn: 3.20i M Sport">
-                    </div>
-                    <div class="form-group">
-                        <label><i class="fa-solid fa-calendar"></i> Yıl</label>
-                        <input type="number" id="year" required placeholder="2023">
-                    </div>
-                    <div class="form-group">
-                        <label><i class="fa-solid fa-wallet"></i> Fiyat (TL)</label>
-                        <input type="number" id="price" required placeholder="2150000">
-                    </div>
-                    <div class="form-group">
-                        <label><i class="fa-solid fa-road"></i> Kilometre (KM)</label>
-                        <input type="number" id="km" required placeholder="38000">
-                    </div>
-                    <div class="form-group">
-                        <label><i class="fa-solid fa-gears"></i> Vites Tipi</label>
-                        <select id="transmission">
-                            <option value="Otomatik">Otomatik</option>
-                            <option value="Düz (Manuel)">Düz (Manuel)</option>
-                            <option value="Yarı Otomatik">Yarı Otomatik</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label><i class="fa-solid fa-gas-pump"></i> Yakıt Türü</label>
-                        <select id="fuel">
-                            <option value="Benzin">Benzin</option>
-                            <option value="Dizel">Dizel</option>
-                            <option value="Hibrit">Hibrit</option>
-                            <option value="Elektrik">Elektrik</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label><i class="fa-solid fa-car-side"></i> Kasa Tipi</label>
-                        <input type="text" id="bodyType" placeholder="Sedan, SUV...">
-                    </div>
-                    <div class="form-group">
-                        <label><i class="fa-solid fa-palette"></i> Renk</label>
-                        <input type="text" id="color" placeholder="Beyaz, Siyah...">
-                    </div>
-                    <div class="form-group">
-                        <label><i class="fa-solid fa-bolt"></i> Motor Gücü</label>
-                        <input type="text" id="enginePower" placeholder="170 HP">
-                    </div>
-                    
-                    <!-- Çoklu Fotoğraf Seçim Alanı -->
-                    <div class="form-group full-width">
-                        <label><i class="fa-solid fa-images" style="color: var(--accent);"></i> Araç Fotoğrafları (Birden Fazla Seçebilirsiniz)</label>
-                        <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
-                            <label for="carMultiImagesInput" class="btn-file-select" style="margin: 0;">
-                                <i class="fa-solid fa-folder-open"></i> Galeriden Fotoğraf Seç
-                            </label>
-                            <input type="file" id="carMultiImagesInput" accept="image/*" multiple style="display: none;" onchange="handleCarImagesSelection(event)">
-                            <span id="selectedImagesCount" style="font-size: 0.9rem; color: var(--text-light); font-weight: 600;">Fotoğraf seçilmedi</span>
-                        </div>
+                    <div>
+                        <label for="bgImageInput" class="btn-file-select">
+                            <i class="fa-solid fa-folder-open"></i> Fotoğraf Seç
+                        </label>
+                        <input type="file" id="bgImageInput" accept="image/*" style="display: none;" onchange="changeBackground(event)">
                     </div>
                 </div>
 
-                <div class="ekspertiz-section-title"><i class="fa-solid fa-car-rear"></i> Kuş Bakışı 3D Ekspertiz Şeması (Parçalara tıklayarak boya/değişen durumunu belirleyin)</div>
-                <div class="ekspertiz-3d-wrapper">
-                    <div class="car-silhouette rear-wheels">
-                        <div class="car-part" id="part-on-tampon" onclick="openPartMenu(event, 'on-tampon')">Ön Tampon</div>
-                        <div class="car-part" id="part-kaput" onclick="openPartMenu(event, 'kaput')">Ön Kaput</div>
+                <form id="carForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-tag"></i> Marka</label>
+                            <input type="text" id="brand" required placeholder="Örn: BMW">
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-car"></i> Model</label>
+                            <input type="text" id="model" required placeholder="Örn: 3.20i M Sport">
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-calendar"></i> Yıl</label>
+                            <input type="number" id="year" required placeholder="2023">
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-wallet"></i> Fiyat (TL)</label>
+                            <input type="number" id="price" required placeholder="2150000">
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-road"></i> Kilometre (KM)</label>
+                            <input type="number" id="km" required placeholder="38000">
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-gears"></i> Vites Tipi</label>
+                            <select id="transmission">
+                                <option value="Otomatik">Otomatik</option>
+                                <option value="Düz (Manuel)">Düz (Manuel)</option>
+                                <option value="Yarı Otomatik">Yarı Otomatik</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-gas-pump"></i> Yakıt Türü</label>
+                            <select id="fuel">
+                                <option value="Benzin">Benzin</option>
+                                <option value="Dizel">Dizel</option>
+                                <option value="Hibrit">Hibrit</option>
+                                <option value="Elektrik">Elektrik</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-car-side"></i> Kasa Tipi</label>
+                            <input type="text" id="bodyType" placeholder="Sedan, SUV...">
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-palette"></i> Renk</label>
+                            <input type="text" id="color" placeholder="Beyaz, Siyah...">
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-bolt"></i> Motor Gücü</label>
+                            <input type="text" id="enginePower" placeholder="170 HP">
+                        </div>
                         
-                        <div class="car-row-middle">
-                            <div class="car-part" id="part-sol-on-camurluk" onclick="openPartMenu(event, 'sol-on-camurluk')">Sol Ön Çamurluk</div>
-                            <div class="car-part" id="part-tavan" onclick="openPartMenu(event, 'tavan')">Tavan</div>
-                            <div class="car-part" id="part-sag-on-camurluk" onclick="openPartMenu(event, 'sag-on-camurluk')">Sağ Ön Çamurluk</div>
+                        <!-- Çoklu Fotoğraf Seçim Alanı -->
+                        <div class="form-group full-width">
+                            <label><i class="fa-solid fa-images" style="color: var(--accent);"></i> Araç Fotoğrafları (Birden Fazla Seçebilirsiniz)</label>
+                            <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+                                <label for="carMultiImagesInput" class="btn-file-select" style="margin: 0;">
+                                    <i class="fa-solid fa-folder-open"></i> Galeriden Fotoğraf Seç
+                                </label>
+                                <input type="file" id="carMultiImagesInput" accept="image/*" multiple style="display: none;" onchange="handleCarImagesSelection(event)">
+                                <span id="selectedImagesCount" style="font-size: 0.9rem; color: var(--text-light); font-weight: 600;">Fotoğraf seçilmedi</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ekspertiz-section-title"><i class="fa-solid fa-car-rear"></i> Kuş Bakışı 3D Ekspertiz Şeması (Parçalara tıklayarak boya/değişen durumunu belirleyin)</div>
+                    <div class="ekspertiz-3d-wrapper">
+                        <div class="car-silhouette rear-wheels">
+                            <div class="car-part" id="part-on-tampon" onclick="openPartMenu(event, 'on-tampon')">Ön Tampon</div>
+                            <div class="car-part" id="part-kaput" onclick="openPartMenu(event, 'kaput')">Ön Kaput</div>
+                            
+                            <div class="car-row-middle">
+                                <div class="car-part" id="part-sol-on-camurluk" onclick="openPartMenu(event, 'sol-on-camurluk')">Sol Ön Çamurluk</div>
+                                <div class="car-part" id="part-tavan" onclick="openPartMenu(event, 'tavan')">Tavan</div>
+                                <div class="car-part" id="part-sag-on-camurluk" onclick="openPartMenu(event, 'sag-on-camurluk')">Sağ Ön Çamurluk</div>
+                            </div>
+
+                            <div class="car-row-lower">
+                                <div class="car-part" id="part-sol-arka-camurluk" onclick="openPartMenu(event, 'sol-arka-camurluk')">Sol Arka Çamurluk</div>
+                                <div class="car-part" id="part-sag-arka-camurluk" onclick="openPartMenu(event, 'sag-arka-camurluk')">Sağ Arka Çamurluk</div>
+                            </div>
+
+                            <div class="car-part" id="part-bagaj" onclick="openPartMenu(event, 'bagaj')">Bagaj Kapağı</div>
+                            <div class="car-part" id="part-arka-tampon" onclick="openPartMenu(event, 'arka-tampon')">Arka Tampon</div>
                         </div>
 
-                        <div class="car-row-lower">
-                            <div class="car-part" id="part-sol-arka-camurluk" onclick="openPartMenu(event, 'sol-arka-camurluk')">Sol Arka Çamurluk</div>
-                            <div class="car-part" id="part-sag-arka-camurluk" onclick="openPartMenu(event, 'sag-arka-camurluk')">Sağ Arka Çamurluk</div>
+                        <div id="partPopupMenu" class="popup-menu">
+                            <button type="button" onclick="setPartStatus('orijinal')"><span class="dot" style="background:var(--orijinal)"></span> Orijinal</button>
+                            <button type="button" onclick="setPartStatus('boyali')"><span class="dot" style="background:#2563eb"></span> Boyalı</button>
+                            <button type="button" onclick="setPartStatus('degisen')"><span class="dot" style="background:#dc2626"></span> Değişen</button>
+                            <button type="button" onclick="setPartStatus('lokal')"><span class="dot" style="background:#ca8a04"></span> Lokal Boyalı</button>
                         </div>
 
-                        <div class="car-part" id="part-bagaj" onclick="openPartMenu(event, 'bagaj')">Bagaj Kapağı</div>
-                        <div class="car-part" id="part-arka-tampon" onclick="openPartMenu(event, 'arka-tampon')">Arka Tampon</div>
+                        <div class="legend">
+                            <span><i class="dot" style="background:var(--orijinal)"></i> Orijinal</span>
+                            <span><i class="dot" style="background:var(--lokal)"></i> Lokal Boyalı</span>
+                            <span><i class="dot" style="background:var(--boyali)"></i> Boyalı</span>
+                            <span><i class="dot" style="background:var(--degisen)"></i> Değişen</span>
+                        </div>
                     </div>
 
-                    <div id="partPopupMenu" class="popup-menu">
-                        <button type="button" onclick="setPartStatus('orijinal')"><span class="dot" style="background:var(--orijinal)"></span> Orijinal</button>
-                        <button type="button" onclick="setPartStatus('boyali')"><span class="dot" style="background:#3b82f6"></span> Boyalı</button>
-                        <button type="button" onclick="setPartStatus('degisen')"><span class="dot" style="background:#ef4444"></span> Değişen</button>
-                        <button type="button" onclick="setPartStatus('lokal')"><span class="dot" style="background:#eab308"></span> Lokal Boyalı</button>
+                    <!-- Donanım Seçim Alanı -->
+                    <div class="donanim-box">
+                        <div class="donanim-category-title"><i class="fa-solid fa-shield-halved" style="color: var(--accent);"></i> Güvenlik Donanımları</div>
+                        <div class="donanim-grid" id="guvenlikDonanimlar">
+                            <label class="donanim-item"><input type="checkbox" value="ABS"> ABS</label>
+                            <label class="donanim-item"><input type="checkbox" value="Distronic"> Distronic</label>
+                            <label class="donanim-item"><input type="checkbox" value="Hava Yastığı (Yolcu)"> Hava Yastığı (Yolcu)</label>
+                            <label class="donanim-item"><input type="checkbox" value="Merkezi Kilit"> Merkezi Kilit</label>
+                            <label class="donanim-item"><input type="checkbox" value="Yorgunluk Tespit Sistemi"> Yorgunluk Tespit Sistemi</label>
+                            <label class="donanim-item"><input type="checkbox" value="AEB"> AEB</label>
+                            <label class="donanim-item"><input type="checkbox" value="ESP / VSA"> ESP / VSA</label>
+                            <label class="donanim-item"><input type="checkbox" value="İmmobiliser"> İmmobiliser</label>
+                            <label class="donanim-item"><input type="checkbox" value="Şerit Takip Sistemi"> Şerit Takip Sistemi</label>
+                            <label class="donanim-item"><input type="checkbox" value="BAS"> BAS</label>
+                            <label class="donanim-item"><input type="checkbox" value="Isofix"> Isofix</label>
+                            <label class="donanim-item"><input type="checkbox" value="Şeritten Ayrılma İkazı"> Şeritten Ayrılma İkazı</label>
+                            <label class="donanim-item"><input type="checkbox" value="Çocuk Kilidi"> Çocuk Kilidi</label>
+                            <label class="donanim-item"><input type="checkbox" value="Hava Yastığı (Sürücü)"> Hava Yastığı (Sürücü)</label>
+                            <label class="donanim-item"><input type="checkbox" value="Kör Nokta Uyarı Sistemi"> Kör Nokta Uyarı Sistemi</label>
+                            <label class="donanim-item"><input type="checkbox" value="Yokuş Kalkış Desteği"> Yokuş Kalkış Desteği</label>
+                        </div>
+
+                        <div class="donanim-category-title"><i class="fa-solid fa-couch" style="color: var(--accent);"></i> İç Donanım</div>
+                        <div class="donanim-grid" id="icDonanimlar">
+                            <label class="donanim-item"><input type="checkbox" value="Adaptive Cruise Control"> Adaptive Cruise Control</label>
+                            <label class="donanim-item"><input type="checkbox" value="Fonksiyonel Direksiyon"> Fonksiyonel Direksiyon</label>
+                            <label class="donanim-item"><input type="checkbox" value="Hidrolik Direksiyon"> Hidrolik Direksiyon</label>
+                            <label class="donanim-item"><input type="checkbox" value="Otm. Kararan Dikiz Aynası"> Otm. Kararan Dikiz Aynası</label>
+                            <label class="donanim-item"><input type="checkbox" value="Start / Stop"> Start / Stop</label>
+                            <label class="donanim-item"><input type="checkbox" value="Anahtarsız Giriş ve Çalıştırma"> Anahtarsız Giriş ve Çalıştırma</label>
+                            <label class="donanim-item"><input type="checkbox" value="Geri Görüş Kamerası"> Geri Görüş Kamerası</label>
+                            <label class="donanim-item"><input type="checkbox" value="Ön Görüş Kamerası"> Ön Görüş Kamerası</label>
+                            <label class="donanim-item"><input type="checkbox" value="Klima"> Klima</label>
+                            <label class="donanim-item"><input type="checkbox" value="Ön Koltuk Kol Dayaması"> Ön Koltuk Kol Dayaması</label>
+                            <label class="donanim-item"><input type="checkbox" value="Yol Bilgisayarı"> Yol Bilgisayarı</label>
+                            <label class="donanim-item"><input type="checkbox" value="Elektrikli Camlar"> Elektrikli Camlar</label>
+                            <label class="donanim-item"><input type="checkbox" value="Hız Sabitleme Sistemi"> Hız Sabitleme Sistemi</label>
+                            <label class="donanim-item"><input type="checkbox" value="Kumaş Koltuk"> Kumaş Koltuk</label>
+                        </div>
+
+                        <div class="donanim-category-title"><i class="fa-solid fa-car" style="color: var(--accent);"></i> Dış Donanım</div>
+                        <div class="donanim-grid" id="disDonanimlar">
+                            <label class="donanim-item"><input type="checkbox" value="Aynalar (Isıtmalı)"> Aynalar (Isıtmalı)</label>
+                            <label class="donanim-item"><input type="checkbox" value="Park Sensörü (Arka)"> Park Sensörü (Arka)</label>
+                            <label class="donanim-item"><input type="checkbox" value="Far (Adaptif)"> Far (Adaptif)</label>
+                            <label class="donanim-item"><input type="checkbox" value="Park Sensörü (Ön)"> Park Sensörü (Ön)</label>
+                            <label class="donanim-item"><input type="checkbox" value="Aynalar (Elektrikli)"> Aynalar (Elektrikli)</label>
+                            <label class="donanim-item"><input type="checkbox" value="Panoramik Cam Tavan"> Panoramik Cam Tavan</label>
+                            <label class="donanim-item"><input type="checkbox" value="Aynalar (Hafızalı)"> Aynalar (Hafızalı)</label>
+                            <label class="donanim-item"><input type="checkbox" value="Sunroof"> Sunroof</label>
+                        </div>
+
+                        <div class="donanim-category-title"><i class="fa-solid fa-icons" style="color: var(--accent);"></i> Multimedya</div>
+                        <div class="donanim-grid" id="multimedyaDonanimlar">
+                            <label class="donanim-item"><input type="checkbox" value="Android Auto"> Android Auto</label>
+                            <label class="donanim-item"><input type="checkbox" value="Apple CarPlay"> Apple CarPlay</label>
+                            <label class="donanim-item"><input type="checkbox" value="Bluetooth"> Bluetooth</label>
+                            <label class="donanim-item"><input type="checkbox" value="USB / AUX"> USB / AUX</label>
+                        </div>
                     </div>
 
-                    <div class="legend">
-                        <span><i class="dot" style="background:var(--orijinal)"></i> Orijinal</span>
-                        <span><i class="dot" style="background:var(--lokal)"></i> Lokal Boyalı</span>
-                        <span><i class="dot" style="background:var(--boyali)"></i> Boyalı</span>
-                        <span><i class="dot" style="background:var(--degisen)"></i> Değişen</span>
+                    <div class="form-group full-width" style="margin-top: 25px;">
+                        <label><i class="fa-solid fa-align-left"></i> Açıklama / Notlar</label>
+                        <textarea id="description" rows="3" placeholder="Araç durumu, tramer kaydı vb. ek detaylar..."></textarea>
                     </div>
+
+                    <button type="submit" class="btn-submit"><i class="fa-solid fa-plus-circle"></i> Aracı Galeriye Kaydet (İlan Ver)</button>
+                </form>
+
+                <div style="margin-top: 40px; border-top: 1px solid var(--border); padding-top: 25px;">
+                    <h3 style="font-size: 1.2rem; color: var(--primary); margin-bottom: 15px;"><i class="fa-solid fa-trash-can" style="color: #dc2626;"></i> Yayındaki İlanları Yönet / Kaldır</h3>
+                    <div id="adminCarListContainer"></div>
                 </div>
-
-                <!-- Donanım Seçim Alanı -->
-                <div class="donanim-box">
-                    <div class="donanim-category-title"><i class="fa-solid fa-shield-halved" style="color: var(--accent);"></i> Güvenlik Donanımları</div>
-                    <div class="donanim-grid" id="guvenlikDonanimlar">
-                        <label class="donanim-item"><input type="checkbox" value="ABS"> ABS</label>
-                        <label class="donanim-item"><input type="checkbox" value="Distronic"> Distronic</label>
-                        <label class="donanim-item"><input type="checkbox" value="Hava Yastığı (Yolcu)"> Hava Yastığı (Yolcu)</label>
-                        <label class="donanim-item"><input type="checkbox" value="Merkezi Kilit"> Merkezi Kilit</label>
-                        <label class="donanim-item"><input type="checkbox" value="Yorgunluk Tespit Sistemi"> Yorgunluk Tespit Sistemi</label>
-                        <label class="donanim-item"><input type="checkbox" value="AEB"> AEB</label>
-                        <label class="donanim-item"><input type="checkbox" value="ESP / VSA"> ESP / VSA</label>
-                        <label class="donanim-item"><input type="checkbox" value="İmmobiliser"> İmmobiliser</label>
-                        <label class="donanim-item"><input type="checkbox" value="Şerit Takip Sistemi"> Şerit Takip Sistemi</label>
-                        <label class="donanim-item"><input type="checkbox" value="BAS"> BAS</label>
-                        <label class="donanim-item"><input type="checkbox" value="Isofix"> Isofix</label>
-                        <label class="donanim-item"><input type="checkbox" value="Şeritten Ayrılma İkazı"> Şeritten Ayrılma İkazı</label>
-                        <label class="donanim-item"><input type="checkbox" value="Çocuk Kilidi"> Çocuk Kilidi</label>
-                        <label class="donanim-item"><input type="checkbox" value="Hava Yastığı (Sürücü)"> Hava Yastığı (Sürücü)</label>
-                        <label class="donanim-item"><input type="checkbox" value="Kör Nokta Uyarı Sistemi"> Kör Nokta Uyarı Sistemi</label>
-                        <label class="donanim-item"><input type="checkbox" value="Yokuş Kalkış Desteği"> Yokuş Kalkış Desteği</label>
-                    </div>
-
-                    <div class="donanim-category-title"><i class="fa-solid fa-couch" style="color: var(--accent);"></i> İç Donanım</div>
-                    <div class="donanim-grid" id="icDonanimlar">
-                        <label class="donanim-item"><input type="checkbox" value="Adaptive Cruise Control"> Adaptive Cruise Control</label>
-                        <label class="donanim-item"><input type="checkbox" value="Fonksiyonel Direksiyon"> Fonksiyonel Direksiyon</label>
-                        <label class="donanim-item"><input type="checkbox" value="Hidrolik Direksiyon"> Hidrolik Direksiyon</label>
-                        <label class="donanim-item"><input type="checkbox" value="Otm. Kararan Dikiz Aynası"> Otm. Kararan Dikiz Aynası</label>
-                        <label class="donanim-item"><input type="checkbox" value="Start / Stop"> Start / Stop</label>
-                        <label class="donanim-item"><input type="checkbox" value="Anahtarsız Giriş ve Çalıştırma"> Anahtarsız Giriş ve Çalıştırma</label>
-                        <label class="donanim-item"><input type="checkbox" value="Geri Görüş Kamerası"> Geri Görüş Kamerası</label>
-                        <label class="donanim-item"><input type="checkbox" value="Ön Görüş Kamerası"> Ön Görüş Kamerası</label>
-                        <label class="donanim-item"><input type="checkbox" value="Klima"> Klima</label>
-                        <label class="donanim-item"><input type="checkbox" value="Ön Koltuk Kol Dayaması"> Ön Koltuk Kol Dayaması</label>
-                        <label class="donanim-item"><input type="checkbox" value="Yol Bilgisayarı"> Yol Bilgisayarı</label>
-                        <label class="donanim-item"><input type="checkbox" value="Elektrikli Camlar"> Elektrikli Camlar</label>
-                        <label class="donanim-item"><input type="checkbox" value="Hız Sabitleme Sistemi"> Hız Sabitleme Sistemi</label>
-                        <label class="donanim-item"><input type="checkbox" value="Kumaş Koltuk"> Kumaş Koltuk</label>
-                    </div>
-
-                    <div class="donanim-category-title"><i class="fa-solid fa-car" style="color: var(--accent);"></i> Dış Donanım</div>
-                    <div class="donanim-grid" id="disDonanimlar">
-                        <label class="donanim-item"><input type="checkbox" value="Aynalar (Isıtmalı)"> Aynalar (Isıtmalı)</label>
-                        <label class="donanim-item"><input type="checkbox" value="Park Sensörü (Arka)"> Park Sensörü (Arka)</label>
-                        <label class="donanim-item"><input type="checkbox" value="Far (Adaptif)"> Far (Adaptif)</label>
-                        <label class="donanim-item"><input type="checkbox" value="Park Sensörü (Ön)"> Park Sensörü (Ön)</label>
-                        <label class="donanim-item"><input type="checkbox" value="Aynalar (Elektrikli)"> Aynalar (Elektrikli)</label>
-                        <label class="donanim-item"><input type="checkbox" value="Panoramik Cam Tavan"> Panoramik Cam Tavan</label>
-                        <label class="donanim-item"><input type="checkbox" value="Aynalar (Hafızalı)"> Aynalar (Hafızalı)</label>
-                        <label class="donanim-item"><input type="checkbox" value="Sunroof"> Sunroof</label>
-                    </div>
-
-                    <div class="donanim-category-title"><i class="fa-solid fa-icons" style="color: var(--accent);"></i> Multimedya</div>
-                    <div class="donanim-grid" id="multimedyaDonanimlar">
-                        <label class="donanim-item"><input type="checkbox" value="Android Auto"> Android Auto</label>
-                        <label class="donanim-item"><input type="checkbox" value="Apple CarPlay"> Apple CarPlay</label>
-                        <label class="donanim-item"><input type="checkbox" value="Bluetooth"> Bluetooth</label>
-                        <label class="donanim-item"><input type="checkbox" value="USB / AUX"> USB / AUX</label>
-                    </div>
-                </div>
-
-                <div class="form-group full-width" style="margin-top: 25px;">
-                    <label><i class="fa-solid fa-align-left"></i> Açıklama / Notlar</label>
-                    <textarea id="description" rows="3" placeholder="Araç durumu, tramer kaydı vb. ek detaylar..."></textarea>
-                </div>
-
-                <button type="submit" class="btn-submit"><i class="fa-solid fa-plus-circle"></i> Aracı Galeriye Kaydet (İlan Ver)</button>
-            </form>
-
-            <div style="margin-top: 40px; border-top: 1px solid var(--border); padding-top: 25px;">
-                <h3 style="font-size: 1.2rem; color: white; margin-bottom: 15px;"><i class="fa-solid fa-trash-can" style="color: #ef4444;"></i> Yayındaki İlanları Yönet / Kaldır</h3>
-                <div id="adminCarListContainer"></div>
             </div>
+
+            <!-- TAB 2: Müşteriler -->
+            <div id="pane-musteriler" class="admin-tab-pane">
+                <h3 style="font-size: 1.2rem; color: var(--primary); margin-bottom: 15px;"><i class="fa-solid fa-users" style="color: var(--accent);"></i> Kayıtlı veya Giriş Yapan Müşteriler</h3>
+                <div style="overflow-x: auto;">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Ad Soyad / Kullanıcı Adı</th>
+                                <th>E-posta</th>
+                                <th>Kayıt / İşlem Tarihi</th>
+                                <th>Rol</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminCustomersTableBody">
+                            <!-- Dinamik Müşteriler -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- TAB 3: Sohbetler & Sorular -->
+            <div id="pane-sohbetler" class="admin-tab-pane">
+                <h3 style="font-size: 1.2rem; color: var(--primary); margin-bottom: 15px;"><i class="fa-solid fa-comments" style="color: var(--accent);"></i> İlanlar İçin Gelen Müşteri Soruları</h3>
+                <div id="adminChatsListContainer">
+                    <!-- Dinamik Sohbetler -->
+                </div>
+            </div>
+
         </section>
 
         <!-- Galeri Listesi -->
@@ -1217,7 +1548,7 @@
     </main>
 
     <!-- Detay ve Ekspertiz Modalı -->
-    <div id="carModal">
+    <div id="carModal" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
                 <h2 id="modalTitle">Araç Detayları</h2>
@@ -1236,11 +1567,18 @@
                         <!-- Dinamik özellikler -->
                     </div>
 
-                    <div style="font-size:1rem; font-weight:700; margin-bottom:10px; color:white;">Donanım Özellikleri</div>
+                    <div style="font-size:1rem; font-weight:700; margin-bottom:10px; color:var(--primary);">Donanım Özellikleri</div>
                     <div id="modalDonanimlar" class="modal-donanim-tags"></div>
+
+                    <!-- Soru Sor Alanı -->
+                    <div class="question-box">
+                        <h3><i class="fa-solid fa-circle-question" style="color:var(--accent);"></i> İlan Sahibine Soru Sor</h3>
+                        <textarea id="modalQuestionInput" rows="3" placeholder="Bu araçla ilgili merak ettiklerinizi sorun..."></textarea>
+                        <button type="button" class="btn-send-question" onclick="sendCustomerQuestion()"><i class="fa-solid fa-paper-plane"></i> Soruyu Gönder</button>
+                    </div>
                 </div>
                 <div>
-                    <div style="font-size:1.1rem; font-weight:700; margin-bottom:15px; color:white; display:flex; align-items:center; gap:10px;">
+                    <div style="font-size:1.1rem; font-weight:700; margin-bottom:15px; color:var(--primary); display:flex; align-items:center; gap:10px;">
                         <i class="fa-solid fa-shield-halved" style="color:var(--accent);"></i> 3D Ekspertiz Şeması
                     </div>
                     
@@ -1276,6 +1614,35 @@
         </div>
     </div>
 
+    <!-- Giriş Yap / Kayıt Ol Modalı -->
+    <div id="authModal" class="modal-overlay">
+        <div class="modal-content small">
+            <div class="modal-header">
+                <h2 id="authModalTitle">Giriş Yap</h2>
+                <button type="button" class="btn-close-modal" onclick="closeAuthModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="authForm" onsubmit="handleAuthSubmit(event)">
+                <div class="form-group" id="nameGroup" style="display: none; margin-bottom: 15px;">
+                    <label><i class="fa-solid fa-user"></i> Ad Soyad</label>
+                    <input type="text" id="authName" placeholder="Adınız Soyadınız">
+                </div>
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label><i class="fa-solid fa-envelope"></i> E-posta</label>
+                    <input type="email" id="authEmail" required placeholder="ornek@mail.com">
+                </div>
+                <div class="form-group" style="margin-bottom: 25px;">
+                    <label><i class="fa-solid fa-lock"></i> Şifre</label>
+                    <input type="password" id="authPassword" required placeholder="******">
+                </div>
+                <button type="submit" class="btn-submit" style="margin-top:0;" id="authSubmitBtn">Giriş Yap</button>
+            </form>
+            <div style="text-align: center; margin-top: 20px; font-size: 0.9rem; color: var(--text-light);">
+                <span id="authToggleText">Hesabınız yok mu?</span> 
+                <a href="#" id="authToggleLink" onclick="toggleAuthMode(event)" style="color: var(--accent); font-weight: 700; text-decoration: none;">Kayıt Ol</a>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
         <p>&copy; 2026 Adilhan Otomotiv. Tüm Hakları Saklıdır.</p>
@@ -1284,10 +1651,10 @@
     <!-- Script -->
     <script>
         const colorMap = {
-            'orijinal': '#64748b',
-            'boyali': '#3b82f6',
-            'degisen': '#ef4444',
-            'lokal': '#eab308'
+            'orijinal': '#94a3b8',
+            'boyali': '#2563eb',
+            'degisen': '#dc2626',
+            'lokal': '#ca8a04'
         };
 
         let currentPartsData = {
@@ -1305,6 +1672,12 @@
         let activeTargetPart = null;
         let allCars = [];
         let uploadedCarImages = [];
+        let usersList = [];
+        let currentUser = null;
+        let userFavorites = [];
+        let messagesList = [];
+        let activeModalCarId = null;
+        let isRegisterMode = false;
 
         function changeBackground(event) {
             const file = event.target.files[0];
@@ -1312,8 +1685,8 @@
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     const base64Image = e.target.result;
-                    document.body.style.backgroundImage = `radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.05) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.03) 0%, transparent 40%), url('${base64Image}')`;
-                    localStorage.setItem('adilhan_custom_bg', base64Image);
+                    document.body.style.backgroundImage = `radial-gradient(circle at 10% 20%, rgba(2, 132, 199, 0.04) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(217, 119, 6, 0.03) 0%, transparent 40%), url('${base64Image}')`;
+                    localStorage.setItem('adilhan_custom_bg_light', base64Image);
                     alert('Arka plan fotoğrafı başarıyla güncellendi!');
                 };
                 reader.readAsDataURL(file);
@@ -1366,31 +1739,254 @@
             if(menu) menu.style.display = 'none';
         });
 
+        function openAdminPanel() {
+            document.getElementById('admin-panel').style.display = 'block';
+            document.getElementById('admin-panel').scrollIntoView({ behavior: 'smooth' });
+            renderAdminCarList();
+            renderAdminCustomers();
+            renderAdminChats();
+            renderCars(allCars);
+        }
+
         function closeAdminPanel() {
             document.getElementById('admin-panel').style.display = 'none';
+        }
+
+        function openUserPanel() {
+            if (!currentUser) {
+                openAuthModal('login');
+                return;
+            }
+            document.getElementById('userPanelSection').style.display = 'block';
+            document.getElementById('userPanelSection').scrollIntoView({ behavior: 'smooth' });
+            renderUserFavorites();
+            renderUserChats();
+        }
+
+        function closeUserPanel() {
+            document.getElementById('userPanelSection').style.display = 'none';
         }
 
         function closeModal() {
             document.getElementById('carModal').style.display = 'none';
         }
 
+        function openAuthModal(mode) {
+            isRegisterMode = (mode === 'register');
+            updateAuthModalUI();
+            document.getElementById('authModal').style.display = 'flex';
+        }
+
+        function closeAuthModal() {
+            document.getElementById('authModal').style.display = 'none';
+        }
+
+        function toggleAuthMode(e) {
+            e.preventDefault();
+            isRegisterMode = !isRegisterMode;
+            updateAuthModalUI();
+        }
+
+        function updateAuthModalUI() {
+            const titleEl = document.getElementById('authModalTitle');
+            const nameGroup = document.getElementById('nameGroup');
+            const submitBtn = document.getElementById('authSubmitBtn');
+            const toggleText = document.getElementById('authToggleText');
+            const toggleLink = document.getElementById('authToggleLink');
+
+            if (isRegisterMode) {
+                titleEl.innerText = 'Kayıt Ol';
+                nameGroup.style.display = 'flex';
+                submitBtn.innerText = 'Kayıt Ol';
+                toggleText.innerText = 'Zaten hesabınız var mı?';
+                toggleLink.innerText = 'Giriş Yap';
+            } else {
+                titleEl.innerText = 'Giriş Yap';
+                nameGroup.style.display = 'none';
+                submitBtn.innerText = 'Giriş Yap';
+                toggleText.innerText = 'Hesabınız yok mu?';
+                toggleLink.innerText = 'Kayıt Ol';
+            }
+        }
+
+        function handleAuthSubmit(event) {
+            event.preventDefault();
+            const email = document.getElementById('authEmail').value.trim();
+            const password = document.getElementById('authPassword').value.trim();
+            const nameInput = document.getElementById('authName').value.trim();
+            const dateStr = new Date().toLocaleDateString('tr-TR');
+
+            if (isRegisterMode) {
+                const name = nameInput || email.split('@')[0];
+                const existing = usersList.find(u => u.email === email);
+                if (existing) {
+                    alert('Bu e-posta adresi ile zaten bir kayıt bulunuyor!');
+                    return;
+                }
+                const newUser = {
+                    id: Date.now(),
+                    name: name,
+                    email: email,
+                    password: password,
+                    date: dateStr,
+                    role: email.includes('admin') ? 'Yönetici' : 'Müşteri'
+                };
+                usersList.push(newUser);
+                currentUser = newUser;
+                saveUsers();
+                alert('Kayıt işlemi başarılı!');
+            } else {
+                // Giriş kontrolü (admin için örnek veya kayıtlı kullanıcı)
+                let found = usersList.find(u => u.email === email && u.password === password);
+                if (!found) {
+                    // Eğer admin e-postası ise ve listede yoksa otomatik oluştur
+                    if (email === 'admin@adilhan.com' && password === 'admin123') {
+                        found = {
+                            id: Date.now(),
+                            name: 'Sistem Yöneticisi',
+                            email: email,
+                            password: password,
+                            date: dateStr,
+                            role: 'Yönetici'
+                        };
+                        usersList.push(found);
+                        saveUsers();
+                    } else {
+                        alert('E-posta veya şifre hatalı!');
+                        return;
+                    }
+                }
+                currentUser = found;
+                alert(`Hoş geldiniz, ${currentUser.name}!`);
+            }
+
+            closeAuthModal();
+            updateNavbarAuth();
+            renderCars(allCars);
+        }
+
+        function logout() {
+            currentUser = null;
+            userFavorites = [];
+            updateNavbarAuth();
+            closeUserPanel();
+            closeAdminPanel();
+            renderCars(allCars);
+            alert('Oturum kapatıldı.');
+        }
+
+        function updateNavbarAuth() {
+            const authBtns = document.getElementById('authButtonsContainer');
+            const userMenu = document.getElementById('userMenuContainer');
+            const adminNavBtn = document.getElementById('adminPanelNavBtn');
+
+            if (currentUser) {
+                authBtns.style.display = 'none';
+                userMenu.style.display = 'flex';
+                if (currentUser.role === 'Yönetici' || currentUser.email.includes('admin')) {
+                    adminNavBtn.style.display = 'flex';
+                } else {
+                    adminNavBtn.style.display = 'none';
+                }
+            } else {
+                authBtns.style.display = 'flex';
+                userMenu.style.display = 'none';
+                adminNavBtn.style.display = 'none';
+            }
+        }
+
+        function switchUserTab(tabId, btnEl) {
+            document.querySelectorAll('#userPanelSection .tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('#userPanelSection .tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            btnEl.classList.add('active');
+        }
+
+        function switchAdminTab(paneId, btnEl) {
+            document.querySelectorAll('#admin-panel .admin-tab-pane').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('#admin-panel .admin-tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(paneId).classList.add('active');
+            btnEl.classList.add('active');
+        }
+
+        function toggleFavorite(event, carId) {
+            event.stopPropagation();
+            if (!currentUser) {
+                alert('Favorilere eklemek için lütfen giriş yapın.');
+                openAuthModal('login');
+                return;
+            }
+
+            if (!userFavorites.includes(carId)) {
+                userFavorites.push(carId);
+                alert('Araç favorilerinize eklendi.');
+            } else {
+                userFavorites = userFavorites.filter(id => id !== carId);
+                alert('Araç favorilerinizden çıkarıldı.');
+            }
+
+            saveFavorites();
+            renderCars(allCars);
+            if(document.getElementById('userPanelSection').style.display === 'block') {
+                renderUserFavorites();
+            }
+        }
+
+        function sendCustomerQuestion() {
+            if (!currentUser) {
+                alert('Soru sorabilmek için lütfen giriş yapın.');
+                openAuthModal('login');
+                return;
+            }
+            const text = document.getElementById('modalQuestionInput').value.trim();
+            if (!text) {
+                alert('Lütfen sorunuzu yazın.');
+                return;
+            }
+
+            const car = allCars.find(c => c.id === activeModalCarId);
+            const newMsg = {
+                id: Date.now(),
+                carId: activeModalCarId,
+                carTitle: car ? `${car.brand} ${car.model}` : 'Araç İlanı',
+                userEmail: currentUser.email,
+                userName: currentUser.name,
+                question: text,
+                answer: '',
+                date: new Date().toLocaleDateString('tr-TR') + ' ' + new Date().toLocaleTimeString('tr-TR', {hour: '2-digit', minute:'2-digit'})
+            };
+
+            messagesList.push(newMsg);
+            saveMessages();
+            document.getElementById('modalQuestionInput').value = '';
+            alert('Sorunuz ilan sahibine iletildi. Profilinizden yanıtları takip edebilirsiniz.');
+            closeModal();
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
-            const savedBg = localStorage.getItem('adilhan_custom_bg');
+            const savedBg = localStorage.getItem('adilhan_custom_bg_light');
             if (savedBg) {
-                document.body.style.backgroundImage = `radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.05) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.03) 0%, transparent 40%), url('${savedBg}')`;
+                document.body.style.backgroundImage = `radial-gradient(circle at 10% 20%, rgba(2, 132, 199, 0.04) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(217, 119, 6, 0.03) 0%, transparent 40%), url('${savedBg}')`;
             }
 
-            const carForm = document.getElementById('carForm');
-            const carList = document.getElementById('carList');
-            const searchInput = document.getElementById('searchInput');
-            const adminPanel = document.getElementById('admin-panel');
+            usersList = JSON.parse(localStorage.getItem('adilhan_users_master')) || [];
+            allCars = JSON.parse(localStorage.getItem('adilhan_cars_master_v7_light')) || [];
+            messagesList = JSON.parse(localStorage.getItem('adilhan_messages_master')) || [];
 
-            for (let key in currentPartsData) {
-                const el = document.getElementById('part-' + key);
-                if(el) el.style.backgroundColor = colorMap[currentPartsData[key]];
+            // Varsayılan admin kullanıcısını ekle yoksa
+            if (!usersList.some(u => u.email === 'admin@adilhan.com')) {
+                usersList.push({
+                    id: 1,
+                    name: 'Sistem Yöneticisi',
+                    email: 'admin@adilhan.com',
+                    password: 'admin123',
+                    date: '01.01.2026',
+                    role: 'Yönetici'
+                });
+                saveUsers();
             }
 
-            allCars = JSON.parse(localStorage.getItem('adilhan_cars_master_v7')) || [];
+            userFavorites = JSON.parse(localStorage.getItem('adilhan_favs_' + (currentUser ? currentUser.email : 'guest'))) || [];
 
             if (allCars.length === 0) {
                 allCars.push({
@@ -1425,17 +2021,16 @@
                 renderCars(allCars);
             }
 
+            for (let key in currentPartsData) {
+                const el = document.getElementById('part-' + key);
+                if(el) el.style.backgroundColor = colorMap[currentPartsData[key]];
+            }
+
+            const carForm = document.getElementById('carForm');
+            const searchInput = document.getElementById('searchInput');
+
             searchInput.addEventListener('input', (e) => {
                 const query = e.target.value.trim().toLowerCase();
-                
-                if (query === 'admin') {
-                    adminPanel.style.display = 'block';
-                    adminPanel.scrollIntoView({ behavior: 'smooth' });
-                    renderAdminCarList();
-                    renderCars(allCars);
-                    return;
-                }
-
                 const filtered = allCars.filter(car => 
                     car.brand.toLowerCase().includes(query) || 
                     car.model.toLowerCase().includes(query)
@@ -1493,6 +2088,7 @@
             };
 
             window.openCarModal = function(id) {
+                activeModalCarId = id;
                 const car = allCars.find(c => c.id === id);
                 if (!car) return;
 
@@ -1562,75 +2158,220 @@
 
                 document.getElementById('carModal').style.display = 'flex';
             };
-
-            function saveAndRender() {
-                localStorage.setItem('adilhan_cars_master_v7', JSON.stringify(allCars));
-                renderCars(allCars);
-            }
-
-            function renderCars(carArray) {
-                carList.innerHTML = '';
-
-                if (carArray.length === 0) {
-                    carList.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color:var(--text-light); padding:50px; background:rgba(255,255,255,0.02); border-radius:16px; border:1px solid var(--border);">Aradığınız kriterlere uygun araç bulunamadı.</p>';
-                    return;
-                }
-
-                carArray.forEach(car => {
-                    const carCard = document.createElement('div');
-                    carCard.className = 'car-card';
-                    carCard.onclick = () => openCarModal(car.id);
-
-                    const coverImg = (car.images && car.images.length > 0) ? car.images[0] : (car.imageUrl || 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80');
-
-                    carCard.innerHTML = `
-                        <div class="car-img-wrapper">
-                            <img src="${coverImg}" alt="${car.brand}" class="car-image" onerror="this.src='https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80'">
-                            <div class="car-price-badge">${Number(car.price).toLocaleString('tr-TR')} ₺</div>
-                        </div>
-                        <div class="car-details">
-                            <h3 class="car-title">${car.brand} ${car.model}</h3>
-                            
-                            <div class="specs-grid">
-                                <div><span>Yıl</span> <strong>${car.year}</strong></div>
-                                <div><span>KM</span> <strong>${Number(car.km).toLocaleString('tr-TR')}</strong></div>
-                                <div><span>Vites</span> <strong>${car.transmission}</strong></div>
-                                <div><span>Yakıt</span> <strong>${car.fuel}</strong></div>
-                            </div>
-                            
-                            <p class="car-desc">${car.description || 'Açıklama girilmemiş.'}</p>
-                            
-                            <div class="card-actions">
-                                <button class="btn-details"><i class="fa-solid fa-eye"></i> Detaylar & Ekspertiz</button>
-                            </div>
-                        </div>
-                    `;
-
-                    carList.appendChild(carCard);
-                });
-            }
-
-            window.renderAdminCarList = function() {
-                const container = document.getElementById('adminCarListContainer');
-                if(!container) return;
-                container.innerHTML = '';
-
-                if (allCars.length === 0) {
-                    container.innerHTML = '<p style="color:var(--text-light); font-size:0.9rem;">Sistemde kayıtlı ilan bulunmuyor.</p>';
-                    return;
-                }
-
-                allCars.forEach(car => {
-                    const item = document.createElement('div');
-                    item.className = 'admin-car-list-item';
-                    item.innerHTML = `
-                        <span style="font-weight:600; color:white;">${car.brand} ${car.model} (${car.year}) - ${Number(car.price).toLocaleString('tr-TR')} ₺</span>
-                        <button class="btn-delete" onclick="deleteCar(event, ${car.id})"><i class="fa-solid fa-trash"></i> İlanı Kaldır</button>
-                    `;
-                    container.appendChild(item);
-                });
-            }
         });
+
+        function saveUsers() {
+            localStorage.setItem('adilhan_users_master', JSON.stringify(usersList));
+        }
+
+        function saveFavorites() {
+            if (currentUser) {
+                localStorage.setItem('adilhan_favs_' + currentUser.email, JSON.stringify(userFavorites));
+            }
+        }
+
+        function saveMessages() {
+            localStorage.setItem('adilhan_messages_master', JSON.stringify(messagesList));
+        }
+
+        function saveAndRender() {
+            localStorage.setItem('adilhan_cars_master_v7_light', JSON.stringify(allCars));
+            renderCars(allCars);
+        }
+
+        function renderCars(carArray) {
+            const carList = document.getElementById('carList');
+            carList.innerHTML = '';
+
+            if (carArray.length === 0) {
+                carList.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color:var(--text-light); padding:50px; background:#ffffff; border-radius:16px; border:1px solid var(--border);">Aradığınız kriterlere uygun araç bulunamadı.</p>';
+                return;
+            }
+
+            carArray.forEach(car => {
+                const isFav = userFavorites.includes(car.id);
+                const carCard = document.createElement('div');
+                carCard.className = 'car-card';
+                carCard.onclick = () => openCarModal(car.id);
+
+                const coverImg = (car.images && car.images.length > 0) ? car.images[0] : (car.imageUrl || 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80');
+
+                carCard.innerHTML = `
+                    <div class="car-img-wrapper">
+                        <img src="${coverImg}" alt="${car.brand}" class="car-image" onerror="this.src='https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80'">
+                        <div class="car-price-badge">${Number(car.price).toLocaleString('tr-TR')} ₺</div>
+                        <button class="btn-fav-card ${isFav ? 'favorited' : ''}" onclick="toggleFavorite(event, ${car.id})" title="Favorilere Ekle / Çıkar">
+                            <i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="car-details">
+                        <h3 class="car-title">${car.brand} ${car.model}</h3>
+                        
+                        <div class="specs-grid">
+                            <div><span>Yıl</span> <strong>${car.year}</strong></div>
+                            <div><span>KM</span> <strong>${Number(car.km).toLocaleString('tr-TR')}</strong></div>
+                            <div><span>Vites</span> <strong>${car.transmission}</strong></div>
+                            <div><span>Yakıt</span> <strong>${car.fuel}</strong></div>
+                        </div>
+                        
+                        <p class="car-desc">${car.description || 'Açıklama girilmemiş.'}</p>
+                        
+                        <div class="card-actions">
+                            <button class="btn-details"><i class="fa-solid fa-eye"></i> Detaylar & Ekspertiz & Soru Sor</button>
+                        </div>
+                    </div>
+                `;
+
+                carList.appendChild(carCard);
+            });
+        }
+
+        function renderAdminCarList() {
+            const container = document.getElementById('adminCarListContainer');
+            if(!container) return;
+            container.innerHTML = '';
+
+            if (allCars.length === 0) {
+                container.innerHTML = '<p style="color:var(--text-light); font-size:0.9rem;">Sistemde kayıtlı ilan bulunmuyor.</p>';
+                return;
+            }
+
+            allCars.forEach(car => {
+                const item = document.createElement('div');
+                item.className = 'admin-car-list-item';
+                item.innerHTML = `
+                    <span style="font-weight:600; color:var(--primary);">${car.brand} ${car.model} (${car.year}) - ${Number(car.price).toLocaleString('tr-TR')} ₺</span>
+                    <button class="btn-delete" onclick="deleteCar(event, ${car.id})"><i class="fa-solid fa-trash"></i> İlanı Kaldır</button>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function renderAdminCustomers() {
+            const tbody = document.getElementById('adminCustomersTableBody');
+            if(!tbody) return;
+            tbody.innerHTML = '';
+
+            if (usersList.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:var(--text-light);">Kayıtlı müşteri bulunmuyor.</td></tr>';
+                return;
+            }
+
+            usersList.forEach(u => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td style="font-weight:600; color:var(--primary);">${u.name}</td>
+                    <td>${u.email}</td>
+                    <td>${u.date || '-'}</td>
+                    <td><span style="background: rgba(2,132,199,0.1); color: var(--accent); padding: 4px 10px; border-radius: 8px; font-weight: 600; font-size: 0.8rem;">${u.role || 'Müşteri'}</span></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function renderAdminChats() {
+            const container = document.getElementById('adminChatsListContainer');
+            if(!container) return;
+            container.innerHTML = '';
+
+            if (messagesList.length === 0) {
+                container.innerHTML = '<p style="color:var(--text-light); font-size:0.9rem;">Henüz gelen bir müşteri sorusu bulunmuyor.</p>';
+                return;
+            }
+
+            messagesList.forEach(m => {
+                const card = document.createElement('div');
+                card.className = 'chat-admin-card';
+                card.innerHTML = `
+                    <h4><span><i class="fa-solid fa-car"></i> ${m.carTitle}</span> <span style="font-size:0.8rem; color:var(--text-light);">${m.date}</span></h4>
+                    <p><strong>Müşteri (${m.userName} - ${m.userEmail}):</strong> ${m.question}</p>
+                    <div style="margin-bottom: 12px; font-size: 0.9rem; color: var(--primary);">
+                        <strong>Admin Yanıtı:</strong> ${m.answer ? m.answer : '<span style="color:#dc2626; font-style:italic;">Henüz yanıtlanmadı</span>'}
+                    </div>
+                    <div class="reply-box">
+                        <input type="text" id="adminReplyInput_${m.id}" placeholder="Yanıt yazın..." value="${m.answer || ''}">
+                        <button class="btn-reply" onclick="sendAdminReply(${m.id})">Yanıtla</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function sendAdminReply(msgId) {
+            const inputVal = document.getElementById(`adminReplyInput_${msgId}`).value.trim();
+            if(!inputVal) {
+                alert('Lütfen bir yanıt yazın.');
+                return;
+            }
+            const msg = messagesList.find(m => m.id === msgId);
+            if(msg) {
+                msg.answer = inputVal;
+                saveMessages();
+                renderAdminChats();
+                alert('Yanıt başarıyla gönderildi.');
+            }
+        }
+
+        function renderUserFavorites() {
+            const grid = document.getElementById('userFavsGrid');
+            const badge = document.getElementById('favCountBadge');
+            if(!grid) return;
+            
+            badge.innerText = userFavorites.length;
+            grid.innerHTML = '';
+
+            if(userFavorites.length === 0) {
+                grid.innerHTML = '<p style="grid-column: 1/-1; color:var(--text-light); font-size:0.9rem;">Henüz favorilere eklediğiniz bir araç yok.</p>';
+                return;
+            }
+
+            const favCars = allCars.filter(c => userFavorites.includes(c.id));
+            favCars.forEach(car => {
+                const coverImg = (car.images && car.images.length > 0) ? car.images[0] : (car.imageUrl || '');
+                const card = document.createElement('div');
+                card.className = 'car-card';
+                card.onclick = () => openCarModal(car.id);
+                card.innerHTML = `
+                    <div class="car-img-wrapper" style="height: 180px;">
+                        <img src="${coverImg}" alt="${car.brand}" class="car-image">
+                        <div class="car-price-badge" style="font-size:1.1rem;">${Number(car.price).toLocaleString('tr-TR')} ₺</div>
+                    </div>
+                    <div class="car-details" style="padding: 16px;">
+                        <h3 class="car-title" style="font-size:1.1rem; margin-bottom:8px;">${car.brand} ${car.model}</h3>
+                        <p style="font-size:0.85rem; color:var(--text-light);">${car.year} | ${Number(car.km).toLocaleString('tr-TR')} KM | ${car.transmission}</p>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function renderUserChats() {
+            const container = document.getElementById('userChatsList');
+            const badge = document.getElementById('chatCountBadge');
+            if(!container || !currentUser) return;
+
+            const myMsgs = messagesList.filter(m => m.userEmail === currentUser.email);
+            badge.innerText = myMsgs.length;
+            container.innerHTML = '';
+
+            if(myMsgs.length === 0) {
+                container.innerHTML = '<p style="color:var(--text-light); font-size:0.9rem;">Henüz sorduğunuz bir soru bulunmuyor.</p>';
+                return;
+            }
+
+            myMsgs.forEach(m => {
+                const card = document.createElement('div');
+                card.className = 'chat-admin-card';
+                card.innerHTML = `
+                    <h4><span><i class="fa-solid fa-car"></i> ${m.carTitle}</span> <span style="font-size:0.8rem; color:var(--text-light);">${m.date}</span></h4>
+                    <p><strong>Sorunuz:</strong> ${m.question}</p>
+                    <div style="font-size: 0.9rem; color: var(--primary); background: #f8fafc; padding: 12px; border-radius: 10px; border: 1px solid var(--border);">
+                        <strong>Admin Yanıtı:</strong> ${m.answer ? m.answer : '<span style="color:#64748b; font-style:italic;">Yöneticinin yanıtı bekleniyor...</span>'}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
     </script>
 </body>
 </html>
