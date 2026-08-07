@@ -1516,7 +1516,8 @@
                                 <th>Ad Soyad / Kullanıcı Adı</th>
                                 <th>E-posta</th>
                                 <th>Kayıt / İşlem Tarihi</th>
-                                <th>Rol</th>
+                                <th>Rol / Durum</th>
+                                <th>İşlemler</th>
                             </tr>
                         </thead>
                         <tbody id="adminCustomersTableBody">
@@ -1825,10 +1826,16 @@
 
             const isThisAdmin = (email === ADMIN_EMAIL);
 
+            // Önce kullanıcı sistemde var mı kontrol et ve banlı mı bak
+            let existingUser = usersList.find(u => u.email === email);
+            if (existingUser && existingUser.isBanned) {
+                alert('Bu hesap yönetici tarafından yasaklanmıştır (banlanmıştır). Giriş yapamazsınız.');
+                return;
+            }
+
             if (isRegisterMode) {
                 const name = nameInput || email.split('@')[0];
-                const existing = usersList.find(u => u.email === email);
-                if (existing) {
+                if (existingUser) {
                     alert('Bu e-posta adresi ile zaten bir kayıt bulunuyor!');
                     return;
                 }
@@ -1838,7 +1845,8 @@
                     email: email,
                     password: password,
                     date: dateStr,
-                    role: isThisAdmin ? 'Yönetici' : 'Müşteri'
+                    role: isThisAdmin ? 'Yönetici' : 'Müşteri',
+                    isBanned: false
                 };
                 usersList.push(newUser);
                 currentUser = newUser;
@@ -1854,7 +1862,8 @@
                             email: email,
                             password: password,
                             date: dateStr,
-                            role: 'Yönetici'
+                            role: 'Yönetici',
+                            isBanned: false
                         };
                         usersList.push(found);
                         saveUsers();
@@ -1863,6 +1872,10 @@
                         return;
                     }
                 } else {
+                    if (found.isBanned) {
+                        alert('Bu hesap yasaklanmıştır.');
+                        return;
+                    }
                     if (isThisAdmin && found.role !== 'Yönetici') {
                         found.role = 'Yönetici';
                         saveUsers();
@@ -1992,7 +2005,8 @@
                     email: ADMIN_EMAIL,
                     password: 'admin123',
                     date: '01.01.2026',
-                    role: 'Yönetici'
+                    role: 'Yönetici',
+                    isBanned: false
                 });
                 saveUsers();
             }
@@ -2168,10 +2182,8 @@
                 donanimContainer.innerHTML = '';
                 
                 if (car.donanimlar && car.donanimlar.length > 0) {
-                    // Donanımları kategorilerine göre gruplayalım
                     const groupedDonanim = {};
                     car.donanimlar.forEach(d => {
-                        // Eğer eski format (düz string) kayıtlıysa varsayılan kategori ata
                         const kat = d.kategori || 'Genel Donanımlar';
                         const isim = d.isim || d;
                         if (!groupedDonanim[kat]) groupedDonanim[kat] = [];
@@ -2306,20 +2318,62 @@
             tbody.innerHTML = '';
 
             if (usersList.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:var(--text-light);">Kayıtlı müşteri bulunmuyor.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:var(--text-light);">Kayıtlı müşteri bulunmuyor.</td></tr>';
                 return;
             }
 
             usersList.forEach(u => {
                 const tr = document.createElement('tr');
+                const isBanned = u.isBanned === true;
+                
+                let actionBtnHtml = '';
+                if (u.email === ADMIN_EMAIL) {
+                    actionBtnHtml = '<span style="color:var(--text-light); font-size:0.85rem; font-style:italic;">Yönetici Hesabı</span>';
+                } else if (isBanned) {
+                    actionBtnHtml = `<button class="btn-details" style="background: rgba(16, 185, 129, 0.1); color: #10b981; border-color: rgba(16, 185, 129, 0.2); padding: 6px 12px; font-size:0.8rem;" onclick="toggleUserBan('${u.email}')"><i class="fa-solid fa-user-check"></i> Banı Kaldır</button>`;
+                } else {
+                    actionBtnHtml = `<button class="btn-delete" style="padding: 6px 12px; font-size:0.8rem;" onclick="toggleUserBan('${u.email}')"><i class="fa-solid fa-user-slash"></i> Banla</button>`;
+                }
+
                 tr.innerHTML = `
                     <td style="font-weight:600; color:var(--primary);">${u.name}</td>
                     <td>${u.email}</td>
                     <td>${u.date || '-'}</td>
-                    <td><span style="background: rgba(2,132,199,0.1); color: var(--accent); padding: 4px 10px; border-radius: 8px; font-weight: 600; font-size: 0.8rem;">${u.role || 'Müşteri'}</span></td>
+                    <td>
+                        <span style="background: ${isBanned ? 'rgba(220,38,38,0.1)' : 'rgba(2,132,199,0.1)'}; color: ${isBanned ? '#dc2626' : 'var(--accent)'}; padding: 4px 10px; border-radius: 8px; font-weight: 600; font-size: 0.8rem;">
+                            ${isBanned ? 'Yasaklı (Banlı)' : (u.role || 'Müşteri')}
+                        </span>
+                    </td>
+                    <td>${actionBtnHtml}</td>
                 `;
                 tbody.appendChild(tr);
             });
+        }
+
+        function toggleUserBan(email) {
+            if (!currentUser || currentUser.email !== ADMIN_EMAIL) {
+                alert('Bu işlem için yönetici yetkisi gereklidir!');
+                return;
+            }
+            if (email === ADMIN_EMAIL) {
+                alert('Yönetici hesabı banlanamaz!');
+                return;
+            }
+
+            const user = usersList.find(u => u.email === email);
+            if (user) {
+                user.isBanned = !user.isBanned;
+                saveUsers();
+                renderAdminCustomers();
+
+                // Eğer banlanan kullanıcı o an aktif olarak oturum açmışsa oturumunu sonlandır
+                if (currentUser && currentUser.email === email && user.isBanned) {
+                    logout();
+                    alert('Hesabınız yönetici tarafından yasaklandığı için oturumunuz sonlandırıldı.');
+                } else {
+                    alert(`Kullanıcı (${email}) durumu güncellendi.`);
+                }
+            }
         }
 
         function renderAdminChats() {
