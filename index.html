@@ -1091,7 +1091,8 @@
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-top: 15px;
+            margin-top: 8px;
+            margin-bottom: 15px;
         }
 
         .modal-donanim-tag {
@@ -1434,60 +1435,60 @@
                     <div class="donanim-box">
                         <div class="donanim-category-title"><i class="fa-solid fa-shield-halved" style="color: var(--accent);"></i> Güvenlik Donanımları</div>
                         <div class="donanim-grid" id="guvenlikDonanimlar">
-                            <label class="donanim-item"><input type="checkbox" value="ABS"> ABS</label>
-                            <label class="donanim-item"><input type="checkbox" value="Distronic"> Distronic</label>
-                            <label class="donanim-item"><input type="checkbox" value="Hava Yastığı (Yolcu)"> Hava Yastığı (Yolcu)</label>
-                            <label class="donanim-item"><input type="checkbox" value="Merkezi Kilit"> Merkezi Kilit</label>
-                            <label class="donanim-item"><input type="checkbox" value="Yorgunluk Tespit Sistemi"> Yorgunluk Tespit Sistemi</label>
-                            <label class="donanim-item"><input type="checkbox" value="AEB"> AEB</label>
-                            <label class="donanim-item"><input type="checkbox" value="ESP / VSA"> ESP / VSA</label>
-                            <label class="donanim-item"><input type="checkbox" value="İmmobiliser"> İmmobiliser</label>
-                            <label class="donanim-item"><input type="checkbox" value="Şerit Takip Sistemi"> Şerit Takip Sistemi</label>
-                            <label class="donanim-item"><input type="checkbox" value="BAS"> BAS</label>
-                            <label class="donanim-item"><input type="checkbox" value="Isofix"> Isofix</label>
-                            <label class="donanim-item"><input type="checkbox" value="Şeritten Ayrılma İkazı"> Şeritten Ayrılma İkazı</label>
-                            <label class="donanim-item"><input type="checkbox" value="Çocuk Kilidi"> Çocuk Kilidi</label>
-                            <label class="donanim-item"><input type="checkbox" value="Hava Yastığı (Sürücü)"> Hava Yastığı (Sürücü)</label>
-                            <label class="donanim-item"><input type="checkbox" value="Kör Nokta Uyarı Sistemi"> Kör Nokta Uyarı Sistemi</label>
-                            <label class="donanim-item"><input type="checkbox" value="Yokuş Kalkış Desteği"> Yokuş Kalkış Desteği</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="Güvenlik" value="ABS"> ABS</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="Güvenlik" value="Distronic"> Distronic</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="Güvenlik" value="Hava Yastığı (Yolcu)"> Hava Yastığı (Yolcu)</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="Güvenlik" value="Merkezi Kilit"> Merkezi Kilit</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="Güvenlik" value="Yorgunluk Tespit Sistemi"> Yorgunluk Tespit Sistemi</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="Güvenlik" value="AEB"> AEB</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="Güvenlik" value="ESP / VSA"> ESP / VSA</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="Güvenlik" value="İmmobiliser"> İmmobiliser</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="Güvenlik" value="Şerit Takip Sistemi"> Şerit Takip Sistemi</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="Güvenlik" value="BAS"> BAS</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="Güvenlik" value="Isofix"> Isofix</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="Güvenlik" value="Şeritten Ayrılma İkazı"> Şeritten Ayrılma İkazı</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="Güvenlik" value="Çocuk Kilidi"> Çocuk Kilidi</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="Güvenlik" value="Hava Yastığı (Sürücü)"> Hava Yastığı (Sürücü)</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="Güvenlik" value="Kör Nokta Uyarı Sistemi"> Kör Nokta Uyarı Sistemi</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="Güvenlik" value="Yokuş Kalkış Desteği"> Yokuş Kalkış Desteği</label>
                         </div>
 
                         <div class="donanim-category-title"><i class="fa-solid fa-couch" style="color: var(--accent);"></i> İç Donanım</div>
                         <div class="donanim-grid" id="icDonanimlar">
-                            <label class="donanim-item"><input type="checkbox" value="Adaptive Cruise Control"> Adaptive Cruise Control</label>
-                            <label class="donanim-item"><input type="checkbox" value="Fonksiyonel Direksiyon"> Fonksiyonel Direksiyon</label>
-                            <label class="donanim-item"><input type="checkbox" value="Hidrolik Direksiyon"> Hidrolik Direksiyon</label>
-                            <label class="donanim-item"><input type="checkbox" value="Otm. Kararan Dikiz Aynası"> Otm. Kararan Dikiz Aynası</label>
-                            <label class="donanim-item"><input type="checkbox" value="Start / Stop"> Start / Stop</label>
-                            <label class="donanim-item"><input type="checkbox" value="Anahtarsız Giriş ve Çalıştırma"> Anahtarsız Giriş ve Çalıştırma</label>
-                            <label class="donanim-item"><input type="checkbox" value="Geri Görüş Kamerası"> Geri Görüş Kamerası</label>
-                            <label class="donanim-item"><input type="checkbox" value="Ön Görüş Kamerası"> Ön Görüş Kamerası</label>
-                            <label class="donanim-item"><input type="checkbox" value="Klima"> Klima</label>
-                            <label class="donanim-item"><input type="checkbox" value="Ön Koltuk Kol Dayaması"> Ön Koltuk Kol Dayaması</label>
-                            <label class="donanim-item"><input type="checkbox" value="Yol Bilgisayarı"> Yol Bilgisayarı</label>
-                            <label class="donanim-item"><input type="checkbox" value="Elektrikli Camlar"> Elektrikli Camlar</label>
-                            <label class="donanim-item"><input type="checkbox" value="Hız Sabitleme Sistemi"> Hız Sabitleme Sistemi</label>
-                            <label class="donanim-item"><input type="checkbox" value="Kumaş Koltuk"> Kumaş Koltuk</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="İç Donanım" value="Adaptive Cruise Control"> Adaptive Cruise Control</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="İç Donanım" value="Fonksiyonel Direksiyon"> Fonksiyonel Direksiyon</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="İç Donanım" value="Hidrolik Direksiyon"> Hidrolik Direksiyon</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="İç Donanım" value="Otm. Kararan Dikiz Aynası"> Otm. Kararan Dikiz Aynası</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="İç Donanım" value="Start / Stop"> Start / Stop</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="İç Donanım" value="Anahtarsız Giriş ve Çalıştırma"> Anahtarsız Giriş ve Çalıştırma</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="İç Donanım" value="Geri Görüş Kamerası"> Geri Görüş Kamerası</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="İç Donanım" value="Ön Görüş Kamerası"> Ön Görüş Kamerası</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="İç Donanım" value="Klima"> Klima</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="İç Donanım" value="Ön Koltuk Kol Dayaması"> Ön Koltuk Kol Dayaması</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="İç Donanım" value="Yol Bilgisayarı"> Yol Bilgisayarı</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="İç Donanım" value="Elektrikli Camlar"> Elektrikli Camlar</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="İç Donanım" value="Hız Sabitleme Sistemi"> Hız Sabitleme Sistemi</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="İç Donanım" value="Kumaş Koltuk"> Kumaş Koltuk</label>
                         </div>
 
                         <div class="donanim-category-title"><i class="fa-solid fa-car" style="color: var(--accent);"></i> Dış Donanım</div>
                         <div class="donanim-grid" id="disDonanimlar">
-                            <label class="donanim-item"><input type="checkbox" value="Aynalar (Isıtmalı)"> Aynalar (Isıtmalı)</label>
-                            <label class="donanim-item"><input type="checkbox" value="Park Sensörü (Arka)"> Park Sensörü (Arka)</label>
-                            <label class="donanim-item"><input type="checkbox" value="Far (Adaptif)"> Far (Adaptif)</label>
-                            <label class="donanim-item"><input type="checkbox" value="Park Sensörü (Ön)"> Park Sensörü (Ön)</label>
-                            <label class="donanim-item"><input type="checkbox" value="Aynalar (Elektrikli)"> Aynalar (Elektrikli)</label>
-                            <label class="donanim-item"><input type="checkbox" value="Panoramik Cam Tavan"> Panoramik Cam Tavan</label>
-                            <label class="donanim-item"><input type="checkbox" value="Aynalar (Hafızalı)"> Aynalar (Hafızalı)</label>
-                            <label class="donanim-item"><input type="checkbox" value="Sunroof"> Sunroof</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="Dış Donanım" value="Aynalar (Isıtmalı)"> Aynalar (Isıtmalı)</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="Dış Donanım" value="Park Sensörü (Arka)"> Park Sensörü (Arka)</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="Dış Donanım" value="Far (Adaptif)"> Far (Adaptif)</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="Dış Donanım" value="Park Sensörü (Ön)"> Park Sensörü (Ön)</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="Dış Donanım" value="Aynalar (Elektrikli)"> Aynalar (Elektrikli)</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="Dış Donanım" value="Panoramik Cam Tavan"> Panoramik Cam Tavan</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="Dış Donanım" value="Aynalar (Hafızalı)"> Aynalar (Hafızalı)</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="Dış Donanım" value="Sunroof"> Sunroof</label>
                         </div>
 
                         <div class="donanim-category-title"><i class="fa-solid fa-icons" style="color: var(--accent);"></i> Multimedya</div>
                         <div class="donanim-grid" id="multimedyaDonanimlar">
-                            <label class="donanim-item"><input type="checkbox" value="Android Auto"> Android Auto</label>
-                            <label class="donanim-item"><input type="checkbox" value="Apple CarPlay"> Apple CarPlay</label>
-                            <label class="donanim-item"><input type="checkbox" value="Bluetooth"> Bluetooth</label>
-                            <label class="donanim-item"><input type="checkbox" value="USB / AUX"> USB / AUX</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="Multimedya" value="Android Auto"> Android Auto</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="Multimedya" value="Apple CarPlay"> Apple CarPlay</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="Multimedya" value="Bluetooth"> Bluetooth</label>
+                            <label class="donanim-item"><input type="checkbox" name="donanim" data-kategori="Multimedya" value="USB / AUX"> USB / AUX</label>
                         </div>
                     </div>
 
@@ -1568,7 +1569,7 @@
                     </div>
 
                     <div style="font-size:1rem; font-weight:700; margin-bottom:10px; color:var(--primary);">Donanım Özellikleri</div>
-                    <div id="modalDonanimlar" class="modal-donanim-tags"></div>
+                    <div id="modalDonanimlar"></div>
 
                     <!-- Soru Sor Alanı -->
                     <div class="question-box">
@@ -2013,7 +2014,15 @@
                     enginePower: '170 HP',
                     images: ['https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80'],
                     description: 'Hatasız, temiz aile aracı. Yetkili servis bakımlı.',
-                    donanimlar: ['ABS', 'ESP / VSA', 'Isofix', 'Hız Sabitleme Sistemi', 'Geri Görüş Kamerası', 'Klima', 'Bluetooth'],
+                    donanimlar: [
+                        { kategori: 'Güvenlik', isim: 'ABS' },
+                        { kategori: 'Güvenlik', isim: 'ESP / VSA' },
+                        { kategori: 'Güvenlik', isim: 'Isofix' },
+                        { kategori: 'İç Donanım', isim: 'Hız Sabitleme Sistemi' },
+                        { kategori: 'İç Donanım', isim: 'Geri Görüş Kamerası' },
+                        { kategori: 'İç Donanım', isim: 'Klima' },
+                        { kategori: 'Multimedya', isim: 'Bluetooth' }
+                    ],
                     parts: {
                         'on-tampon': 'orijinal',
                         kaput: 'orijinal',
@@ -2063,7 +2072,10 @@
 
                 const selectedDonanimlar = [];
                 document.querySelectorAll('.donanim-item input[type="checkbox"]:checked').forEach(chk => {
-                    selectedDonanimlar.push(chk.value);
+                    selectedDonanimlar.push({
+                        kategori: chk.getAttribute('data-kategori'),
+                        isim: chk.value
+                    });
                 });
 
                 const newCar = {
@@ -2154,13 +2166,35 @@
 
                 const donanimContainer = document.getElementById('modalDonanimlar');
                 donanimContainer.innerHTML = '';
+                
                 if (car.donanimlar && car.donanimlar.length > 0) {
+                    // Donanımları kategorilerine göre gruplayalım
+                    const groupedDonanim = {};
                     car.donanimlar.forEach(d => {
-                        const tag = document.createElement('span');
-                        tag.className = 'modal-donanim-tag';
-                        tag.innerHTML = `<i class="fa-solid fa-check" style="color:var(--accent);"></i> ${d}`;
-                        donanimContainer.appendChild(tag);
+                        // Eğer eski format (düz string) kayıtlıysa varsayılan kategori ata
+                        const kat = d.kategori || 'Genel Donanımlar';
+                        const isim = d.isim || d;
+                        if (!groupedDonanim[kat]) groupedDonanim[kat] = [];
+                        groupedDonanim[kat].push(isim);
                     });
+
+                    for (let kategori in groupedDonanim) {
+                        let katTitle = document.createElement('div');
+                        katTitle.style.cssText = 'font-size:0.9rem; font-weight:700; color:var(--accent); margin-top:10px; margin-bottom:5px;';
+                        katTitle.innerText = kategori;
+                        donanimContainer.appendChild(katTitle);
+
+                        let tagsWrapper = document.createElement('div');
+                        tagsWrapper.className = 'modal-donanim-tags';
+
+                        groupedDonanim[kategori].forEach(isim => {
+                            const tag = document.createElement('span');
+                            tag.className = 'modal-donanim-tag';
+                            tag.innerHTML = `<i class="fa-solid fa-check" style="color:var(--accent);"></i> ${isim}`;
+                            tagsWrapper.appendChild(tag);
+                        });
+                        donanimContainer.appendChild(tagsWrapper);
+                    }
                 } else {
                     donanimContainer.innerHTML = '<span style="font-size:0.85rem; color:var(--text-light);">Donanım bilgisi belirtilmemiş.</span>';
                 }
