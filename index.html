@@ -1826,7 +1826,6 @@
 
             const isThisAdmin = (email === ADMIN_EMAIL);
 
-            // Önce kullanıcı sistemde var mı kontrol et ve banlı mı bak
             let existingUser = usersList.find(u => u.email === email);
             if (existingUser && existingUser.isBanned) {
                 alert('Bu hesap yönetici tarafından yasaklanmıştır (banlanmıştır). Giriş yapamazsınız.');
@@ -2366,7 +2365,6 @@
                 saveUsers();
                 renderAdminCustomers();
 
-                // Eğer banlanan kullanıcı o an aktif olarak oturum açmışsa oturumunu sonlandır
                 if (currentUser && currentUser.email === email && user.isBanned) {
                     logout();
                     alert('Hesabınız yönetici tarafından yasaklandığı için oturumunuz sonlandırıldı.');
@@ -2424,60 +2422,62 @@
         }
 
         function renderUserFavorites() {
-            const grid = document.getElementById('userFavsGrid');
+            const container = document.getElementById('userFavsGrid');
             const badge = document.getElementById('favCountBadge');
-            if(!grid) return;
-            
-            badge.innerText = userFavorites.length;
-            grid.innerHTML = '';
+            if(!container) return;
+            container.innerHTML = '';
 
-            if(userFavorites.length === 0) {
-                grid.innerHTML = '<p style="grid-column: 1/-1; color:var(--text-light); font-size:0.9rem;">Henüz favorilere eklediğiniz bir araç yok.</p>';
+            badge.innerText = userFavorites.length;
+
+            const favCars = allCars.filter(c => userFavorites.includes(c.id));
+            if (favCars.length === 0) {
+                container.innerHTML = '<p style="grid-column: 1/-1; color:var(--text-light); font-size:0.9rem;">Henüz favorilere eklediğiniz bir araç bulunmuyor.</p>';
                 return;
             }
 
-            const favCars = allCars.filter(c => userFavorites.includes(c.id));
             favCars.forEach(car => {
                 const coverImg = (car.images && car.images.length > 0) ? car.images[0] : (car.imageUrl || '');
                 const card = document.createElement('div');
                 card.className = 'car-card';
                 card.onclick = () => openCarModal(car.id);
                 card.innerHTML = `
-                    <div class="car-img-wrapper" style="height: 180px;">
-                        <img src="${coverImg}" alt="${car.brand}" class="car-image">
+                    <div class="car-img-wrapper" style="height:180px;">
+                        <img src="${coverImg}" class="car-image">
                         <div class="car-price-badge" style="font-size:1.1rem;">${Number(car.price).toLocaleString('tr-TR')} ₺</div>
                     </div>
-                    <div class="car-details" style="padding: 16px;">
-                        <h3 class="car-title" style="font-size:1.1rem; margin-bottom:8px;">${car.brand} ${car.model}</h3>
-                        <p style="font-size:0.85rem; color:var(--text-light);">${car.year} | ${Number(car.km).toLocaleString('tr-TR')} KM | ${car.transmission}</p>
+                    <div class="car-details" style="padding:15px;">
+                        <h4 style="font-size:1.1rem; color:var(--primary); margin-bottom:8px;">${car.brand} ${car.model}</h4>
+                        <button class="btn-details" style="padding:8px; font-size:0.85rem;"><i class="fa-solid fa-eye"></i> İncele</button>
                     </div>
                 `;
-                grid.appendChild(card);
+                container.appendChild(card);
             });
         }
 
         function renderUserChats() {
             const container = document.getElementById('userChatsList');
             const badge = document.getElementById('chatCountBadge');
-            if(!container || !currentUser) return;
-
-            const myMsgs = messagesList.filter(m => m.userEmail === currentUser.email);
-            badge.innerText = myMsgs.length;
+            if(!container) return;
             container.innerHTML = '';
 
-            if(myMsgs.length === 0) {
+            if(!currentUser) return;
+
+            const myMessages = messagesList.filter(m => m.userEmail === currentUser.email);
+            badge.innerText = myMessages.length;
+
+            if (myMessages.length === 0) {
                 container.innerHTML = '<p style="color:var(--text-light); font-size:0.9rem;">Henüz sorduğunuz bir soru bulunmuyor.</p>';
                 return;
             }
 
-            myMsgs.forEach(m => {
+            myMessages.forEach(m => {
                 const card = document.createElement('div');
                 card.className = 'chat-admin-card';
                 card.innerHTML = `
                     <h4><span><i class="fa-solid fa-car"></i> ${m.carTitle}</span> <span style="font-size:0.8rem; color:var(--text-light);">${m.date}</span></h4>
                     <p><strong>Sorunuz:</strong> ${m.question}</p>
-                    <div style="font-size: 0.9rem; color: var(--primary); background: #f8fafc; padding: 12px; border-radius: 10px; border: 1px solid var(--border);">
-                        <strong>Admin Yanıtı:</strong> ${m.answer ? m.answer : '<span style="color:#64748b; font-style:italic;">Yöneticinin yanıtı bekleniyor...</span>'}
+                    <div style="font-size: 0.9rem; color: var(--primary); background:#f8fafc; padding:12px; border-radius:10px; border:1px solid var(--border);">
+                        <strong>Admin Yanıtı:</strong> ${m.answer ? m.answer : '<span style="color:#dc2626; font-style:italic;">Henüz yanıtlanmadı, lütfen bekleyiniz...</span>'}
                     </div>
                 `;
                 container.appendChild(card);
