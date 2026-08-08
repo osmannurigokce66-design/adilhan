@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adilhan Otomotiv | Premium Galeri ve Ekspertiz</title>
+    <title>Adilhan Otomotiv | Premium Galeri, Ekspertiz ve Sepet</title>
     <!-- FontAwesome İkonları -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
@@ -105,6 +105,7 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            flex-wrap: wrap;
         }
 
         .search-container {
@@ -164,6 +165,7 @@
             transition: 0.2s;
             box-shadow: 0 2px 5px rgba(0,0,0,0.01);
             text-decoration: none;
+            position: relative;
         }
 
         .nav-btn:hover {
@@ -181,6 +183,23 @@
         .nav-btn.primary:hover {
             opacity: 0.9;
             color: white;
+        }
+
+        .cart-badge-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #dc2626;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         /* Hero Banner */
@@ -918,6 +937,25 @@
             box-shadow: 0 0 15px rgba(2, 132, 199, 0.3);
         }
 
+        .btn-add-cart {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-add-cart:hover {
+            opacity: 0.9;
+        }
+
         .admin-car-list-item {
             display: flex;
             justify-content: space-between;
@@ -1150,6 +1188,40 @@
             opacity: 0.9;
         }
 
+        /* Sepet Modal Stilleri */
+        .cart-item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            padding: 15px;
+            border-radius: 14px;
+            margin-bottom: 12px;
+        }
+        .cart-item-info {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .cart-item-info img {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .cart-total-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
         /* Footer */
         footer {
             background: #ffffff;
@@ -1250,6 +1322,12 @@
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <input type="text" id="searchInput" placeholder="Marka, model ara...">
                 </div>
+
+                <!-- Sepet Butonu -->
+                <button class="nav-btn" onclick="openCartModal()">
+                    <i class="fa-solid fa-cart-shopping"></i> Sepetim
+                    <span id="cartCountBadge" class="cart-badge-count" style="display: none;">0</span>
+                </button>
 
                 <!-- Giriş Öncesi Butonlar -->
                 <div id="authButtonsContainer" style="display: flex; gap: 10px;">
@@ -1571,6 +1649,11 @@
                     <div style="font-size:1rem; font-weight:700; margin-bottom:10px; color:var(--primary);">Donanım Özellikleri</div>
                     <div id="modalDonanimlar"></div>
 
+                    <!-- Sepete Ekle Butonu -->
+                    <button type="button" class="btn-submit" style="margin-top: 15px;" onclick="addCurrentCarToCartFromModal()">
+                        <i class="fa-solid fa-cart-plus"></i> Sepete Ekle / Satın Al
+                    </button>
+
                     <!-- Soru Sor Alanı -->
                     <div class="question-box">
                         <h3><i class="fa-solid fa-circle-question" style="color:var(--accent);"></i> İlan Sahibine Soru Sor</h3>
@@ -1612,6 +1695,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Sepet Modalı -->
+    <div id="cartModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-cart-shopping" style="color: var(--accent);"></i> Sepetim</h2>
+                <button type="button" class="btn-close-modal" onclick="closeCartModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div id="cartItemsContainer">
+                <!-- Sepet içerikleri -->
+            </div>
+            <div class="cart-total-box">
+                <span>Toplam Tutar:</span>
+                <span id="cartTotalPrice">0 ₺</span>
+            </div>
+            <button type="button" class="btn-submit" onclick="checkoutCart()">
+                <i class="fa-solid fa-credit-card"></i> Alışverişi Tamamla / Rezervasyon Yap
+            </button>
         </div>
     </div>
 
@@ -1676,6 +1779,7 @@
         let usersList = [];
         let currentUser = null;
         let userFavorites = [];
+        let userCart = [];
         let messagesList = [];
         let activeModalCarId = null;
         let isRegisterMode = false;
@@ -1778,6 +1882,15 @@
             document.getElementById('carModal').style.display = 'none';
         }
 
+        function openCartModal() {
+            renderCartItems();
+            document.getElementById('cartModal').style.display = 'flex';
+        }
+
+        function closeCartModal() {
+            document.getElementById('cartModal').style.display = 'none';
+        }
+
         function openAuthModal(mode) {
             isRegisterMode = (mode === 'register');
             updateAuthModalUI();
@@ -1874,13 +1987,16 @@
 
             closeAuthModal();
             updateNavbarAuth();
+            loadUserData();
             renderCars(allCars);
         }
 
         function logout() {
             currentUser = null;
             userFavorites = [];
+            userCart = [];
             updateNavbarAuth();
+            updateCartBadge();
             closeUserPanel();
             closeAdminPanel();
             renderCars(allCars);
@@ -1937,11 +2053,103 @@
                 alert('Araç favorilerinizden çıkarıldı.');
             }
 
-            saveFavorites();
+            saveUserData();
             renderCars(allCars);
             if(document.getElementById('userPanelSection').style.display === 'block') {
                 renderUserFavorites();
             }
+        }
+
+        function addCarToCart(event, carId) {
+            event.stopPropagation();
+            const car = allCars.find(c => c.id === carId);
+            if(!car) return;
+
+            if(!userCart.some(item => item.id === carId)) {
+                userCart.push(car);
+                saveUserData();
+                updateCartBadge();
+                alert('Araç başarıyla sepete eklendi!');
+            } else {
+                alert('Bu araç zaten sepetinizde bulunuyor.');
+            }
+        }
+
+        function addCurrentCarToCartFromModal() {
+            if(activeModalCarId) {
+                const car = allCars.find(c => c.id === activeModalCarId);
+                if(car && !userCart.some(item => item.id === activeModalCarId)) {
+                    userCart.push(car);
+                    saveUserData();
+                    updateCartBadge();
+                    alert('Araç başarıyla sepete eklendi!');
+                    closeModal();
+                } else {
+                    alert('Bu araç zaten sepetinizde veya eklenemedi.');
+                }
+            }
+        }
+
+        function removeFromCart(carId) {
+            userCart = userCart.filter(item => item.id !== carId);
+            saveUserData();
+            updateCartBadge();
+            renderCartItems();
+        }
+
+        function updateCartBadge() {
+            const badge = document.getElementById('cartCountBadge');
+            if(userCart.length > 0) {
+                badge.style.display = 'flex';
+                badge.innerText = userCart.length;
+            } else {
+                badge.style.display = 'none';
+            }
+        }
+
+        function renderCartItems() {
+            const container = document.getElementById('cartItemsContainer');
+            const totalPriceEl = document.getElementById('cartTotalPrice');
+            container.innerHTML = '';
+
+            if(userCart.length === 0) {
+                container.innerHTML = '<p style="text-align:center; color:var(--text-light); padding:20px;">Sepetinizde henüz araç bulunmuyor.</p>';
+                totalPriceEl.innerText = '0 ₺';
+                return;
+            }
+
+            let total = 0;
+            userCart.forEach(car => {
+                total += Number(car.price);
+                const coverImg = (car.images && car.images.length > 0) ? car.images[0] : (car.imageUrl || '');
+                const row = document.createElement('div');
+                row.className = 'cart-item-row';
+                row.innerHTML = `
+                    <div class="cart-item-info">
+                        <img src="${coverImg}" alt="${car.brand}">
+                        <div>
+                            <h4 style="font-size:1rem; color:var(--primary);">${car.brand} ${car.model}</h4>
+                            <p style="font-size:0.85rem; color:var(--accent); font-weight:700;">${Number(car.price).toLocaleString('tr-TR')} ₺</p>
+                        </div>
+                    </div>
+                    <button class="btn-delete" onclick="removeFromCart(${car.id})"><i class="fa-solid fa-trash"></i> Kaldır</button>
+                `;
+                container.appendChild(row);
+            });
+
+            totalPriceEl.innerText = Number(total).toLocaleString('tr-TR') + ' ₺';
+        }
+
+        function checkoutCart() {
+            if(userCart.length === 0) {
+                alert('Sepetiniz boş.');
+                return;
+            }
+            alert('Tebrikler! Araç rezervasyonunuz ve ödeme talebiniz başarıyla alındı. Müşteri temsilcilerimiz sizinle iletişime geçecektir.');
+            userCart = [];
+            saveUserData();
+            updateCartBadge();
+            closeCartModal();
         }
 
         function sendCustomerQuestion() {
@@ -1997,7 +2205,7 @@
                 saveUsers();
             }
 
-            userFavorites = JSON.parse(localStorage.getItem('adilhan_favs_' + (currentUser ? currentUser.email : 'guest'))) || [];
+            loadUserData();
 
             if (allCars.length === 0) {
                 allCars.push({
@@ -2168,10 +2376,8 @@
                 donanimContainer.innerHTML = '';
                 
                 if (car.donanimlar && car.donanimlar.length > 0) {
-                    // Donanımları kategorilerine göre gruplayalım
                     const groupedDonanim = {};
                     car.donanimlar.forEach(d => {
-                        // Eğer eski format (düz string) kayıtlıysa varsayılan kategori ata
                         const kat = d.kategori || 'Genel Donanımlar';
                         const isim = d.isim || d;
                         if (!groupedDonanim[kat]) groupedDonanim[kat] = [];
@@ -2217,10 +2423,18 @@
             localStorage.setItem('adilhan_users_master', JSON.stringify(usersList));
         }
 
-        function saveFavorites() {
+        function saveUserData() {
             if (currentUser) {
                 localStorage.setItem('adilhan_favs_' + currentUser.email, JSON.stringify(userFavorites));
+                localStorage.setItem('adilhan_cart_' + currentUser.email, JSON.stringify(userCart));
             }
+        }
+
+        function loadUserData() {
+            const userKey = currentUser ? currentUser.email : 'guest';
+            userFavorites = JSON.parse(localStorage.getItem('adilhan_favs_' + userKey)) || [];
+            userCart = JSON.parse(localStorage.getItem('adilhan_cart_' + userKey)) || [];
+            updateCartBadge();
         }
 
         function saveMessages() {
@@ -2270,7 +2484,8 @@
                         <p class="car-desc">${car.description || 'Açıklama girilmemiş.'}</p>
                         
                         <div class="card-actions">
-                            <button class="btn-details"><i class="fa-solid fa-eye"></i> Detaylar & Ekspertiz & Soru Sor</button>
+                            <button class="btn-details" onclick="openCarModal(${car.id})"><i class="fa-solid fa-eye"></i> Detaylar</button>
+                            <button class="btn-add-cart" onclick="addCarToCart(event, ${car.id})" title="Sepete Ekle"><i class="fa-solid fa-cart-plus"></i></button>
                         </div>
                     </div>
                 `;
